@@ -1,14 +1,20 @@
 package cookalone.main.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue
+    @Column(name="USER_ID") //ID Column 이름
     private Long id;
 
     private String email;
@@ -16,10 +22,22 @@ public class User {
     private String nickname;
     private String username;
 
-
+    @Embedded // 값 타입
     private Address address;
 
-    private List<Order> orderList;
+    /* 1. JsonIgnore: Json으로 데이터를 주고 받을 때, 해당 데이터는 응답값에 보이지 않음.
+     * 2. OneToMany: 연관관계는 해당 Entity를 기준으로
+     * 3. mappedby : USER FK는 ORDER 가 가지고 있다.(연관관계의 주인은 Order)
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviewList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Receipe> receipeList = new ArrayList<>();
 
     private String createdDate;
     private String modifiedDate;
