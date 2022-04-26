@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="PRODUCT_CATEGORY")
 @Getter @Setter
 public class ProductCategory {
     @Id

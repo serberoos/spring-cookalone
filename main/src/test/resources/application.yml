@@ -1,0 +1,19 @@
+spring:
+#  datasource: 스프링 부트에서는 기본으로 설정이 없으면 memory 모드로 돌리게 된다.
+#    url: jdbc:h2:mem:test
+#    username: serberos
+#    password: cookalone1234
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
