@@ -1,0 +1,171 @@
+.wrapper {
+    width:1200px;
+    margin:0 auto;
+    background-color: olive;
+    box-align:center;
+    text-align:center;
+    font-family:Sunflower;
+}
+@font-face {
+    font-family:Sunflower;
+    src:url(/font/Sunflower-Light.ttf) format('truetype');
+}
+html {
+    background-image: url("../images/background.jpg");
+    background-size:100%;
+}
+header{
+    background-color: darkgoldenrod;
+    width:100%;
+    top:0;
+    left:0;   
+}
+footer{
+    background-color:olive;
+    text-align:center;
+    padding:40px;
+}
+img, input {
+    vertical-align:middle; 
+}
+    
+nav {
+    display:inline-block;
+}
+#textfield1{
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
+#textfield2{
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
+#textfield3{
+    width: 450px;
+    height: 40px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+   
+}
+
+#down-header{
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:gray;
+    
+}
+#down-header-left {
+    display:inline-block;
+    padding-right:30px;
+}
+#down-header-right{
+    display:inline-block;
+    vertical-align: middle;
+    height:46px;
+}
+
+#header-logo {
+    display : inline-block;
+    padding-right:600px;
+}
+#receipe-upload-button {
+    display : inline-block;
+}
+#receipe-upload-button:hover{
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+#setting-button {
+    display : inline-block;
+}
+#setting-button:hover{
+    transform:rotate(720deg);
+    transition: all 1s;
+}
+.upButtons:hover{
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+#mainBox{
+    background-color: darkgray;
+    vertical-align: middle;
+}
+.subBox{
+    background-color: gray;
+    display: inline-block;
+    vertical-align: middle;
+    width:49%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.left-category-image{
+    display:inline-block;
+    width: 23%;
+    height:2%;
+    margin:16px;
+    padding:2px;
+    padding-top:7px;
+    background-color:darkgray;
+}
+.right-category-image{
+    display:inline-block;
+    width:40%;
+    margin:15px;
+    padding:2px;
+    vertical-align: middle;
+    background-color:darkgray;
+}
+.nameLabel-left{
+    background-color:rgb(69, 100, 112);
+    font-size:1rem;
+    color:white;
+    padding: 1px;
+    margin: 3px;
+}
+.nameLabel-right{
+    background-color:darkolivegreen;
+    color:white;
+    font-size:1rem;
+    padding: 1px;
+    margin: 3px;
+}
+.nameLabel-left:hover{
+    text-shadow:0px 2px 2px black;
+    color:skyblue; 
+}
+.nameLabel-right:hover{
+    text-shadow:0px 2px 2px black;
+    color: greenyellow; 
+}
+
+.boxTitle{
+    background-color:darkgoldenrod;
+    vertical-align: middle;
+    padding-top:5px;
+    height:60px;
+    border-style:double;
+}
+#boxTitleImage{
+    display: inline-block;
+    width:29%;
+    
+}
+#boxTitleText{
+    display: inline-block;
+    width:69%;
+    vertical-align: middle;
+    font-size:1.0rem;
+    text-align:left;
+}
+.cookalone-text{
+    color:darkolivegreen;
+}

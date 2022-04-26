@@ -1,0 +1,117 @@
+.wrapper {
+    width:1200px;
+    margin:0 auto;
+    background-color: gray;
+    box-align:center;
+    text-align:center;
+    font-family:Sunflower;
+}
+@font-face {
+    font-family:Sunflower;
+    src:url(/font/Sunflower-Light.ttf) format('truetype');
+}
+html {
+    background-image: url("../images/background.jpg");
+    background-size:100%;
+}
+header{
+    background-color: darkgoldenrod;
+    width:100%;
+    top:0;
+    left:0;   
+}
+footer{
+    background-color:darkgoldenrod;
+    text-align:center;
+    padding:40px;
+}
+img, input {
+    vertical-align:middle; 
+}
+nav {
+    display:inline-block;
+}
+#down-header{
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:gray;
+    
+}
+#down-header-left {
+    display:inline-block;
+    padding-right:30px;
+}
+#down-header-right{
+    display:inline-block;
+    vertical-align: middle;
+    height:46px;
+}
+
+#header-logo {
+    display : inline-block;
+    padding-right:600px;
+}
+#receipe-upload-button {
+    display : inline-block;
+}
+#receipe-upload-button:hover{
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+#setting-button {
+    display : inline-block;
+}
+.upButtons:hover{
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+#setting-button:hover{
+    transform:rotate(720deg);
+    transition: all 1s;
+}
+#mainbox {
+    background-color:olive;
+    display : inline-block;
+    padding-top:30px;
+    font-size:1.7rem;
+    width:80%;
+    padding:40px;
+    
+}
+.NextbuttonLeft {
+    display : inline-block;
+    margin-right:100px;
+    margin-top:30px;
+}
+.NextbuttonRight {
+    display : inline-block;
+    margin-top:30px;
+}
+#textarea1{
+    width: 95%;
+    height:210px;
+    text-align:left;
+    font-size:1.5rem;
+    margin-left:10px;
+    margin-top:20px;
+    background-color:darkgray;
+    resize: none;
+}
+#textarea2{
+    background-color:darkgray;
+    width: 95%;
+    height:250px;
+    text-align:left;
+    font-size:1.5rem;
+    margin-left:10px;
+    margin-top:20px;
+    
+}
+.yakgan {
+    text-align:left;
+}
+.cookalone-text{
+    color:darkolivegreen;
+}

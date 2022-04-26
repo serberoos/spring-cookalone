@@ -1,0 +1,182 @@
+.wrapper {
+    width:1200px;
+    margin:0 auto;
+    background-color: olive;
+    box-align:center;
+    text-align:center;
+    font-family:Sunflower;
+}
+@font-face {
+    font-family:Sunflower;
+    src:url(/font/Sunflower-Light.ttf) format('truetype');
+}
+html {
+    background-image: url("../images/background.jpg");
+    background-size:100% 100%; 
+}
+header{
+    background-color: darkgoldenrod;
+    width:100%;
+    top:0;
+    left:0;   
+}
+footer{
+    background-color:olive;
+    text-align:center;
+    padding:40px;
+}
+img, input {
+    vertical-align:middle; 
+}
+nav {
+    display:inline-block;
+}
+
+
+#textfield1{
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
+#textfield2{
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
+#textfield3{
+    width: 450px;
+    height: 40px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+   
+}
+#imageSearchBox {
+    background-color: darkgray;
+    box-align:center;
+    padding: 1px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+#imageSearchBox-name{
+    background-color:gray;
+    width:99%;
+
+}
+#down-header{
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:gray;
+    
+}
+#down-header-left {
+    display:inline-block;
+    padding-right:30px;
+}
+#down-header-right{
+    display:inline-block;
+    vertical-align: middle;
+    height:46px;
+}
+
+#header-logo {
+    display : inline-block;
+    padding-right:600px;
+}
+#receipe-upload-button {
+    display : inline-block;
+}
+#receipe-upload-button:hover{
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+#setting-button {
+    display : inline-block;
+}
+#setting-button:hover{
+    transform:rotate(720deg);
+    transition: all 1s;
+}
+.upButtons:hover{
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+.imgSearch {
+    display:inline-block;
+}
+.imgSearch:hover{
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+
+.receipe-image{
+    padding-top:30px;
+}
+.box{
+    vertical-align:middle; 
+    margin-bottom:15px;
+}
+.receipeBox-left{
+    background-color:darkgray;
+    
+    margin-bottom:2px;
+    margin-right:54px;
+    padding:20px;
+   
+    width:45%;
+    display:inline-block;
+    vertical-align:middle; 
+}
+.receipeBox-right{
+    padding-right:20px;
+    width:45%;
+    
+    display:inline-block;
+    vertical-align:middle; 
+}
+#receipeBox-right-name{
+    font-size:1.1rem;
+    text-align:center;
+    background-color: gray;
+    border:1px;
+    border-style:double;
+    padding:1px;
+    margin-bottom:20px;
+}
+#receipeBox-left-name{
+    font-size:1.1rem;
+    text-align:center;   
+}
+.receipe-name{
+    text-decoration:none;
+    color:white;
+}
+.receipe-name:hover{
+    text-shadow:0px 2px 2px black;
+    color:skyblue; 
+}
+.receipe {
+    height:195px;
+    width:32%;
+    background-color: gray;
+    display:inline-block;
+    margin-right:3px;
+    vertical-align:middle; 
+}
+.receipe-name-box{
+    font-size:1rem;
+    font-style:bold;
+    background-color: rgb(69, 100, 112);
+    padding:1px;
+    margin:3px;   
+}
+
+.cookalone-text{
+    color:darkolivegreen;
+}

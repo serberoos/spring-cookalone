@@ -1,0 +1,143 @@
+.wrapper {
+    width:1200px;
+    margin:0 auto;
+    background-color: gray;
+    box-align:center;
+    text-align:center;
+    font-family:Sunflower;
+}
+@font-face {
+    font-family:Sunflower;
+    src:url(/font/Sunflower-Light.ttf) format('truetype');
+}
+html {
+    background-image: url("../images/background.jpg");
+    background-size:100%;
+}
+header{
+    background-color: darkgoldenrod;
+    width:100%;
+    top:0;
+    left:0;   
+}
+footer{
+    background-color:darkgoldenrod;
+    text-align:center;
+    padding:40px;
+}
+img, input {
+    vertical-align:middle; 
+}
+nav {
+    display:inline-block;
+}
+#down-header{
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:gray; 
+}
+#down-header-left {
+    display:inline-block;
+    padding-right:30px;
+}
+#down-header-right{
+    display:inline-block;
+    vertical-align: middle;
+    height:46px;
+}
+#header-logo {
+    display : inline-block;
+    padding-right:600px;
+}
+#receipe-upload-button {
+    display : inline-block;
+}
+#receipe-upload-button:hover{
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+.upButtons:hover{
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+#setting-button {
+    display : inline-block;
+}
+#setting-button:hover{
+    transform:rotate(720deg);
+    transition: all 1s;
+}
+#mainbox {
+    background-color:olive;
+    display : inline-block;
+    padding-top:30px;
+    padding: 40px;
+    font-size:1.7rem;
+    width:60%;
+    vertical-align:middle;
+    text-align:left;
+    
+}
+.cookalone-text{
+    color:darkolivegreen;
+}
+#field1{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:200px;
+    text-align:left;
+    display: inline-block;
+}
+#field2{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:220px;
+    text-align:left;
+    display: inline-block;
+}
+#field3{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:299px;
+    text-align:left;
+    display: inline-block;
+}
+#field4{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:244px;
+    text-align:left;
+    display: inline-block;
+}
+#field5{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:200px;
+    text-align:left;
+    display: inline-block;
+}
+#field6{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:110px;
+    text-align:left;
+    display: inline-block;
+}
+#field7{
+    margin-top:15px;
+    margin-bottom:5px;
+    margin-right:194px;
+    text-align:left;
+    display: inline-block;
+}
+#mainTitle{
+    font-size:2.5rem;
+    margin-right:180px;
+}
+.select{
+    width:146px;
+    height: 41px;
+    font-size:1.2rem;
+}
