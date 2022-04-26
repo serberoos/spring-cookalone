@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns:th="http:/www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
@@ -7,15 +7,7 @@
     </head>
     <body>
         <div class ="wrapper">
-            <header>
-                <div id="header-logo">
-                    <a href="index.html"><img src="images/header_logo.png" width=350 height=95 /></a>
-                </div>
-                <nav>
-                    <div id="receipe-upload-button"><a href="receipe_upload.html"><img src="images/receipe_upload.PNG" width=133 height=32/></a></div>
-                    <div id="setting-button"><a href="setting.html"><img id="setting-button" src="images/setting.png" width=75 height=73/></a></div>
-                <nav>
-            </header>
+            <th:block th:replace="fragments/header :: headerFragment" />
         
             <div id="down-header">
                 <div id="down-header-left">
@@ -31,7 +23,7 @@
                     <form>
                         <label>
                           <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 " />
-                          <input type="image" width="120" height="44"src="images/secrch.PNG" alt="Search" class="upButtons">
+                          <input type="image" width="120" height="44" src="images/secrch.PNG" alt="Search" class="upButtons">
                         </label>
                     </form>
                 </div>
@@ -80,9 +72,7 @@
                     <div class="imgSearch"><a href="receipe_search.html"><img src="images/index/c5.PNG" width=230 height=435/></a></div>
                 </div>
             </div>
-            <footer>
-                <span ><strong>Copyright © Cook Alone. All rights reserved.</strong></span>
-            </footer>
+            <th:block th:replace="fragments/footer :: footerFragment" />
         </div>
     </body>
 </html>
