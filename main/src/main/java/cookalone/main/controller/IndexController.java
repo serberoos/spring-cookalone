@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @RequestMapping("/")
     public String Index(){
-        log.info("index contoller");
+        log.info("Index Contoller");
         return "index";
     }
 }
