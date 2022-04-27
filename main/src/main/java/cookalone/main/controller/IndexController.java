@@ -17,4 +17,10 @@ public class IndexController {
         log.info("Index Contoller");
         return "index";
     }
+
+    @GetMapping("/user/joinForm")
+    public String joinForm(){
+        log.info("GetMapping JoinForm ");
+        return "register_one";
+    }
 }
