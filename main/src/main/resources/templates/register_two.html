@@ -7,15 +7,8 @@
     </head>
     <body>
         <div class ="wrapper">
-            <header>
-                <div id="header-logo">
-                    <a href="index.html"><img src="/images/header_logo.png" width=350 height=95 /></a>
-                </div>
-                <nav>
-                    <div id="receipe-upload-button"><a href="receipe_upload.html"><img src="/images/receipe_upload.PNG" width=133 height=32/></a></div>
-                    <div id="setting-button"><a href="setting.html"><img src="/images/setting.png" width=75 height=73/></a></div>
-                </nav>
-            </header>
+            <th:block th:replace="fragments/header :: headerFragment" />
+
             <div id="mainbox">
                 <div><img src="/images/small_logo.png" width="206" height="200" /></div>
                 <hr>
@@ -105,10 +98,8 @@
                 <hr>
                 <div class="Nextbutton"><a href="index.html"><img src="/images/registerTwo/join.jpg" width="181" height="51" class="upButtons"/></a></div>
             </div>
- 
-            <footer>
-                <span>Copyright © Cook Alone. All rights reserved.</span>
-            </footer>
+
+            <th:block th:replace="fragments/footer :: footerFragment" />
         </div>
     </body>
 </html>

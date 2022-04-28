@@ -3,19 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
-        <link rel='stylesheet' type='text/css' href='../static/css/receipe.css'>
+        <link rel='stylesheet' type='text/css' href='/css/receipe.css'>
     </head>
     <body>
         <div class ="wrapper">
-                <header>
-                    <div id="header-logo">
-                        <a href="index.html"><img src="../static/images/header_logo.png" width=350 height=95 /></a>
-                    </div>
-                    <nav>
-                        <div id="receipe-upload-button"><a href="receipe_update.html"><img src="../static/images/receipe_upload.PNG" width=133 height=32/></a></div>
-                        <div id="setting-button"><a href="setting.html"><img id="setting-button" src="../static/images/setting.png" width=75 height=73/></a></div>
-                    <nav>
-                </header>
+            <th:block th:replace="fragments/header :: headerFragment" />
             <div id="mainbox">
                 <div>
                     <div id="one-left">
@@ -26,7 +18,7 @@
                         <form>
                             <label>
                                 <input name="textfield3" type="text" id="textfield" value="요리 이름으로 직접 검색하기 " />
-                                <input type="image" width="120" height="44" src="../static/images/secrch.PNG" alt="Search" class="upButtons">
+                                <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
                             </label>
                         </form>
                     </div>
@@ -43,7 +35,7 @@
                             <div><span class="bluetext"><strong>해당레시피의 추천수 1522개</strong></span></div>
                             <div><span class="bluetext"><strong>레시피가 마음에 드신다면 추천 버튼을 눌러주세요!</strong></span></div>
                         </div>
-                        <div id="likeImage"><img src="images/receipe/like.PNG" width="50" height="50" /></div>
+                        <div id="likeImage"><img src="/images/receipe/like.PNG" width="50" height="50" /></div>
                     </div>
                 </div>
                 <hr>
@@ -67,9 +59,9 @@
                     </p>
                 </div>
                 <div>
-                    <div class="receipe-image"><img src="../static/images/receipe/img1.PNG" width="350" height="300" /></div>
-                    <div class="receipe-image"><img src="../static/images/receipe/img2.PNG" width="350" height="300" /></div>
-                    <div class="receipe-image"><img src="../static/images/receipe/img3.PNG" width="350" height="300" /></div>
+                    <div class="receipe-image"><img src="/images/receipe/img1.PNG" width="350" height="300" /></div>
+                    <div class="receipe-image"><img src="/images/receipe/img2.PNG" width="350" height="300" /></div>
+                    <div class="receipe-image"><img src="/images/receipe/img3.PNG" width="350" height="300" /></div>
                 </div>
                 <hr>
                 <div>
@@ -77,14 +69,12 @@
                         해당 레시피는 동영상을 지원합니다.
                     </p>
                     <video width=100% height="500" controls>
-                        <source src="../static/video/chamchimayo.mp4" type="video/mp4">
+                        <source src="/video/chamchimayo.mp4" type="video/mp4">
                     </video>
                     
                 </div>
             </div>
-            <footer>
-                <span >Copyright © Cook Alone. All rights reserved.</span>
-            </footer>
+            <th:block th:replace="fragments/footer :: footerFragment" />
         </div>
     </body>
 </html>

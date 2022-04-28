@@ -4,24 +4,16 @@
         </style>
         <meta charset="utf-8">
         <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
-        <link rel='stylesheet' type='text/css' href='../static/css/setting.css'>
+        <link rel='stylesheet' type='text/css' href='/css/setting.css'>
     </head>
     <body>
         <div class ="wrapper">
-            <header>
-                <div id="header-logo">
-                    <a href="index.html"><img src="../static/images/header_logo.png" width=350 height=95 /></a>
-                </div>
-                <nav>
-                    <div id="receipe-upload-button"><a href="receipe_upload.html"><img src="../static/images/receipe_upload.PNG" width=133 height=32/></a></div>
-                    <div id="setting-button"><a href="setting.html"><img id="setting-button" src="../static/images/setting.png" width=75 height=73/></a></div>
-                <nav>
-            </header>
+            <th:block th:replace="fragments/header :: headerFragment" />
             <div id="mainbox">
                 <div>
-                    <span><img src="../static/images/small_logo.png" width="180" height="180" /></span>
+                    <span><img src="/images/small_logo.png" width="180" height="180" /></span>
                     <span id="mainTitle"><span class="cookalone-text"><strong>쿡 얼론</strong></span> <strong>설정 창</strong></span> 
-                    <span><a href="index.html"><img src="../static/images/setting/x.jpg" width="50" height="60" class="upButtons"/></a></span>
+                    <span><a href="index.html"><img src="/images/setting/x.jpg" width="50" height="60" class="upButtons"/></a></span>
                 </div>
                 <hr>
                 <div>
@@ -83,9 +75,7 @@
                 <div id="field7">다크 테마 사용</div>
                 <span><input type="checkbox" name="checkbox4" id="checkbox4" /></span>
             </div>
-            <footer>
-                <span>Copyright © Cook Alone. All rights reserved.</span>
-            </footer>
+            <th:block th:replace="fragments/footer :: footerFragment" />
         </div>
     </body>
 </html>
