@@ -1,6 +1,8 @@
 package cookalone.main.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import cookalone.main.domain.status.DeliveryStatus;
+import cookalone.main.domain.status.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +23,10 @@ public class User {
     private String password;
     private String nickname;
     private String username;
-
+    
+//    @Enumerated(EnumType.STRING)
+//    private Gender gender; // 설계에 반영 필요
+    
     @Embedded // 값 타입
     private Address address;
 

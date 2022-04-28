@@ -17,6 +17,7 @@ public class UserDto {
     private String city;
     private String street;
     private String zipcode;
+    private String gender;
     private String createdDate;
     private String modifiedDate;
 }

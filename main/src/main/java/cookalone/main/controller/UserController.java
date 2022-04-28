@@ -15,12 +15,20 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/user/join")
-    public String createForm(Model model){
-        model.addAttribute("userDto", new UserDto());
-        log.info("GetMapping createForm ");
-        return "register_two";
+    @GetMapping("/user/joinform")
+    public String joinForm(){
+        log.info("GetMapping joinForm ");
+        return "join_form";
     }
+    @GetMapping("/user/join")
+    public String join(Model model) {
+        model.addAttribute("userDto", new UserDto());
+        log.info("join Process ");
+        return "index";
+    }
+
+
+
 
 
 }
