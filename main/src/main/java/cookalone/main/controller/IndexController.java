@@ -16,10 +16,4 @@ public class IndexController {
         log.info("Index Contoller");
         return "index";
     }
-
-    @GetMapping("/user/terms")
-    public String terms(){
-        log.info("GetMapping /user/terms ");
-        return "join_terms";
-    }
 }

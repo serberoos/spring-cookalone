@@ -20,8 +20,14 @@ public class UserController {
         log.info("GetMapping joinForm ");
         return "join_form";
     }
-    @GetMapping("/user/join")
-    public String join(Model model) {
+
+    @GetMapping("/user/jointermsform")
+    public String joinTermsFrom(){
+        log.info("GetMapping /user/terms ");
+        return "join_terms";
+    }
+    @GetMapping("/user/joinproc")
+    public String joinProc(Model model) {
         model.addAttribute("userDto", new UserDto());
         log.info("join Process ");
         return "index";
