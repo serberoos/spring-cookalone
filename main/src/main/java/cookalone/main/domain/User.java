@@ -3,6 +3,7 @@ package cookalone.main.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import cookalone.main.domain.status.DeliveryStatus;
 import cookalone.main.domain.status.Gender;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
+@Entity @Getter
 public class User {
     @Id
     @GeneratedValue
@@ -48,4 +47,14 @@ public class User {
 
     private String createdDate;
     private String modifiedDate;
+
+    public User(String email, String password, String nickname, String username, String birthDate, Gender gender, Address address){
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.username = username;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.address = address;
+    }
 }

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
+ * IndexController : 메인 페이지 관련
+ *
  * @Slf4j
  * Logger log = LoggerFactory.getLogger(getClass());
  */
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class IndexController {
     @GetMapping({"","/"})
-    public String Index(){
+    public String index(){
         log.info("Index Contoller");
         return "index";
     }

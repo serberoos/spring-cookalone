@@ -1,12 +1,18 @@
 package cookalone.main.domain.dto;
 
+import cookalone.main.domain.status.Gender;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
+/**
+ * Dto 에는 @Data 필수
+ */
+@Data
 public class UserDto {
     private String email;
     private String password;
@@ -17,7 +23,11 @@ public class UserDto {
     private String city;
     private String street;
     private String zipcode;
-    private String gender;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private String birthDate;
     private String createdDate;
     private String modifiedDate;
 }

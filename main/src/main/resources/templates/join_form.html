@@ -9,19 +9,20 @@
         <div class ="wrapper">
             <th:block th:replace="fragments/header :: headerFragment" />
 
-            <form role="form" action="/user/join" th:object="${userDto}" method="post">
+            <form role="form" action="/user/join-proc" th:object="${userDto}" method="post">
                 <div id="mainbox">
                     <div><img src="/images/small_logo.png" width="206" height="200" /></div>
                     <hr>
                     <div>
-                        <div class="name">이메일</div>
+                        <div class="name">이메일(아이디)</div>
 <!--                        <span><input type="submit" name="idCheck" id="idCheck" value="중복체크" /></span>-->
-                        <div><input name="textfield" type="text" class="textfield"/></div>
+                        <div><input th:field="*{email}" type="text"  class="textfield"/></div>
+                        <!-- th:field : id와 name 자동으로 맞춰주는 타임리프 기능 th:field="*{email}"-->
                     </div>
                     <hr>
                     <div>
                         <div class="name">비밀번호</div>
-                        <div ><input name="textfield2" type="text" class="textfield"/></div>
+                        <div ><input th:field="*{password}" type="text" class="textfield"/></div>
                     </div>
                     <div>
                         <div class="name">비밀번호확인</div>
@@ -30,11 +31,11 @@
                     <hr>
                     <div>
                         <div class="name">닉네임</div>
-                        <div><input name="textfield4" type="text" class="textfield"/></div>
+                        <div><input th:field="*{nickname}" type="text" class="textfield"/></div>
                     </div>
                     <div>
                         <div class="name">이름</div>
-                        <div><input name="textfield4" type="text" class="textfield"/></div>
+                        <div><input th:field="*{username}" type="text" class="textfield"/></div>
                     </div>
                     <div>
                         <div class="name">생년월일</div>
@@ -100,13 +101,11 @@
                             </select>
                         </div>
                     </div>
-
-
-            <hr>
-            <div class="Nextbutton"><a href="/user/join"><img src="/images/registerTwo/join.jpg" width="181" height="51" class="upButtons"/></a></div>
-            </div>
-            <th:block th:replace="fragments/footer :: footerFragment" />
-        </form>
+                    <hr>
+                    <div class="Nextbutton"><Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51" class="upButtons"/></Button></div>
+                </div>
+                <th:block th:replace="fragments/footer :: footerFragment" />
+            </form>
         </div>
     </body>
 </html>

@@ -126,3 +126,8 @@ nav {
 .personalInfoBox{
     display: inline-block;
 }
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
