@@ -32,7 +32,4 @@ public abstract class Product {
     private int price;
     private int stockQuantity;
 
-
-
-
 }

@@ -23,10 +23,12 @@ public class User {
     private String password;
     private String nickname;
     private String username;
-    
-//    @Enumerated(EnumType.STRING)
-//    private Gender gender; // 설계에 반영 필요
-    
+    private String birthDate;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+
     @Embedded // 값 타입
     private Address address;
 
