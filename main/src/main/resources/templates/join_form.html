@@ -95,9 +95,9 @@
                     <div>
                         <div class="name">성별</div>
                         <div class="personalInfoBox">
-                            <select name="select3" id="selectGen">
-                                <option>남자</option>
-                                <option>여자</option>
+                            <select th:field="*{gender}" id="selectGen">
+                                <option th:value="MALE">남자</option>
+                                <option th:value="FEMALE">여자</option>
                             </select>
                         </div>
                     </div>
