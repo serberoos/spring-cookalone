@@ -1,17 +1,24 @@
 package cookalone.main.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import cookalone.main.domain.status.DeliveryStatus;
 import cookalone.main.domain.status.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @EntityListener(AuditingEntityListener.class) Auditing 기능을 쓰기 위함. :: @CreatedDate @ModifiedDate
+ */
+
 @Entity @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue
@@ -45,8 +52,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Receipe> receipeList = new ArrayList<>();
 
-    private String createdDate;
-    private String modifiedDate;
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
     public User(String email, String password, String nickname, String username, String birthDate, Gender gender, Address address){
         this.email = email;
@@ -57,4 +67,5 @@ public class User {
         this.gender = gender;
         this.address = address;
     }
+
 }
