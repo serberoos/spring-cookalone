@@ -131,3 +131,8 @@ nav {
     border: 0;
     outline: 0;
 }
+.one-third-textfield{
+    width:140px;
+    height: 40px;
+    font-size:1.2rem;
+}

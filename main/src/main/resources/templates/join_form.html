@@ -38,59 +38,8 @@
                         <div><input th:field="*{username}" type="text" class="textfield"/></div>
                     </div>
                     <div>
-                        <div class="name">생년월일</div>
-                        <div class="personalInfoBox"><input name="textfield4" type="number" id="birth-textfield"/></div>
-                        <div class="personalInfoBox">
-                            <select name="select" class="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-                            </select>
-                        </div>
-                        <div class="personalInfoBox">
-                            <select name="select2" class="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-                                <option>13</option>
-                                <option>14</option>
-                                <option>15</option>
-                                <option>16</option>
-                                <option>17</option>
-                                <option>18</option>
-                                <option>19</option>
-                                <option>20</option>
-                                <option>21</option>
-                                <option>22</option>
-                                <option>23</option>
-                                <option>24</option>
-                                <option>25</option>
-                                <option>26</option>
-                                <option>27</option>
-                                <option>28</option>
-                                <option>29</option>
-                                <option>30</option>
-                                <option>31</option>
-                            </select>
-                        </div>
+                        <div class="name">생년월일 (YYYYMMDD)</div>
+                        <div><input th:field="*{birthDate}" type="number" class="textfield"/></div>
                     </div>
                     <div>
                         <div class="name">성별</div>
@@ -102,9 +51,17 @@
                         </div>
                     </div>
                     <hr>
+                    <div>
+                        <div class="name">주소 (도시, 거리, 우편번호) - 선택 </div>
+                        <div class="personalInfoBox"><input th:field="*{city}" type="text" class="one-third-textfield"/></div>
+                        <div class="personalInfoBox"><input th:field="*{street}" type="text" class="one-third-textfield"/></div>
+                        <div class="personalInfoBox"><input th:field="*{zipcode}" type="number" class="one-third-textfield"/></div>
+                    </div>
+                    <hr>
                     <div class="Nextbutton"><Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51" class="upButtons"/></Button></div>
+
                 </div>
-                <th:block th:replace="fragments/footer :: footerFragment" />
+                <th:block th:replace="fragments/footer :: footerFragment"/>
             </form>
         </div>
     </body>
