@@ -91,6 +91,7 @@ nav {
     margin-top:30px;
 }
 .textfield{
+    border-color: #ccc;
     width : 450px;
     height: 40px;
 }
@@ -135,4 +136,14 @@ nav {
     width:140px;
     height: 40px;
     font-size:1.2rem;
+}
+.join-proc-error-message{
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0;
+}
+.fieldError{
+    border-color: #ccc;
+    border-bottom: 2px solid #e7223d;
+
 }

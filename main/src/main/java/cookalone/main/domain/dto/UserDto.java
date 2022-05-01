@@ -14,20 +14,27 @@ import javax.validation.constraints.NotEmpty;
  */
 @Data
 public class UserDto {
+    @NotEmpty(message = "이메일을 입력하세요.")
     private String email;
+    @NotEmpty(message = "영문/숫자/특수문자 2가지 이상 조합 (8~20자)")
     private String password;
 
-    @NotEmpty(message = "회원 이름은 필수 입니다.")
+    @NotEmpty(message = "닉네임을 입력하세요.")
     private String nickname;
+
+    @NotEmpty(message = "이름을 입력하세요.")
     private String username;
-    private String city;
-    private String street;
-    private String zipcode;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @NotEmpty(message = "생년월일을 입력하세요.")
     private String birthDate;
+
+    private String city;
+    private String street;
+    private String zipcode;
+
     private String createdDate;
     private String modifiedDate;
 }
