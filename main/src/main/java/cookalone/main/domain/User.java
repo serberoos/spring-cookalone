@@ -38,6 +38,9 @@ public class User {
     @Embedded // 값 타입
     private Address address;
 
+    @CreatedDate
+    private String termsAgreeDate;
+
     /* 1. JsonIgnore: Json으로 데이터를 주고 받을 때, 해당 데이터는 응답값에 보이지 않음.
      * 2. OneToMany: 연관관계는 해당 Entity를 기준으로
      * 3. mappedby : USER FK는 ORDER 가 가지고 있다.(연관관계의 주인은 Order)

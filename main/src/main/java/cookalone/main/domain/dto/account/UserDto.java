@@ -1,4 +1,4 @@
-package cookalone.main.domain.dto;
+package cookalone.main.domain.dto.account;
 
 import cookalone.main.domain.status.Gender;
 import lombok.Data;
@@ -35,6 +35,7 @@ public class UserDto {
     private String street;
     private String zipcode;
 
+    private String termsAgreeDate;
     private String createdDate;
     private String modifiedDate;
 }
