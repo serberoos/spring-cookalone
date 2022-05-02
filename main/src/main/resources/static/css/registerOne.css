@@ -6,6 +6,7 @@
     text-align:center;
     font-family:Sunflower;
 }
+
 @font-face {
     font-family:Sunflower;
     src:url(/font/Sunflower-Light.ttf) format('truetype');
@@ -78,12 +79,14 @@ nav {
     font-size:1.7rem;
     width:80%;
     padding:40px;
-    
 }
 .NextbuttonLeft {
     display : inline-block;
     margin-right:100px;
     margin-top:30px;
+    padding: 0;
+    border: 0;
+    outline: 0;
 }
 .NextbuttonRight {
     display : inline-block;
@@ -112,6 +115,7 @@ nav {
 .terms {
     text-align:left;
 }
+
 .cookalone-text{
     color:darkolivegreen;
 }

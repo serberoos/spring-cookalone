@@ -36,14 +36,14 @@ public class UserServiceTest {
 //    @Rollback(false)
     public void 회원가입() throws Exception {
         //given
-        User user = new User();
-        user.setUsername("kim");
+//        User user = new User();
+//        user.setUsername("kim");
 
         //when
-        Long savedId = userService.join(user);
-
-        //then
-        assertEquals(user, userRepository.findOne(savedId));
+//        Long savedId = userService.join(user);
+//
+//        //then
+//        assertEquals(user, userRepository.findOne(savedId));
 
     }
 
@@ -57,16 +57,16 @@ public class UserServiceTest {
      */
     @Test(expected = IllegalStateException.class)
     public void 중복_회원_예외() throws Exception {
-        //given
-        User user1 = new User();
-        user1.setNickname("kim");
-
-        User user2 = new User();
-        user2.setNickname("kim");
-
-        //when
-        userService.join(user1);
-        userService.join(user2); // 예외가 발생해야 한다.
+//        //given
+//        User user1 = new User();
+//        user1.setNickname("kim");
+//
+//        User user2 = new User();
+//        user2.setNickname("kim");
+//
+//        //when
+//        userService.join(user1);
+//        userService.join(user2); // 예외가 발생해야 한다.
 
         //then
         fail("중복 회원 예외가 발생해야 합니다.");

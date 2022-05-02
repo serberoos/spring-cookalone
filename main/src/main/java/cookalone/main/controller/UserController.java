@@ -48,7 +48,7 @@ public class UserController {
         return "join_terms";
     }
 
-    @GetMapping("/user/join-form")
+    @PostMapping("/user/join-form")
     public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult result) {
         log.info("GetMapping joinForm");
 

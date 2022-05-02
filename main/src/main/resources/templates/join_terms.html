@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
-    <link rel='stylesheet' type='text/css' href='/css/registerOne.css'>
+    <link rel='stylesheet' type='text/css' th:href="@{/css/registerOne.css}">
 </head>
 <body>
 <div class="wrapper">
@@ -11,19 +11,20 @@
 
     <div id="mainbox">
         <div id="small-logo"><img src="/images/small_logo.png" width="206" height="200"/></div>
-        <div class="terms">
-            <form role="form" action="/user/join-form" th:object="${termsDto}" method="get">
+        <form role="form" action="/user/join-form" th:object="${termsDto}" method="post">
+            <div class="terms">
+
                 <p class="join-proc-error-message" th:if="${#fields.hasErrors('termsAgreement')}"
                    th:errors="*{termsAgreement}">Incorrect</p>
                 <input th:field="*{termsAgreement}" class="terms" type="checkbox"
                        th:class="${#fields.hasErrors('termsAgreement')}? 'terms fieldError': 'terms'"/>
 
-            </form>
-            <strong>개인정보 수집 및 이용에 대한 안내와 <span class="cookalone-text">쿡 얼론</span> 약관에 모두 동의합니다.</strong></div>
-        <hr>
-        <div>
-            <div class="yakgan"><input type="checkbox" name="checkbox2"/> <strong>개인정보 수집 및 이용에 대한 안내</strong></div>
+
+                <strong>개인정보 수집 및 이용에 대한 안내와 <span class="cookalone-text">쿡 얼론</span> 약관에 모두 동의합니다.</strong></div>
+            <hr>
             <div>
+                <div class="terms"><input type="checkbox" name="checkbox2"/> <strong>개인정보 수집 및 이용에 대한 안내</strong></div>
+                <div>
                         <textarea name="textarea" id="textarea1" cols="80" rows="5" readonly="readonly" disabled>
 정보통신망법 규정에 따라 쿡 얼론에 회원 가입 신청하시는 분께 수집하는 개인정보의 항목, 개인 정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의 하여 주시기 바랍니다.
 
@@ -38,12 +39,12 @@
 3. 개인 정보의 보유 및 이용기간
 회원이 쿡얼론 시스템에 가입해 있는 기간 동안 개인정보는 쿡 얼론 서버에 저장되며 이번 학기가 끝나거나 회원이 탈퇴를 진행하게 되면 개인정보도 제거 됩니다.
                         </textarea>
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="yakgan"><input type="checkbox" name="checkbox3"/> <strong><span
-                    class="cookalone-text">쿡 얼론</span> 약관</strong></div>
             <div>
+                <div class="terms"><input type="checkbox" name="checkbox3"/> <strong><span
+                        class="cookalone-text">쿡 얼론</span> 이용약관</strong></div>
+                <div>
                         <textarea name="textarea2" id="textarea2" cols="80" rows="5" readonly="readonly" disabled>
 여러분을 환영합니다. 
 
@@ -55,14 +56,15 @@
 
 
                         </textarea>
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="NextbuttonLeft"><a href="/user/join-form"><img src="/images/registerOne/ok.jpg" width="120"
+            <div>
+                <Button class="NextbuttonLeft" type="submit"><img src="/images/registerOne/ok.jpg" width="120" height="60"
+                                                          class="upButtons"/></Button>
+                <div class="NextbuttonRight"><a href="/"><img src="/images/registerOne/c.jpg" width="120"
                                                                        height="60" class="upButtons"/></a></div>
-            <div class="NextbuttonRight"><a href="index.html"><img src="/images/registerOne/c.jpg" width="120"
-                                                                   height="60" class="upButtons"/></a></div>
-        </div>
+            </div>
+        </form>
     </div>
 
     <th:block th:replace="fragments/footer :: footerFragment"/>
