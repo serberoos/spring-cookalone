@@ -1,6 +1,10 @@
 package cookalone.main.domain.dto.account;
 
+import cookalone.main.domain.Address;
+import cookalone.main.domain.User;
 import cookalone.main.domain.status.Gender;
+import cookalone.main.domain.status.Role;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +39,29 @@ public class UserDto {
     private String street;
     private String zipcode;
 
+    private Role role;
+
     private String termsAgreeDate;
     private String createdDate;
     private String modifiedDate;
+
+    public User toEntity() {
+        Address address = Address.builder()
+                .city(city)
+                .street(street)
+                .zipcode(zipcode)
+                .build();
+
+        User user = User.builder()
+                .username(email)
+                .password(password)
+                .nickname(nickname)
+                .username(username)
+                .birthDate(birthDate)
+                .gender(gender)
+                .address(address)
+                .role(role.USER)
+                .build();
+        return user;
+    }
 }

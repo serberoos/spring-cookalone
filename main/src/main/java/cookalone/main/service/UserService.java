@@ -1,6 +1,7 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.User;
+import cookalone.main.domain.dto.account.UserDto;
 import cookalone.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,9 @@ public class UserService {
      * @Transcational : Default : readOnly = false
      */
     @Transactional
-    public Long join(User user){
+    public Long join(UserDto userDto){
+
+        User user = userDto.toEntity();
         validateDuplicateNickname(user); // 중복 회원을 검증한다.
         userRepository.saveUser(user);
         return user.getId();

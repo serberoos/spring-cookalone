@@ -2,6 +2,7 @@ package cookalone.main.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import cookalone.main.domain.status.Gender;
+import cookalone.main.domain.status.Role;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -14,10 +15,13 @@ import java.util.List;
 
 /**
  * @EntityListener(AuditingEntityListener.class) Auditing 기능을 쓰기 위함. :: @CreatedDate @ModifiedDate
+ * @Builder 패턴과 @NoArgsConstructor를 함께 쓰면 오류가 발생한다. => AllArgsConstroutor를 추가한다.
  */
 
+@Builder
 @Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
@@ -38,8 +42,12 @@ public class User {
     @Embedded // 값 타입
     private Address address;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @CreatedDate
-    private String termsAgreeDate;
+    private LocalDateTime termsAgreeDate;
 
     /* 1. JsonIgnore: Json으로 데이터를 주고 받을 때, 해당 데이터는 응답값에 보이지 않음.
      * 2. OneToMany: 연관관계는 해당 Entity를 기준으로
@@ -60,14 +68,4 @@ public class User {
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
-
-    public User(String email, String password, String nickname, String username, String birthDate, Gender gender, Address address){
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.username = username;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.address = address;
-    }
 }

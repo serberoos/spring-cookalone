@@ -69,11 +69,11 @@ public class UserController {
             return "join_form";
         }
 
-        User user = new User(userDto.getEmail(), userDto.getPassword(), userDto.getNickname(), userDto.getUsername(),
-                userDto.getBirthDate(), userDto.getGender(),
-                new Address(userDto.getCity(), userDto.getStreet(), userDto.getZipcode()));
+//        User user = new User(userDto.getEmail(), userDto.getPassword(), userDto.getNickname(), userDto.getUsername(),
+//                userDto.getBirthDate(), userDto.getGender(),
+//                new Address(userDto.getCity(), userDto.getStreet(), userDto.getZipcode()));
 
-        userService.join(user);
+        userService.join(userDto);
 
         return "redirect:/";
     }
