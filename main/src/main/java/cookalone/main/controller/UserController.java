@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 /**
- * UserController : User 회원가입 로그인 | 회원가입 폼 관련
+ * UserController : User 회원가입 로그인 | 회원가입 폼 관련 @Controller를 붙인다는 것은 View를 리턴하겠다는 뜻이다.
  * <p>
  * model.addAttribute("userDto", new UserDto()); :: joinForm에서 joinProc을 수행하려면 빈 UserDto를 들고 가야함.
  * => 이때 POST에서는 UserDto 객체가 Parameter로 넘어오게 됨.
@@ -40,41 +40,43 @@ public class UserController {
 
     /* 회원가입 */
 
-    @GetMapping("/user/jointerms-form")
-    public String joinTermsFrom(Model model) {
-        log.info("GetMapping /user/terms ");
+    @GetMapping("/auth/jointerms-form")
+    public String joinTermsForm(Model model) {
         model.addAttribute("termsDto", new TermsDto());
 
         return "join_terms";
     }
 
-    @PostMapping("/user/join-form")
+    @PostMapping("/auth/join-form")
     public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult result) {
-        log.info("GetMapping joinForm");
-
+        model.addAttribute("userDto", new UserDto.Request());
         if (result.hasErrors()) {
             return "join_terms";
         }
 
-        model.addAttribute("userDto", new UserDto());
-
         return "join_form";
     }
 
-    @PostMapping("/user/join-proc")
-    public String joinProc(@Valid UserDto userDto, BindingResult result) {
-        log.info("PostMapping joinProc");
-
+    @PostMapping("/auth/join-proc")
+    public String joinProc(@Valid UserDto.Request userDto, BindingResult result) {
         if (result.hasErrors()) {
             return "join_form";
         }
-
-//        User user = new User(userDto.getEmail(), userDto.getPassword(), userDto.getNickname(), userDto.getUsername(),
-//                userDto.getBirthDate(), userDto.getGender(),
-//                new Address(userDto.getCity(), userDto.getStreet(), userDto.getZipcode()));
-
         userService.join(userDto);
 
+
+        return "redirect:/";
+    }
+
+    /* 로그인 */
+    @GetMapping("/auth/login-form")
+    public String loginForm() {
+
+        return "login_form";
+    }
+
+    @GetMapping("/auth/login-proc")
+    public String loginProc(){
         return "redirect:/";
     }
 

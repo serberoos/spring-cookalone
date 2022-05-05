@@ -1,5 +1,6 @@
 package cookalone.main.config;
 
+import cookalone.main.auth.PrincipalUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,29 +10,28 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * @Configuration : 빈 등록
- * @EnableWebSecurity : 스프링 시큐리티 설정임을 정의(시큐리티 필터가 등록됨)
+ * @EnableWebSecurity : 스프링 시큐리티 설정임을 정의 (시큐리티 필터가 등록됨)
  * @EnableGlobalMethodSecurity(prePostEnabled = true) : 특정 주소로 접근시 권한 및 인증을 미리 체크 한다.
  */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private final CustomUserDetailsService;
+    private final PrincipalUserDetailService principalUserDetailsService;
 
     /**
      * BCryptPasswordEncoder 스프링 시큐리티에서 제공하는 비밀번호 암호화 객체
      * 비밀번호를 암호화해 사용할 수 있도록 Bean으로 등록한다.
      */
     @Bean
-    public BCryptPasswordEncoder Encoder(){
+    public BCryptPasswordEncoder encodePassword(){
         return new BCryptPasswordEncoder();
     }
 
@@ -39,11 +39,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * SpringSecurity에서 모든 인증처리는 AuthenticationManager를 통해 이루어 지며 이는 AuthenticationBuilder로 생성한다.
      * 로그인 인증을 위해 MyUserDetailsService에서 UserDetailService를 implements 하여 loadUserByUsername() 메소드를 구현했다.
      * AuthenticationManager에게 어떤 해쉬로 암호화 했는지 알려주기 위해 passwordEncoder를 사용했다.
-     *
+     * => 시큐리티가 대신 로그인 해줄때 password를 가로채가는데 해당 password가 어떤 값으로 해쉬가 되어 회원가입이 되었는지 알아야
+     * 같은 해쉬로 암호화해 DB에 있는 해쉬랑 비교할 수 있다.
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(ImsiUserDetailsService).passwordEncoder(Encoder());
+        auth.userDetailsService(principalUserDetailsService).passwordEncoder(encodePassword());
     }
 
     /**
@@ -85,18 +86,22 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .authorizeRequests()
-            .antMatchers("/", "/auth/**", "/posts/read/**", "posts/search/**")
+            .antMatchers("/", "/auth/**")
             .permitAll()
             .anyRequest()
             .authenticated()
         .and()
             .formLogin()
-            .loginPage("/auth/login")
-            .loginProcessingUrl("loginProc")
+            .loginPage("/auth/login-form")
+            .loginProcessingUrl("/auth/login-proc")
             .defaultSuccessUrl("/")
         .and()
             .logout()
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true);
+
+        http.sessionManagement()
+                .maximumSessions(1) //세션 최대 허용 수
+                .maxSessionsPreventsLogin(false); // false: 중복 로그인 시 이전 로그인 무효.
     }
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
@@ -9,7 +9,7 @@
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
 
-    <form role="form" action="/user/join-proc" th:object="${userDto}" method="post">
+    <form role="form" th:action="@{/auth/join-proc}" th:object="${userDto}" method="post"> <!-- 요청 전송 -->
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>
             <hr>
