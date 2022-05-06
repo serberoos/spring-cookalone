@@ -9,14 +9,14 @@
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
 
-    <form role="form" action="/auth/login-proc" th:object="${userDto}" method="get">
+    <form role="form" action="/auth/login-proc" method="post">
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>
             <hr>
             <div>
                 <div>
                     <div class="name">이메일(아이디)</div>
-                    <input name="email" type="text" class="textfield"/>
+                    <input name="username" type="text" class="textfield"/>
                     <!--                           th:class="${#fields.hasErrors('email')}? 'textfield fieldError': 'textfield'"/>-->
                     <!--                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('email')}"-->
                     <!--                                         th:errors="*{email}">Incorrect</p></div>-->

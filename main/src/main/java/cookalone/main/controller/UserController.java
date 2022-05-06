@@ -70,15 +70,11 @@ public class UserController {
 
     /* 로그인 */
     @GetMapping("/auth/login-form")
-    public String loginForm() {
+    public String loginProc() {
 
         return "login_form";
     }
 
-    @GetMapping("/auth/login-proc")
-    public String loginProc(){
-        return "redirect:/";
-    }
 
 
 }
