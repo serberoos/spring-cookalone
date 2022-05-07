@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 
 /**
  * request, response DTO 클래스들을 하나로 묶어 InnerStaticClass로 한번에 관리합니다.
+ * @NotBlank 공백 비 허용
  */
 
 public class UserDto {

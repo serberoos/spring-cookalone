@@ -9,7 +9,7 @@
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
 
-    <form role="form" action="/auth/login-proc" method="post">
+    <form role="form" th:action="@{/auth/login-proc}" method="post">
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>
             <hr>
@@ -18,25 +18,28 @@
                     <div class="name">이메일(아이디)</div>
                     <input name="username" type="text" class="textfield"/>
                     <!--                           th:class="${#fields.hasErrors('email')}? 'textfield fieldError': 'textfield'"/>-->
-                    <!--                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('email')}"-->
+                    <!--                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('email')}"-->
                     <!--                                         th:errors="*{email}">Incorrect</p></div>-->
                 </div>
                 <div>
                     <div class="name">비밀번호</div>
                     <input name="password" type="text" class="textfield"/>
                     <!--                           th:class="${#fields.hasErrors('password')}? 'textfield fieldError': 'textfield'"/>-->
-                    <!--                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('password')}"-->
+                    <!--                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('password')}"-->
                     <!--                                         th:errors="*{password}">Incorrect</p></div>-->
                 </div>
-                <hr>
-                <div class="Nextbutton">
-                    <Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51"
-                                                              class="upButtons"/></Button>
+                <div th:if="${param.error}" class="proc-error-message">
+                    <p th:text="${exception}">Invalid username and password.</p>
                 </div>
             </div>
+            <hr>
+            <div class="Nextbutton">
+                <Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51"
+                                                          class="upButtons"/></Button>
+            </div>
         </div>
-        <th:block th:replace="fragments/footer :: footerFragment"/>
     </form>
+    <th:block th:replace="fragments/footer :: footerFragment"/>
 </div>
 </body>
 </html>

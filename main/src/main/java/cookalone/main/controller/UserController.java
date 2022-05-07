@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -70,11 +71,14 @@ public class UserController {
 
     /* 로그인 */
     @GetMapping("/auth/login-form")
-    public String loginProc() {
+    public String loginProc(@RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "exception", required = false) String exception,
+                            Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
 
         return "login_form";
     }
-
 
 
 }

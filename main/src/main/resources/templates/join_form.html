@@ -18,7 +18,7 @@
                     <div class="name">이메일(아이디)</div>
                     <input th:field="*{email}" type="text" class="textfield"
                            th:class="${#fields.hasErrors('email')}? 'textfield fieldError': 'textfield'"/>
-                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('email')}"
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('email')}"
                                          th:errors="*{email}">Incorrect</p></div>
                 </div>
                 <hr>
@@ -26,7 +26,7 @@
                     <div class="name">비밀번호</div>
                     <input th:field="*{password}" type="text" class="textfield"
                            th:class="${#fields.hasErrors('password')}? 'textfield fieldError': 'textfield'"/>
-                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('password')}"
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('password')}"
                                          th:errors="*{password}">Incorrect</p></div>
                 </div>
                 <div>
@@ -38,21 +38,21 @@
                     <div class="name">닉네임</div>
                     <input th:field="*{nickname}" type="text" class="textfield"
                            th:class="${#fields.hasErrors('nickname')}? 'textfield fieldError': 'textfield'"/>
-                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('nickname')}"
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('nickname')}"
                                          th:errors="*{nickname}">Incorrect</p></div>
                 </div>
                 <div>
                     <div class="name">이름</div>
                     <input th:field="*{username}" type="text" class="textfield"
                            th:class="${#fields.hasErrors('username')}? 'textfield fieldError': 'textfield'"/>
-                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('username')}"
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('username')}"
                                          th:errors="*{username}">Incorrect</p></div>
                 </div>
                 <div>
                     <div class="name">생년월일</div>
                     <input th:field="*{birthDate}" type="text" class="textfield" placeholder="YYYYMMDD"
                            th:class="${#fields.hasErrors('birthDate')}? 'textfield fieldError': 'textfield'"/>
-                    <div class="name"><p class="join-proc-error-message" th:if="${#fields.hasErrors('birthDate')}"
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('birthDate')}"
                                          th:errors="*{birthDate}">Incorrect</p></div>
 
                 </div>

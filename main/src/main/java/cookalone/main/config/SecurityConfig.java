@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 /**
  * @Configuration : 빈 등록
@@ -25,6 +26,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final PrincipalUserDetailService principalUserDetailsService;
+
+    /* 로그인 실패 핸들러 의존성 주입 */
+    private final AuthenticationFailureHandler authFailureHandler;
 
     /**
      * BCryptPasswordEncoder 스프링 시큐리티에서 제공하는 비밀번호 암호화 객체
@@ -94,6 +98,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .loginPage("/auth/login-form")
             .loginProcessingUrl("/auth/login-proc")
+            .failureUrl("/auth/login?error=true")
+            .failureHandler(authFailureHandler)
             .defaultSuccessUrl("/")
         .and()
             .logout()

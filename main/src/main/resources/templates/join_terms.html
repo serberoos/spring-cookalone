@@ -14,7 +14,7 @@
         <form role="form" action="/auth/join-form" th:object="${termsDto}" method="post">
             <div class="terms">
 
-                <p class="join-proc-error-message" th:if="${#fields.hasErrors('termsAgreement')}"
+                <p class="proc-error-message" th:if="${#fields.hasErrors('termsAgreement')}"
                    th:errors="*{termsAgreement}">Incorrect</p>
                 <input th:field="*{termsAgreement}" class="terms" type="checkbox"
                        th:class="${#fields.hasErrors('termsAgreement')}? 'terms fieldError': 'terms'"/>
