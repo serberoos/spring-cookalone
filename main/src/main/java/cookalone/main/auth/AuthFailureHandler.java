@@ -38,7 +38,7 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         /* 한글은 url에 맞도록 자동 인코딩이 되지 않아 직접 UTF-8로 인코딩 처리를 합니다. */
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
 
-        setDefaultFailureUrl("/auth/login?error=true&exception="+errorMessage);
+        setDefaultFailureUrl("/auth/login-form?error=true&exception="+errorMessage);
 
         super.onAuthenticationFailure(request, response, exception);
 
