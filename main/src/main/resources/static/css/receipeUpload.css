@@ -51,7 +51,7 @@ nav {
 
 #header-logo {
     display : inline-block;
-    padding-right:600px;
+    padding-right:830px;
 }
 #receipe-upload-button {
     display : inline-block;
@@ -65,6 +65,11 @@ nav {
 .upButtons:hover{
     transform-origin: right top;
     box-shadow: 3px 3px 3px black;
+}
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
 }
 #setting-button {
     display : inline-block;

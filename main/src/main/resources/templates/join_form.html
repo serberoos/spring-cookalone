@@ -54,7 +54,6 @@
                            th:class="${#fields.hasErrors('birthDate')}? 'textfield fieldError': 'textfield'"/>
                     <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('birthDate')}"
                                          th:errors="*{birthDate}">Incorrect</p></div>
-
                 </div>
                 <div>
                     <div class="name">성별</div>
@@ -82,7 +81,6 @@
                     <Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51"
                                                               class="upButtons"/></Button>
                 </div>
-
             </div>
         </div>
         <th:block th:replace="fragments/footer :: footerFragment"/>
