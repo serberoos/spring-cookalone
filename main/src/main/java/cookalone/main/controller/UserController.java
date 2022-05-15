@@ -31,8 +31,8 @@ import javax.validation.Valid;
  * }
  * //에러 메세지를 html 상 thymeleaf에서 띄운다. (@NotEmpty 메세지가 출력됨.)
  */
-@Controller
 @Slf4j
+@Controller
 @RequiredArgsConstructor
 public class UserController {
 

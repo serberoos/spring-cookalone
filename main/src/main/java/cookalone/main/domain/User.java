@@ -15,7 +15,9 @@ import java.util.List;
 
 /**
  * @EntityListener(AuditingEntityListener.class) Auditing 기능을 쓰기 위함. :: @CreatedDate @ModifiedDate
+ * @NoArgsConstructor(access = AccessLevel.PROTECTED) : 인수 없는 생성자를 protected 모드로 추가한다.( JPA 관례 )
  * @Builder 패턴과 @NoArgsConstructor를 함께 쓰면 오류가 발생한다. => AllArgsConstroutor를 추가한다.
+ *
  */
 
 @Builder

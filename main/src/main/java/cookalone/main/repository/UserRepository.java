@@ -17,8 +17,12 @@ import java.util.Optional;
  */
 @Repository // 생략가능
 public interface UserRepository extends JpaRepository<User, Long> { // JpaRepository 상속해서 쉽게 구현 가능
-
+    /* 스프링 시큐리티 */
     Optional<User> findByEmail(String email);
+
+    /* nickname으로 user객체 GET */
+    User findByNickname(String nickname);
+
     /*
     private final EntityManager em;
 

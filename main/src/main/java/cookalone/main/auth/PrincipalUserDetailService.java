@@ -29,7 +29,6 @@ public class PrincipalUserDetailService implements UserDetailsService {
 
         session.setAttribute("user", new UserDto.Response(user));
 
-        System.out.println("@@@@@@@@@@@@"+user);
         /* 시큐리티 세션에 유저 정보 저장 */
         return new PrincipalUserDetail(user);
     }
