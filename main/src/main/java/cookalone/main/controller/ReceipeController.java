@@ -35,6 +35,10 @@ public class ReceipeController {
         }
 
         UserDto.Response user = (UserDto.Response) session.getAttribute("user");
+
+        /* 글쓴이 Nickname set */
+        receipeDto.setWriter(user.getNickname());
+
         receipeService.save(receipeDto, user.getNickname());
 
         return "redirect:/"; //후에 생성된 레시피 페이지로 연결
