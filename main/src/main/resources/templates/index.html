@@ -1,73 +1,89 @@
 <!doctype html>
-<html xmlns:th="http:/www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
-        <link rel='stylesheet' type='text/css' href='/css/indexCss.css'>
-    </head>
-    <body>
-        <div class ="wrapper">
-            <th:block th:replace="fragments/main_header :: mainHeaderFragment" />
-            <div id="down-header">
-                <div id="down-header-left">
-                    <a href="/auth/login-form"><img src="/images/login.PNG" width="150" height="43" class="upButtons"/></a>
-                    <a href="/auth/jointerms-form"><img src="/images/reg.PNG" width="150" height="43" class="upButtons"/></a>
-                </div>
-                <div id="down-header-right">
-                    <form>
-                        <label>
-                            <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 " />
-                            <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
-                        </label>
-                    </form>
-                </div>
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
+    <link rel='stylesheet' type='text/css' href='/css/indexCss.css'>
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/main_header :: mainHeaderFragment"/>
+    <div id="down-header">
+        <div id="down-header-left">
+            <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/images/login.PNG" width="150"
+                                                                               height="43" class="upButtons"/></a>
+            <a href="/auth/jointerms-form" sec:authorize="!isAuthenticated()"><img src="/images/reg.PNG" width="150"
+                                                                                   height="43" class="upButtons"/></a>
+            <div id="receipe-upload-button"><a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img
+                    src="/images/receipe_upload.PNG" width=133 height=32 class="upButtons"/></a>
             </div>
 
-            <div class="box">
-                <div class="receipeBox-left">
-                    <div id="receipeBox-right-name"><h2>금월의 <span class="cookalone-text">쿡얼론</span> 레시피</h2></div>
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/jangadup.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">장어 덮밥</a></div>
-                    </div>
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/mayo.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">참치 마요 덮밥</a></div>
-                    </div>
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/wudong.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">자취생 우동</a></div>
-                    </div>
-                </div>
-                <div class="receipeBox-right">
-                    <div id="receipeBox-right-name"><h2>금월의 <span class="cookalone-text">쿡얼론</span> 밀키트</h2></div>
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/menu1.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">케찹 볶음밥</a></div>
-                    </div>
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/menu2.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">마약 토스트</a></div>
-                    </div>
-                    
-                    <div class="receipe">
-                        <div class="receipe-image"><img src="/images/index/menu3.png" width=170 height=130/></div>
-                        <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">자취생 탕수육</a></div>
-                    </div>
-                </div>
-            </div>
-            <div id="imageSearchBox">
-                <div id="imageSearchBox-name"><h1><span class="cookalone-text">쿡얼론</span> 직관적인 검색시스템</h1></div>
-
-                <div class="imgSearchBox">
-                    <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c1.PNG" width=230 height=435/></a></div>
-                    <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c2.PNG" width=230 height=435/></a></div>
-                    <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c3.PNG" width=230 height=435/></a></div>
-                    <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c4.PNG" width=230 height=435/></a></div>
-                    <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c5.PNG" width=230 height=435/></a></div>
-                </div>
-            </div>
-            <th:block th:replace="fragments/footer :: footerFragment" />
+            <form class="form" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                <button class="button" type="submit"><img src="/images/login.PNG" width="150"
+                                                          height="43" class="upButtons"/></a></button>
+                <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>
+            </form>
         </div>
-    </body>
+        <div id="down-header-right">
+            <form>
+                <label>
+                    <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 "/>
+                    <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="receipeBox-left">
+            <div id="receipeBox-right-name"><h2>금월의 <span class="cookalone-text">쿡얼론</span> 레시피</h2></div>
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/jangadup.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">장어 덮밥</a></div>
+            </div>
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/mayo.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">참치 마요 덮밥</a></div>
+            </div>
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/wudong.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe.html" class="receipe-name">자취생 우동</a></div>
+            </div>
+        </div>
+        <div class="receipeBox-right">
+            <div id="receipeBox-right-name"><h2>금월의 <span class="cookalone-text">쿡얼론</span> 밀키트</h2></div>
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/menu1.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">케찹 볶음밥</a></div>
+            </div>
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/menu2.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">마약 토스트</a></div>
+            </div>
+
+            <div class="receipe">
+                <div class="receipe-image"><img src="/images/index/menu3.png" width=170 height=130/></div>
+                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">자취생 탕수육</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="imageSearchBox">
+        <div id="imageSearchBox-name"><h1><span class="cookalone-text">쿡얼론</span> 직관적인 검색시스템</h1></div>
+
+        <div class="imgSearchBox">
+            <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c1.PNG" width=230 height=435/></a>
+            </div>
+            <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c2.PNG" width=230 height=435/></a>
+            </div>
+            <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c3.PNG" width=230 height=435/></a>
+            </div>
+            <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c4.PNG" width=230 height=435/></a>
+            </div>
+            <div class="imgSearch"><a href="receipe_search.html"><img src="/images/index/c5.PNG" width=230 height=435/></a>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="fragments/footer :: footerFragment"/>
+</div>
+</body>
 </html>
