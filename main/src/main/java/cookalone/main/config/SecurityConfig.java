@@ -102,6 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/")
         .and()
             .logout()
+            .logoutUrl("/auth/logout-proc")
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true);
 
