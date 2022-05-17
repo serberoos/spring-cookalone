@@ -18,7 +18,7 @@
                     src="/images/receipe_upload.PNG" width=133 height=32 class="upButtons"/></a>
             </div>
 
-            <form class="form" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
                 <button class="button" type="submit"><img src="/images/login.PNG" width="150"
                                                           height="43" class="upButtons"/></a></button>
                 <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>
