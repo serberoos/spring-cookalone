@@ -8,26 +8,21 @@
     <body>
         <div class ="wrapper">
             <th:block th:replace="fragments/main_header :: mainHeaderFragment" />
-        
             <div id="down-header">
                 <div id="down-header-left">
-                    <strong>ID :</strong>
-                    <input name="textfield1" id="textfield1" type="text"/>
-                    
-                    <strong>PW :</strong>
-                    <input name="textfield2" type="text" id="textfield2"/>
-                    <a href="/auth/login-form"><img src="/images/login.PNG" width="70" height="33" class="upButtons"/></a>
-                    <a href="/auth/jointerms-form"><img src="/images/reg.PNG" width="86" height="33" class="upButtons"/></a>
+                    <a href="/auth/login-form"><img src="/images/login.PNG" width="150" height="43" class="upButtons"/></a>
+                    <a href="/auth/jointerms-form"><img src="/images/reg.PNG" width="150" height="43" class="upButtons"/></a>
                 </div>
                 <div id="down-header-right">
                     <form>
                         <label>
-                          <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 " />
-                          <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
+                            <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 " />
+                            <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
                         </label>
                     </form>
                 </div>
             </div>
+
             <div class="box">
                 <div class="receipeBox-left">
                     <div id="receipeBox-right-name"><h2>금월의 <span class="cookalone-text">쿡얼론</span> 레시피</h2></div>

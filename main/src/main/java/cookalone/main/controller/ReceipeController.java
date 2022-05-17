@@ -37,7 +37,7 @@ public class ReceipeController {
         UserDto.Response user = (UserDto.Response) session.getAttribute("user");
 
         /* 글쓴이 Nickname set */
-        receipeDto.setWriter(user.getNickname());
+        receipeDto.setWriter(user.getNickname()); // 후에 Set 외 방식으로 구현 예정
 
         receipeService.save(receipeDto, user.getNickname());
 
