@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <th:block th:fragment="mainHeaderFragment">
         <header>
             <div id="header-logo">
@@ -9,7 +9,30 @@
                 <div id="setting-button"><a href="setting.html"><img src="/images/setting.png" width=75 height=73/></a></div>
             </nav>
         </header>
+        <div id="down-header">
+            <div id="down-header-left">
+                <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/images/login.PNG" width="150"
+                                                                                   height="43" class="upButtons"/></a>
+                <a href="/auth/jointerms-form" sec:authorize="!isAuthenticated()"><img src="/images/reg.PNG" width="150"
+                                                                                       height="43" class="upButtons"/></a>
+                <div id="receipe-upload-button"><a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img
+                        src="/images/receipe_upload.PNG" width=133 height=32 class="upButtons"/></a>
+                </div>
 
-
+                <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
+                    <button class="button" type="submit"><img src="/images/login.PNG" width="150"
+                                                              height="43" class="upButtons"/></a></button>
+                    <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>
+                </form>
+            </div>
+            <div id="down-header-right">
+                <form>
+                    <label>
+                        <input name="textfield3" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 "/>
+                        <input type="image" width="120" height="44" src="/images/secrch.PNG" alt="Search" class="upButtons">
+                    </label>
+                </form>
+            </div>
+        </div>
     </th:block>
 </html>
