@@ -11,18 +11,18 @@
         </header>
         <div id="down-header">
             <div id="down-header-left">
-                <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/images/login.PNG" width="150"
+                <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/images/login.PNG" width="240"
                                                                                    height="43" class="upButtons"/></a>
-                <a href="/auth/jointerms-form" sec:authorize="!isAuthenticated()"><img src="/images/reg.PNG" width="150"
+                <a href="/auth/jointerms-form" sec:authorize="!isAuthenticated()"><img src="/images/reg.PNG" width="240"
                                                                                        height="43" class="upButtons"/></a>
                 <div id="receipe-upload-button"><a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img
-                        src="/images/receipe_upload.PNG" width=133 height=32 class="upButtons"/></a>
+                        src="/images/receipe_upload.PNG" width=160 height=32 class="upButtons"/></a>
                 </div>
 
                 <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
-                    <button class="button" type="submit"><img src="/images/login.PNG" width="150"
+                    <button class="button" type="submit"><img src="/images/login.PNG" width="160"
                                                               height="43" class="upButtons"/></a></button>
-                    <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>
+                    <span class="text-white mr-2 mx-2" sec:authentication="name" width="160">사용자</span>
                 </form>
             </div>
             <div id="down-header-right">
