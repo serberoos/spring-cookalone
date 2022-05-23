@@ -28,6 +28,11 @@ public class ReceipeController {
         return "write_receipe_form";
     }
 
+    @GetMapping("/receipe/searchform")
+    public String receipeSearchForm(){
+        return "search_receipe_form";
+    }
+
     @PostMapping("/receipe/create")
     public String createReceipe(@Valid ReceipeDto.Request receipeDto, BindingResult result){
         if (result.hasErrors()) {
