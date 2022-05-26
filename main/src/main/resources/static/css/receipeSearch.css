@@ -149,11 +149,9 @@ nav {
 }
 
 .boxTitle{
-    background-color:darkgoldenrod;
     vertical-align: middle;
     padding-top:5px;
     height:60px;
-    border-style:double;
 }
 #boxTitleImage{
     display: inline-block;
