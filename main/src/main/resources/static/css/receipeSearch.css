@@ -61,12 +61,13 @@ nav {
     background-color:gray;
     
 }
+
 #down-header-left {
-    display:block;
-    padding-right:30px;
+    display:inline-block;
+    padding-right:15px;
 }
 #down-header-right{
-    display:block;
+    display:inline-block;
     vertical-align: middle;
     height:46px;
 }
