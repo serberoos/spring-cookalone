@@ -1,30 +1,16 @@
 package cookalone.main.service;
 
-import cookalone.main.domain.User;
+import cookalone.main.domain.Receipe;
 import cookalone.main.domain.dto.receipe.ReceipeDto;
-import cookalone.main.repository.ReceipeRepository;
-import cookalone.main.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-@Slf4j
-@RequiredArgsConstructor
-@Service
-public class ReceipeService {
-    private final ReceipeRepository receipeRepository;
-    private final UserRepository userRepository;
+import java.util.List;
 
-    /* 레시피 생성 */
-    @Transactional
-    public Long save(@RequestBody ReceipeDto.Request receipeDto, String nickname) {
-        User user = userRepository.findByNickname(nickname);
-        receipeDto.setUser(user);
-
-        return receipeRepository.save(receipeDto.toEntity()).getId();
-    }
-
-
+public interface ReceipeService {
+    public Long saveReceipe(ReceipeDto.Request receipeDto, String nickname);
+    public ReceipeDto.Response getReceipeDetail(Long id);
+    public List<Receipe> searchReceipe(String keyword);
+    public boolean deleteReceipe(Long id);
+    public Page<Receipe> getReceipePages(Pageable pageable);
 }

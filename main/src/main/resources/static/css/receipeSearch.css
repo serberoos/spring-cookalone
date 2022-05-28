@@ -98,15 +98,9 @@ nav {
 }
 #mainBox{
     background-color: darkgray;
-    vertical-align: middle;
 }
-.subBox{
-    background-color: gray;
-    display: inline-block;
-    vertical-align: middle;
-    width:49%;
-    margin-top: 10px;
-    margin-bottom: 20px;
+.subbox{
+    height: 850px;
 }
 .left-category-image{
     display:inline-block;
@@ -148,13 +142,21 @@ nav {
     color: greenyellow; 
 }
 .category-select-box{
-    margin-left: 927px;
+    margin-left: 500px;
     margin-top: 30px;
+    margin-bottom: 2px;
     width: 150px;
     height:40px;
 }
-.boxTitle{
+.right-searchbox{
+    display: inline-block;
     padding-top:5px;
+    height:60px;
+}
+.left-searchbox{
+    display: inline-block;
+    padding-top: 5px;
+    margin-right: 265px;
     height:60px;
 }
 #boxTitleImage{
@@ -168,6 +170,15 @@ nav {
     vertical-align: middle;
     font-size:1.0rem;
     text-align:left;
+}
+.pagination{
+    margin-right: 10px;
+}
+.paging-button{
+    display: inline-block;
+    background-color: darkolivegreen;
+    width: 45px;
+    height: 45px;
 }
 .cookalone-text{
     color:darkolivegreen;
