@@ -1,6 +1,5 @@
 package cookalone.main.service;
 
-import cookalone.main.domain.User;
 import cookalone.main.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceTest {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
     @Autowired
     UserRepository userRepository;
 

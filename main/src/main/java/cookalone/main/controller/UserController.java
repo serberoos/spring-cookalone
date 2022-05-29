@@ -2,7 +2,7 @@ package cookalone.main.controller;
 
 import cookalone.main.domain.dto.account.TermsDto;
 import cookalone.main.domain.dto.account.UserDto;
-import cookalone.main.service.UserService;
+import cookalone.main.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -39,7 +39,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
 
     /* 회원가입 */
