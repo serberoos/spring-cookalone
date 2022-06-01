@@ -18,15 +18,18 @@
                                                                                    height="43" class="upButtons"/></a>
 
 
-
             <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
                 <a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img src="/images/receipe_upload.PNG"
-                                                                                    width=160 height=43 class="upButtons"/></a>
+                                                                                    width=160 height=43
+                                                                                    class="upButtons"/></a>
 
                 <button class="button" type="submit"><img src="/images/login.PNG" width="160"
-                                                          height="43" class="upButtons"/></a></button>
-                <span class="text-white mr-2 mx-2" sec:authentication="name" width="160">사용자</span>
+                                                          height="43" class="upButtons"/></button>
+                <button href="/" id="header-user-button" class="button" type="button">
+                    <div class="upButtons" sec:authentication="name"/>
+                </button>
             </form>
+
         </div>
         <div id="down-header-right">
             <form>
