@@ -99,11 +99,19 @@ nav {
     height: 100px;
     resize: none;
 }
+.textfield3{
+    width: 458px;
+    height: 40px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
 .filefield{
     height: 100px;
     width:100%;
     resize: none;
 }
+
 .button{
     width: 100px;
     height: 35px;

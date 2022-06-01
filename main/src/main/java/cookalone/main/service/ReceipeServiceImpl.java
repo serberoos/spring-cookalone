@@ -32,10 +32,12 @@ public class ReceipeServiceImpl implements ReceipeService {
         return receipeRepository.save(receipeDto.toEntity()).getId();
     }
 
-    /* 레시피 조회 */
-    @Transactional
+    /* 레시피 조회 | readOnly = true 속성으로 조회 속도를 개선함.*/
+    @Transactional(readOnly = true)
     public ReceipeDto.Response getReceipeDetail(Long id) {
-        return null;
+        Receipe receipe = receipeRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("레시피가 존재하지 않습니다. id:" + id));
+        return new ReceipeDto.Response(receipe);
     }
 
     /* 레시피 삭제 */

@@ -14,10 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+/**
+ * @PathVariable : URL에 변수를 넣고자 할때 사용
+ */
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -52,6 +57,14 @@ public class ReceipeController {
 
         return "search_receipe_form";
     }
+    @GetMapping("/receipe/{id}")
+    public String receipeDetailsForm(@PathVariable Long id, Model model){
+        ReceipeDto.Response receipeDto = receipeService.getReceipeDetail(id);
+
+        model.addAttribute("receipeDto", receipeDto);
+        return "receipe_details_form";
+
+    }
 
     @PostMapping("/receipe/create")
     public String createReceipe(@Valid ReceipeDto.Request receipeDto, BindingResult result){
@@ -68,5 +81,4 @@ public class ReceipeController {
 
         return "redirect:/"; //후에 생성된 레시피 페이지로 연결
     }
-
 }
