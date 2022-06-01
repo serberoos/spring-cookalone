@@ -141,3 +141,8 @@ nav {
     height: 41px;
     font-size:1.2rem;
 }
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
+}

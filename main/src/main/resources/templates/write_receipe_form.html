@@ -13,14 +13,14 @@
             <div>
                 <div id="small_logo"><img src="/images/small_logo.png" width="180" height="180"/></div>
                 <div class="subbox">
-                    <div class="name"><strong>레시피 제목 <span class="warning">필수 작성 요망!</span></strong></div>
+                    <div class="name"><strong>레시피 제목 <span class="warning">필수 작성</span></strong></div>
                     <div><input th:field="*{title}" type="text" class="textfield3"/></div>
                 </div>
             </div>
             <hr>
             <div>
                 <div class="subbox">
-                    <div class="name"><strong>레시피 개요 <span class="warning">필수 작성 요망!</span></strong></div>
+                    <div class="name"><strong>레시피 개요 <span class="warning">필수 작성</span></strong></div>
                     <div><textarea th:field=*{summaryContent} class="textfield"></textarea></div>
                 </div>
                 <div class="subbox">
@@ -31,7 +31,7 @@
             <hr>
             <div>
                 <div class="subbox">
-                    <div class="name"><strong>레시피 재료 <span class="warning">필수 작성 요망!</span></strong></div>
+                    <div class="name"><strong>레시피 재료 <span class="warning">필수 작성</span></strong></div>
                     <div><textarea th:field=*{materialContent} class="textfield"></textarea></div>
                 </div>
                 <div class="subbox">
@@ -42,7 +42,7 @@
             <hr>
             <div>
                 <div class="subbox">
-                    <div class="name"><strong>요리과정 <span class="warning">필수 작성 요망!</span></strong></div>
+                    <div class="name"><strong>요리과정 <span class="warning">필수 작성</span></strong></div>
                     <div><textarea th:field=*{cookingProcessContent} class="textfield"></textarea></div>
                 </div>
                 <div class="subbox">
@@ -50,17 +50,17 @@
                     <div><textarea name="textarea5" class="filefield" disabled></textarea></div>
                 </div>
             </div>
-            <hr>
-            <div>
-                <div class="subbox">
-                    <div class="name"><strong>주의사항 [사용자 지정 목차]</strong></div>
-                    <div><textarea th:field=*{cautionContent} class="textfield"></textarea></div>
-                </div>
-                <div class="subbox">
-                    <span><input type="file" name="fileField" id="fileField4"/></span>
-                    <div><textarea name="textarea5" class="filefield" disabled></textarea></div>
-                </div>
-            </div>
+<!--            <hr>-->
+<!--            <div>-->
+<!--                <div class="subbox">-->
+<!--                    <div class="name"><strong>주의사항 [사용자 지정 목차]</strong></div>-->
+<!--                    <div><textarea th:field=*{cautionContent} class="textfield"></textarea></div>-->
+<!--                </div>-->
+<!--                <div class="subbox">-->
+<!--                    <span><input type="file" name="fileField" id="fileField4"/></span>-->
+<!--                    <div><textarea name="textarea5" class="filefield" disabled></textarea></div>-->
+<!--                </div>-->
+<!--            </div>-->
             <hr>
             <div id="Nextbutton">
                 <Button class="button" type="submit"><img src="/images/receipeUpload/upload.jpg" width="181"

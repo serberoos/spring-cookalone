@@ -82,7 +82,11 @@ nav {
     vertical-align: middle;
     height:46px;
 }
-
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
 #header-logo {
     display : inline-block;
     padding-right:740px;

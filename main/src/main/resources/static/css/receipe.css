@@ -142,3 +142,8 @@ nav {
 .cookalone-text{
     color:darkolivegreen;
 }
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
+}

@@ -146,3 +146,8 @@ nav {
     border-color: #ccc;
     border-bottom: 2px solid #e7223d;
 }
+.button{
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
