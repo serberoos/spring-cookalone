@@ -7,7 +7,7 @@ sudo docker ps -a -q --filter "name=spring-cookalone" | grep -q . && docker stop
 sudo docker rmi jae99c/spring-cookalone:1.0
 
 # 도커 허브 이미지 pull
-#sudo docker pull jae99c/spring-cookalone:1.0
+sudo docker pull jae99c/spring-cookalone:1.0
 
 # 도커 run
 docker-compose up -d

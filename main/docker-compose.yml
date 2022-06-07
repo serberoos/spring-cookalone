@@ -20,10 +20,12 @@ services:
       - cookalone-web-network
 
   spring-cookalone:
+    container_name: spring-cookalone
+    image: jae99c/spring-cookalone:1.0
     restart: always
     build: .
-    container_name: spring-cookalone
-    image: jae99c/spring-cookalone
+
+
     ports:
       - 8080:8080
 
