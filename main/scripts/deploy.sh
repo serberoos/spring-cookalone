@@ -7,10 +7,10 @@ sudo docker ps -a -q --filter "name=spring-cookalone" | grep -q . && docker stop
 sudo docker rmi jae99c/spring-cookalone:1.0
 
 # 도커 허브 이미지 pull
-sudo docker pull jae99c/spring-cookalone:1.0
+#sudo docker pull jae99c/spring-cookalone:1.0
 
 # 도커 run
-docker-compose up
+docker-compose up -d
 #docker run -d -p 8080:8080 --name spring-cookalone jae99c/spring-cookalone:1.0
 
 # 사용하지 않는 불 필요한 이미지 삭제 -> 현재 컨테이너가 물고 있는 이미지는 삭제되지 않음.

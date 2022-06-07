@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  database:
+  database-cookalone:
     container_name: database-cookalone
     image: mysql:8.0.28
     environment:
