@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  database:
+    container_name: database-cookalone
+    image: mysql:8.0.28
+    environment:
+      MYSQL_DATABASE: cookalone
+      MYSQL_USER: serberos
+      MYSQL_ROOT_PASSWORD: cookalone1234
+      MYSQL_ROOT_HOST: '%'
+
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+
+    ports:
+      - 3306:3306
+    networks:
+      - cookalone-web-network
+
+  spring-cookalone:
+    restart: always
+    build: .
+    container_name: spring-cookalone
+    image: jae99c/spring-cookalone
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - database-cookalone
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database-cookalone:3306/jpa?useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: serberos
+      SPRING_DATASOURCE_PASSWORD: cookalone1234
+    networks:
+      - cookalone-web-network
+
+networks:
+  cookalone-web-network:
