@@ -16,4 +16,4 @@ docker-compose up -d
 
 # 사용하지 않는 불 필요한 이미지 삭제 -> 현재 컨테이너가 물고 있는 이미지는 삭제되지 않음.
 #docker rmi -f $(docker images -f "dangling=true" -q) || true
-
+# test
