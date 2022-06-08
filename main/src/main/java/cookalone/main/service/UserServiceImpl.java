@@ -1,7 +1,7 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.User;
-import cookalone.main.domain.dto.account.UserDto;
+import cookalone.main.domain.dto.account.UserRequestDto;
 import cookalone.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +30,10 @@ public class UserServiceImpl implements UserService {
      * @Transcational : Default : readOnly = false
      */
     @Transactional
-    public Long join(UserDto.Request userDto){
+    public Long join(UserRequestDto userDto){
         userDto.setPassword(encoder.encode(userDto.getPassword())); // 사용자 비밀번호를 해쉬 암호화 후 레포지토리에 저장한다.
         return userRepository.save(userDto.toEntity()).getId();
     }
-
 
     //회원 전체 조회
     public List<User> findUsers() {

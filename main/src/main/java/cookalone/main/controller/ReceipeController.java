@@ -1,8 +1,9 @@
 package cookalone.main.controller;
 
 import cookalone.main.domain.Receipe;
-import cookalone.main.domain.dto.account.UserDto;
-import cookalone.main.domain.dto.receipe.ReceipeDto;
+import cookalone.main.domain.dto.account.UserResponseDto;
+import cookalone.main.domain.dto.receipe.ReceipeRequestDto;
+import cookalone.main.domain.dto.receipe.ReceipeResponseDto;
 import cookalone.main.service.ReceipeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class ReceipeController {
 
     @GetMapping("/receipe/writeform")
     public String receipeWriteForm(Model model) {
-        model.addAttribute("receipeDto", new ReceipeDto.Request());
+        model.addAttribute("receipeDto", new ReceipeRequestDto());
         return "write_receipe_form";
     }
 
@@ -41,7 +42,7 @@ public class ReceipeController {
     @GetMapping("/receipe/searchform")
     public String receipeSearchForm(Model model, @PageableDefault(size=12, sort="id", direction = Sort.Direction.DESC)
             Pageable pageable){
-        UserDto.Response user = (UserDto.Response) session.getAttribute("user");
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
         Page<Receipe> receipes = receipeService.getReceipePages(pageable);
         System.out.println(receipes);
 
@@ -59,7 +60,7 @@ public class ReceipeController {
     }
     @GetMapping("/receipe/{id}")
     public String receipeDetailsForm(@PathVariable Long id, Model model){
-        ReceipeDto.Response receipeDto = receipeService.getReceipeDetail(id);
+        ReceipeResponseDto receipeDto = receipeService.getReceipeDetail(id);
 
         model.addAttribute("receipeDto", receipeDto);
         return "receipe_details_form";
@@ -67,12 +68,12 @@ public class ReceipeController {
     }
 
     @PostMapping("/receipe/create")
-    public String createReceipe(@Valid ReceipeDto.Request receipeDto, BindingResult result){
+    public String createReceipe(@Valid ReceipeRequestDto receipeDto, BindingResult result){
         if (result.hasErrors()) {
             return "write_receipe_form";
         }
 
-        UserDto.Response user = (UserDto.Response) session.getAttribute("user");
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
 
         /* 글쓴이 Nickname set */
         receipeDto.setWriter(user.getNickname()); // 후에 Set 외 방식으로 구현 예정

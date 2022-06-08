@@ -1,7 +1,7 @@
 package cookalone.main.auth;
 
 import cookalone.main.domain.User;
-import cookalone.main.domain.dto.account.UserDto;
+import cookalone.main.domain.dto.account.UserResponseDto;
 import cookalone.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class PrincipalUserDetailService implements UserDetailsService {
         User user = userRepository.findByEmail(email).orElseThrow(() ->
                 new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다. :" + email));
 
-        session.setAttribute("user", new UserDto.Response(user));
+        session.setAttribute("user", new UserResponseDto(user));
 
         /* 시큐리티 세션에 유저 정보 저장 */
         return new PrincipalUserDetail(user);

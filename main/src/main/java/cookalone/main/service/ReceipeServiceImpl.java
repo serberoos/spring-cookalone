@@ -2,7 +2,8 @@ package cookalone.main.service;
 
 import cookalone.main.domain.Receipe;
 import cookalone.main.domain.User;
-import cookalone.main.domain.dto.receipe.ReceipeDto;
+import cookalone.main.domain.dto.receipe.ReceipeRequestDto;
+import cookalone.main.domain.dto.receipe.ReceipeResponseDto;
 import cookalone.main.repository.ReceipeRepository;
 import cookalone.main.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class ReceipeServiceImpl implements ReceipeService {
 
     /* 레시피 생성 */
     @Transactional
-    public Long saveReceipe(@RequestBody ReceipeDto.Request receipeDto, String nickname) {
+    public Long saveReceipe(@RequestBody ReceipeRequestDto receipeDto, String nickname) {
         User user = userRepository.findByNickname(nickname);
         receipeDto.setUser(user);
 
@@ -34,10 +35,10 @@ public class ReceipeServiceImpl implements ReceipeService {
 
     /* 레시피 조회 | readOnly = true 속성으로 조회 속도를 개선함.*/
     @Transactional(readOnly = true)
-    public ReceipeDto.Response getReceipeDetail(Long id) {
+    public ReceipeResponseDto getReceipeDetail(Long id) {
         Receipe receipe = receipeRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("레시피가 존재하지 않습니다. id:" + id));
-        return new ReceipeDto.Response(receipe);
+        return new ReceipeResponseDto(receipe);
     }
 
     /* 레시피 삭제 */

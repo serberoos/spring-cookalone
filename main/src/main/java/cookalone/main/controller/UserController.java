@@ -1,7 +1,7 @@
 package cookalone.main.controller;
 
 import cookalone.main.domain.dto.account.TermsDto;
-import cookalone.main.domain.dto.account.UserDto;
+import cookalone.main.domain.dto.account.UserRequestDto;
 import cookalone.main.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +53,7 @@ public class UserController {
 
     @PostMapping("/auth/join-form")
     public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult result) {
-        model.addAttribute("userDto", new UserDto.Request());
+        model.addAttribute("userDto", new UserRequestDto());
         if (result.hasErrors()) {
             return "join_terms";
         }
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @PostMapping("/auth/join-proc")
-    public String joinProc(@Valid UserDto.Request userDto, BindingResult result) {
+    public String joinProc(@Valid UserRequestDto userDto, BindingResult result) {
         if (result.hasErrors()) {
             return "join_form";
         }
