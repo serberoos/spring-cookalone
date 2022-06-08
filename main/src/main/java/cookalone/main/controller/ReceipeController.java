@@ -34,7 +34,7 @@ public class ReceipeController {
 
     @GetMapping("/receipe/writeform")
     public String receipeWriteForm(Model model) {
-        model.addAttribute("receipeDto", new ReceipeRequestDto());
+        model.addAttribute("receipeRequestDto", new ReceipeRequestDto());
         return "write_receipe_form";
     }
 
@@ -60,9 +60,9 @@ public class ReceipeController {
     }
     @GetMapping("/receipe/{id}")
     public String receipeDetailsForm(@PathVariable Long id, Model model){
-        ReceipeResponseDto receipeDto = receipeService.getReceipeDetail(id);
+        ReceipeResponseDto receipeResponseDto = receipeService.getReceipeDetail(id);
 
-        model.addAttribute("receipeDto", receipeDto);
+        model.addAttribute("receipeResponseDto", receipeResponseDto);
         return "receipe_details_form";
 
     }

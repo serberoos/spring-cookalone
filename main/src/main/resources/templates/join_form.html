@@ -9,7 +9,7 @@
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
 
-    <form role="form" th:action="@{/auth/join-proc}" th:object="${userDto}" method="post"> <!-- 요청 전송 -->
+    <form role="form" th:action="@{/auth/join-proc}" th:object="${userRequestDto}" method="post"> <!-- 요청 전송 -->
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>
             <hr>

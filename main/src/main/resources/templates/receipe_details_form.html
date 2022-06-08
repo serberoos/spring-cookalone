@@ -11,7 +11,7 @@
             <div id="mainbox">
                 <div>
                     <div id="one-left">
-                        <div id="receipe-title"><h3 th:text="${receipeDto.title}"/></div>
+                        <div id="receipe-title"><h3 th:text="${receipeResponseDto.title}"/></div>
                     </div>
                 </div>
                 <div>
@@ -32,17 +32,17 @@
                 <hr>
                 <div>
                     <p><strong>1. 개요</strong> <br><br></p>
-                    <p th:text="${receipeDto.summaryContent}"/>
+                    <p th:text="${receipeResponseDto.summaryContent}"/>
                 </div>
                 <hr>
                 <div>
                     <p><strong>2. 재료</strong><br><br></p>
-                    <p th:text="${receipeDto.materialContent}"/>
+                    <p th:text="${receipeResponseDto.materialContent}"/>
                 </div>
                 <hr>
                 <div>
                     <p><strong>3. 요리과정</strong> <br><br></p>
-                    <p th:text="${receipeDto.cookingProcessContent}"/>
+                    <p th:text="${receipeResponseDto.cookingProcessContent}"/>
                 </div>
                 <div>
                     <div class="receipe-image"><img src="/images/receipe/img1.PNG" width="350" height="300" /></div>

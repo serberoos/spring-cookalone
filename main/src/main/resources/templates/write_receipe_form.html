@@ -8,7 +8,7 @@
 <body>
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
-    <form role="form" th:action="@{/receipe/create}" th:object="${receipeDto}" method="post">
+    <form role="form" th:action="@{/receipe/create}" th:object="${receipeRequestDto}" method="post">
         <div id="mainbox">
             <div>
                 <div id="small_logo"><img src="/images/small_logo.png" width="180" height="180"/></div>

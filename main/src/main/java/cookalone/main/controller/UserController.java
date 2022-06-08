@@ -53,7 +53,7 @@ public class UserController {
 
     @PostMapping("/auth/join-form")
     public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult result) {
-        model.addAttribute("userDto", new UserRequestDto());
+        model.addAttribute("userRequestDto", new UserRequestDto());
         if (result.hasErrors()) {
             return "join_terms";
         }
