@@ -32,7 +32,7 @@ services:
 
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://database-cookalone:3306/cookalone?serverTimezone=UTC&characterEncoding=UTF-8
-      SPRING_DATASOURCE_USERNAME: serberos
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: cookalone1234
     networks:
       - cookalone-web-network
