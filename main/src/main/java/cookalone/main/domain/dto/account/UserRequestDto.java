@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 /**
  * UserRequestDto : 회원 Service 요청(Request) DTO 클래스
+ *
  * @NotBlank 공백 비 허용
  */
 
@@ -25,23 +26,33 @@ import javax.validation.constraints.NotEmpty;
 public class UserRequestDto {
     private Long id;
 
-    @NotEmpty(message = "이메일을 입력하세요.")
+    @NotBlank(message = "이메일을 입력하세요.")
+    @Email(message = "이메일 주소를 다시 확인하세요.")
     private String email;
 
-    @NotEmpty(message = "영문/숫자/특수문자 2가지 이상 조합 (8~20자)")
+    @NotBlank(message = "비밀번호를 입력하세요.")
+    @Pattern(regexp = " ^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d~!@#$%^&*()+|=]{8,20}",
+            message = "영문/숫자/특수문자가 모두 들어간 조합 (8~20자)")
     private String password;
 
-    @NotEmpty(message = "닉네임을 입력하세요.")
+    @NotBlank(message = "닉네임을 입력하세요.")
+    @Pattern(regexp = " ^[가-힣ㄱ-ㅎa-zA-Z0-9._ -]{2,10}\\$",
+            message = "영문/숫자/한글/공백/언더스코어 가능 (2~10자)")
     private String nickname;
 
-    @NotEmpty(message = "이름을 입력하세요.")
+    @NotBlank(message = "이름을 입력하세요.")
+    @Pattern(regexp = " ^[가-힣ㄱ-ㅎ]{2,4}\\$",
+            message = "한글 명(2~4자)")
     private String username;
 
-    @NotEmpty(message = "생년월일을 입력하세요.")
+    @NotBlank(message = "생년월일을 입력하세요.")
+    @Pattern(regexp = "(19|20)\\\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])",
+            message = "YYYYMMDD 포맷으로 입력하세요.")
     private String birthDate;
 
+    @NotNull(message = "성별을 선택하세요.")
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private Gender gender; // 고수준 valid 필요
 
     private String city;
     private String street;

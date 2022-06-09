@@ -58,11 +58,16 @@
                 <div>
                     <div class="name">성별</div>
                     <div class="personalInfoBox">
-                        <select th:field="*{gender}" id="selectGen">
+                        <select th:field="*{gender}"
+                                th:class="${#fields.hasErrors('gender')}? 'textfield fieldError': 'textfield'"
+                                id="selectGen">
+                            <option th:value= null>-</option>
                             <option th:value="MALE">남자</option>
                             <option th:value="FEMALE">여자</option>
                         </select>
                     </div>
+                    <div class="name"><p class="proc-error-message" th:if="${#fields.hasErrors('gender')}"
+                                         th:errors="*{gender}">Incorrect</p></div>
                 </div>
                 <hr>
                 <div>
