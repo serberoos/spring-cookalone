@@ -1,6 +1,6 @@
 package cookalone.main.validator;
 
-import cookalone.main.domain.User;
+import cookalone.main.domain.dto.account.UserRequestDto;
 import cookalone.main.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,24 +10,27 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class UserValidator implements Validator {
+public class UserRequestDtoValidator implements Validator {
 
     private final UserServiceImpl userService;
-
+    /**
+     * 검증하려는 클래스를 체크한다.
+     */
     @Override
     public boolean supports(Class<?> clazz) {
-        return User.class.isAssignableFrom(clazz);
+        return clazz.isAssignableFrom(UserRequestDto.class);
     }
 
+    /**
+     * 검증
+     */
     @Override
     public void validate(Object target, Errors errors) {
-        Object user = (User) target;
+        UserRequestDto userRequestDto = (UserRequestDto) target;
 
-        // 검증 로직
-        if (ObjectUtils.isEmpty(user.(user.get))) {
-            errors.put("id", "이메일을 입력하세요")
-
+        //NotEmpty
+        if(!ObjectUtils.isEmpty(userRequestDto.getEmail())) {
+            errors.rejectValue("email", "이메일을 입력하세요.");
         }
-
     }
 }

@@ -30,18 +30,25 @@ public class UserRequestDto {
     @Email(message = "이메일 주소를 다시 확인하세요.")
     private String email;
 
+
+    /**
+     * (?=.*[0-9]) : 숫자가 적어도 하나는 포함되어야 함.
+     * (?=.*[a-zA-Z]) : 영문 대/소문자 중 적어도 하나는 포함되어야 함.
+     * (?=.*\\W) : 특수문자가 적어도 하나는 포함되어야 함.
+     * (?=\\S+$) : 공백 제거
+     */
     @NotBlank(message = "비밀번호를 입력하세요.")
-    @Pattern(regexp = " ^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d~!@#$%^&*()+|=]{8,20}",
+    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\\\W)(?=\\\\S+$).{8,20}",
             message = "영문/숫자/특수문자가 모두 들어간 조합 (8~20자)")
     private String password;
 
     @NotBlank(message = "닉네임을 입력하세요.")
-    @Pattern(regexp = " ^[가-힣ㄱ-ㅎa-zA-Z0-9._ -]{2,10}\\$",
+    @Pattern(regexp = "^[가-힣ㄱ-ㅎa-zA-Z0-9._ -]{2,10}$",
             message = "영문/숫자/한글/공백/언더스코어 가능 (2~10자)")
     private String nickname;
 
     @NotBlank(message = "이름을 입력하세요.")
-    @Pattern(regexp = " ^[가-힣ㄱ-ㅎ]{2,4}\\$",
+    @Pattern(regexp = "^[가-힣ㄱ-ㅎ]{2,4}$",
             message = "한글 명(2~4자)")
     private String username;
 

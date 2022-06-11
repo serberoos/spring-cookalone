@@ -14,10 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * UserController : User 회원가입 로그인 | 회원가입 폼 관련 @Controller를 붙인다는 것은 View를 리턴하겠다는 뜻이다.
@@ -40,10 +42,17 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserServiceImpl userService;
+//    private final UserRequestDtoValidator userRequestDtoValidator;
 
+//    /**
+//     * 컨트롤러 호출 시 마다 WebDataBinder를 통해 Validator를 등록한다.
+//     */
+//    @InitBinder
+//    public void init(WebDataBinder webDataBinder){
+//        webDataBinder.addValidators(userRequestDtoValidator);
+//    }
 
     /* 회원가입 */
-
     @GetMapping("/auth/jointerms-form")
     public String joinTermsForm(Model model) {
         model.addAttribute("termsDto", new TermsDto());
@@ -52,9 +61,9 @@ public class UserController {
     }
 
     @PostMapping("/auth/join-form")
-    public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult result) {
+    public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult bindingResult) {
         model.addAttribute("userRequestDto", new UserRequestDto());
-        if (result.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "join_terms";
         }
 
@@ -62,12 +71,19 @@ public class UserController {
     }
 
     @PostMapping("/auth/join-proc")
-    public String joinProc(@Valid UserRequestDto userDto, BindingResult result) {
-        if (result.hasErrors()) {
+    public String joinProc(@Valid UserRequestDto userDto, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            //회원가입 실패시, 입력 데이터를 유지합니다.
+            model.addAttribute("userRequestDto", userDto);
+
+            //유효성을 통과하지 못한 필드와 메세지 핸들링
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
+            }
             return "join_form";
         }
         userService.join(userDto);
-
 
         return "redirect:/";
     }
