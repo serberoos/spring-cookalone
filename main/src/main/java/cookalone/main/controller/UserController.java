@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.validation.Errors;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,34 +55,43 @@ public class UserController {
 //    }
 
     /* 회원가입 */
-    @GetMapping("/auth/jointerms-form")
+    @GetMapping("/auth/jointerms")
     public String joinTermsForm(Model model) {
         model.addAttribute("termsDto", new TermsDto());
 
         return "join_terms";
     }
 
-    @PostMapping("/auth/join-form")
-    public String joinForm(Model model, @Valid TermsDto termsDto, BindingResult bindingResult) {
-        model.addAttribute("userRequestDto", new UserRequestDto());
+    @PostMapping("/auth/jointerms")
+    public String joinTermsProc(Model model, @Valid TermsDto termsDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+
             return "join_terms";
         }
+        return "redirect:/auth/join";
+    }
 
+    @GetMapping("/auth/join")
+    public String joinForm(UserRequestDto userDto) {
         return "join_form";
     }
 
-    @PostMapping("/auth/join-proc")
-    public String joinProc(@Valid UserRequestDto userDto, Errors errors, Model model) {
+    @PostMapping("/auth/join")
+    public String joinProc(Model model, @Valid UserRequestDto userDto, Errors errors) {
         if (errors.hasErrors()) {
-            //회원가입 실패시, 입력 데이터를 유지합니다.
+            /* 회원가입 실패시, 입력 데이터를 유지합니다. */
             model.addAttribute("userRequestDto", userDto);
 
-            //유효성을 통과하지 못한 필드와 메세지 핸들링
+            /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
             Map<String, String> validatorResult = userService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 model.addAttribute(key, validatorResult.get(key));
             }
+            errors.getAllErrors().forEach(v -> {
+                System.out.println(v.toString());
+            });
+
+            /* 회원가입 페이지로 다시 리턴 */
             return "join_form";
         }
         userService.join(userDto);
@@ -100,14 +111,14 @@ public class UserController {
     }
 
     /**
-     *  GET : 컨트롤러에서 매핑을 받고, 로그아웃 기능으로 우회한다.
+     * GET : 컨트롤러에서 매핑을 받고, 로그아웃 기능으로 우회한다.
      */
     /* 로그아웃 */
     @GetMapping("/auth/logout-proc")
     public String logoutProc(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth != null){
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/";
