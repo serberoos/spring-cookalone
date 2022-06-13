@@ -39,17 +39,17 @@ public class UserRequestDto {
      * (?=\\S+$) : 공백 제거
      */
     @NotEmpty(message = "비밀번호를 입력하세요.")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\\\d~!@#$%^&*()+|=]{8,16}$\\n",
+    @Pattern(regexp = "^(?:(?=.*[A-Za-z])(?=.*\\\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\\\d~!@#$%^&*()+|=]{8,16})?$",
             message = "영문/숫자/특수문자가 모두 들어간 조합 (8~20자)")
     private String password;
 
     @NotEmpty(message = "닉네임을 입력하세요.")
-    @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9-_]{2,10}$",
+    @Pattern(regexp = "^(?:[ㄱ-ㅎ가-힣a-z0-9-_]{2,10})?$",
             message = "영문/숫자/한글/공백/언더스코어 가능 (2~10자)")
     private String nickname;
 
     @NotEmpty(message = "이름을 입력하세요.")
-    @Pattern(regexp = "^[가-힣ㄱ-ㅎ]{2,4}$",
+    @Pattern(regexp = "^(?:[가-힣ㄱ-ㅎ]{2,4})?$",
             message = "한글 명(2~4자)")
     private String username;
 
@@ -60,7 +60,7 @@ public class UserRequestDto {
      * (0[1-9]|[12][0-9]|3[01]) : 0과 1~9 또는 1,2와 0~9 또는 3과 0,1로 day 2자 표현
      */
     @NotEmpty(message = "생년월일을 입력하세요.")
-    @Pattern(regexp = "(19|20)\\\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])",
+    @Pattern(regexp = "(?:(19|20)\\\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))?",
             message = "YYYYMMDD 포맷으로 입력하세요.")
     private String birthDate;
 

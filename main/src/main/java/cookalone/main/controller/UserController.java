@@ -85,6 +85,7 @@ public class UserController {
             /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
             Map<String, String> validatorResult = userService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
+                System.out.println((key + " " + validatorResult.get(key)));
                 model.addAttribute(key, validatorResult.get(key));
             }
             errors.getAllErrors().forEach(v -> {
