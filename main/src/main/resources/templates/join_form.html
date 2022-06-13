@@ -24,7 +24,14 @@
                 <hr>
                 <div>
                     <div class="name">비밀번호</div>
-                    <input type="text" name="password" class="textfield" th:value="${userRequestDto.password}"/>
+                    <input type="text" name="password" class="textfield" th:value="${userRequestDto.password}" />
+<!--                    <div th:if="${not #strings.isEmpty(userRequestDto.password)}" >-->
+<!--                        <input type="text" name="password" class="textfield" th:value="${userRequestDto.password}"/>-->
+<!--                    </div>-->
+<!--                    <input type="text" name="password" class="textfield"/>-->
+<!--                    <div th:unless="{strings.isEmpty(userRequestDto.password)}" >-->
+<!--                        <input type="text" name="password" class="textfield" th:value="${userRequestDto.password}"/>-->
+<!--                    </div>-->
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_password}"></p>
                     </div>
