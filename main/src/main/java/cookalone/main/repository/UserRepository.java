@@ -23,6 +23,10 @@ public interface UserRepository extends JpaRepository<User, Long> { // JpaReposi
     /* nickname으로 user객체 GET */
     User findByNickname(String nickname);
 
+    boolean existsByUsername(String username);
+    boolean existByNickname(String nickname);
+    boolean existByEmail(String email);
+
     /*
     private final EntityManager em;
 
