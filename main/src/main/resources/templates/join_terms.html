@@ -11,7 +11,7 @@
 
     <div id="mainbox">
         <div id="small-logo"><img src="/images/small_logo.png" width="206" height="200"/></div>
-        <form role="form" th:action="@{/auth/jointerms}" th:object="${termsDto}" method="post">
+        <form role="form" th:action="@{/auth/jointerms}" th:object="${joinTermsRequestDto}" method="post">
             <div class="terms">
                 <p class="proc-error-message" th:if="${#fields.hasErrors('termsAgreement')}" th:errors="*{termsAgreement}">Incorrect</p>
                 <input name="termsAgreement" th:field="*{termsAgreement}" class="terms-check-button" type="checkbox"/>

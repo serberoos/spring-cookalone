@@ -1,8 +1,9 @@
 package cookalone.main.controller;
 
-import cookalone.main.domain.dto.account.TermsDto;
 import cookalone.main.domain.dto.account.UserRequestDto;
 import cookalone.main.service.UserServiceImpl;
+import cookalone.main.validator.CheckOverlapEmailValidator;
+import cookalone.main.validator.CheckOverlapNicknameValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -10,13 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +34,8 @@ import java.util.Map;
  * return "join_form";
  * }
  * //에러 메세지를 html 상 thymeleaf에서 띄운다. (@NotEmpty 메세지가 출력됨.)
+ * @InitBinder : 특정 컨트롤러에서 바인딩 또는 검증 설정을 변경하고 싶을 때 사용한다.
+ * webDataBinder binder : HTTP 요청 정보를 컨트롤러 메소드의 파라미터나 모델에 바인딩할 떄 사용되는 바인딩 객체
  */
 @Slf4j
 @Controller
@@ -44,6 +43,15 @@ import java.util.Map;
 public class UserController {
 
     private final UserServiceImpl userService;
+    private final CheckOverlapEmailValidator checkOverlapEmailValidator;
+    private final CheckOverlapNicknameValidator checkOverlapNicknameValidator;
+
+    /* 커스텀 유효성 검사 validate */
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder){
+        binder.addValidators(checkOverlapEmailValidator);
+        binder.addValidators(checkOverlapNicknameValidator);
+    }
 //    private final UserRequestDtoValidator userRequestDtoValidator;
 
 //    /**
@@ -54,23 +62,8 @@ public class UserController {
 //        webDataBinder.addValidators(userRequestDtoValidator);
 //    }
 
-    /* 회원가입 */
-    @GetMapping("/auth/jointerms")
-    public String joinTermsForm(Model model) {
-        model.addAttribute("termsDto", new TermsDto());
 
-        return "join_terms";
-    }
-
-    @PostMapping("/auth/jointerms")
-    public String joinTermsProc(Model model, @Valid TermsDto termsDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            return "join_terms";
-        }
-        return "redirect:/auth/join";
-    }
-
+    /* 회원가입 과정 */
     @GetMapping("/auth/join")
     public String joinForm(UserRequestDto userDto) {
         return "join_form";
@@ -88,7 +81,7 @@ public class UserController {
                 System.out.println((key + " " + validatorResult.get(key)));
                 model.addAttribute(key, validatorResult.get(key));
             }
-            errors.getAllErrors().forEach(v -> {
+            errors.getAllErrors().forEach(v -> { //에러 출력
                 System.out.println(v.toString());
             });
 

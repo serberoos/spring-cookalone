@@ -19,13 +19,13 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> { // JpaRepository 상속해서 쉽게 구현 가능
     /* 스프링 시큐리티 */
     Optional<User> findByEmail(String email);
+    boolean existsByNickname(String nickname);
+    boolean existsByEmail(String email);
 
     /* nickname으로 user객체 GET */
     User findByNickname(String nickname);
 
-    boolean existsByUsername(String username);
-    boolean existByNickname(String nickname);
-    boolean existByEmail(String email);
+
 
     /*
     private final EntityManager em;
