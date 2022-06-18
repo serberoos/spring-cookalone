@@ -1,6 +1,7 @@
 package cookalone.main.config;
 
 import cookalone.main.auth.PrincipalUserDetailService;
+import cookalone.main.oauth.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 /**
@@ -21,7 +23,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근시 권한 및 인증을 미리 체크 한다.
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -29,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /* 로그인 실패 핸들러 의존성 주입 */
     private final AuthenticationFailureHandler authFailureHandler;
+
+    /* OAuth */
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     /**
      * BCryptPasswordEncoder 스프링 시큐리티에서 제공하는 비밀번호 암호화 객체
@@ -88,7 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .csrf().disable()
+        .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외 처리 */
+        .and()
         .authorizeRequests()
             .antMatchers("/", "/auth/**")
             .permitAll()
@@ -104,7 +110,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
             .logoutUrl("/auth/logout-proc")
             .logoutSuccessUrl("/")
-            .invalidateHttpSession(true);
+            .invalidateHttpSession(true)
+        .and() /* OAuth */
+            .oauth2Login()
+            .userInfoEndpoint()// OAuth2 로그인 성공 후 가져올 설정들
+            .userService(customOAuth2UserService); // 서버에서 사용자 정보를 가져온 상태에서 추가로 진행하고자 하는 기능 명시
+
 
         http.sessionManagement()
                 .maximumSessions(1) //세션 최대 허용 수

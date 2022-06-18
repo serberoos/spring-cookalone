@@ -14,6 +14,10 @@ spring:
 #        show_sql: true
         format_sql: true
 
+  #OAuth | 해당 profile 정보를 가져온다. (application-xxx.properties로 만들면 xxx라는 profile이 생성되어 관리 할 수 있다.)
+  profiles:
+    include: oauth
+
 logging:
   level:
     org.hibernate.SQL: debug

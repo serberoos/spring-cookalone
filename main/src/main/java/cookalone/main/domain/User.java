@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class User{
     @Id
     @GeneratedValue
     @Column(name="USER_ID") //ID Column 이름
@@ -66,9 +67,28 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Receipe> receipeList = new ArrayList<>();
 
+    @Column(name= "created_date", nullable = false)
     @CreatedDate
     private LocalDateTime createdDate;
 
+    @Column(name= "modified_date", nullable = false)
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
+    /* 회원 정보 수정을 위한 set method*/
+    public void modify(String nickname, String password){
+        this.nickname = nickname;
+        this.password = password;
+    }
+
+    /* 소셜로그인 시 이미 등록된 회원이라면 수정날짜만 업데이트 하고
+     * 기존 데이터는 그대로 보존하도록 예외처리 */
+    public User updateModifiedDate() {
+        this.modifiedDate = LocalDateTime.now();
+        return this;
+    }
+    public String getRoleValue(){
+        return this.role.getValue();
+    }
+
 }

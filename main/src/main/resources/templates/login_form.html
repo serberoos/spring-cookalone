@@ -32,11 +32,18 @@
                     <p th:text="${exception}">Invalid username and password.</p>
                 </div>
             </div>
+            <div class="Nextbutton">
+                <Button class="button" type="submit" ><img src="/images/login_form-login-btn.png"
+                                                                                width="458" height="55"
+                                                                                class="upButtons"/></Button>
+            </div>
             <hr>
             <div class="Nextbutton">
-                <Button class="button" type="submit"><img src="/images/registerTwo/join.jpg" width="181" height="51"
-                                                          class="upButtons"/></Button>
+                <a class="button" href="/oauth2/authorization/google"><img src="/images/login_form-google-login-btn.png" width="458"
+                                                          height="55"
+                                                          class="upButtons"/></a>
             </div>
+
         </div>
     </form>
     <th:block th:replace="fragments/footer :: footerFragment"/>
