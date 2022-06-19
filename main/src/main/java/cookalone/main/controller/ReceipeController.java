@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @PathVariable : URL에 변수를 넣고자 할때 사용
@@ -81,5 +82,13 @@ public class ReceipeController {
         receipeService.saveReceipe(receipeDto, user.getNickname());
 
         return "redirect:/"; //후에 생성된 레시피 페이지로 연결
+    }
+    @GetMapping("/receipe/search")
+    public String search(String keyword, Model model){
+        List<Receipe> searchList = receipeService.searchReceipe(keyword);
+
+        model.addAttribute("searchList", searchList);
+
+        return "search_receipe_form";
     }
 }

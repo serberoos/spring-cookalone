@@ -17,7 +17,6 @@ public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String username;
-    private String nickname;
     private String email;
     private Role role;
 
@@ -32,8 +31,7 @@ public class OAuthAttributes {
                                             Map<String, Object> attributes){
         return OAuthAttributes.builder()
                 .email((String) attributes.get("email")) // 로그인 아이디는 이메일로 저장한다.
-                .username((String) attributes.get("username"))
-                .nickname((String) attributes.get("nickname"))
+                .username((String) attributes.get("name"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -41,9 +39,8 @@ public class OAuthAttributes {
 
     public User toEntity() {
         return User.builder()
-                .username(email)
+                .username(username)
                 .email(email)
-                .nickname(nickname)
                 .role(Role.SOCIAL)
                 .build();
     }

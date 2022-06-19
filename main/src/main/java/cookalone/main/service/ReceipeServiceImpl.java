@@ -32,7 +32,13 @@ public class ReceipeServiceImpl implements ReceipeService {
 
         return receipeRepository.save(receipeDto.toEntity()).getId();
     }
+    /* 레시피 검색 */
+    @Transactional
+    public List<Receipe> searchReceipe(String keyword) {
+        List<Receipe> receipeList = receipeRepository.findByTitleContaining(keyword);
 
+        return receipeList;
+    }
     /* 레시피 조회 | readOnly = true 속성으로 조회 속도를 개선함.*/
     @Transactional(readOnly = true)
     public ReceipeResponseDto getReceipeDetail(Long id) {
@@ -45,12 +51,6 @@ public class ReceipeServiceImpl implements ReceipeService {
     @Transactional
     public boolean deleteReceipe(Long id) {
         return false;
-    }
-
-    @Transactional
-    public List<Receipe> searchReceipe(String keyword) {
-        List<Receipe> receipes = receipeRepository.findByTitleContaining(keyword);
-        return receipes;
     }
 
     /* 레시피 리스트 페이징 조회*/
