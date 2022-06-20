@@ -84,7 +84,7 @@ public class ReceipeController {
         return "redirect:/"; //후에 생성된 레시피 페이지로 연결
     }
     @GetMapping("/receipe/search")
-    public String search(String keyword, Model model){
+    public String searchReceipe(String keyword, Model model){
         List<Receipe> searchList = receipeService.searchReceipe(keyword);
 
         model.addAttribute("searchList", searchList);
