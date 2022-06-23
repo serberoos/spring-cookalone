@@ -16,7 +16,7 @@
 // * @PreUpdate : 변경 감지를 통해 update 쿼리가 실행 되었을 때 해당 어노테이션에서 preUpdate() 메소드를 통해 updated_at의 시간을 현재시간으로 수정 시켜준다.\
 // *
 // * @CreatedDate : Entity가 생성되어 저장될 때, 시간이 자동으로 저장된다.
-// * @LastModifiedDate : 조회한 Entity의 값을 변경할 때, 시간이 자동으로 저장된다.
+// * @LastModifiedDate : 조회한 Entity의 값을 변경할 때, 시간이 자동으로 저장된다. (이걸로 간단하게 구현이 가능)
 // */
 //@Getter @Setter
 //@MappedSuperclass

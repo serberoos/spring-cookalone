@@ -29,6 +29,7 @@ dependencies {
 	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     implementation 'junit:junit:4.13.1'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
     compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'com.h2database:h2'
