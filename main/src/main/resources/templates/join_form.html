@@ -24,7 +24,7 @@
                 <hr>
                 <div>
                     <div class="name">비밀번호</div>
-                    <input type="text" name="password" class="textfield" th:value="${userRequestDto.password}" />
+                    <input type="password" name="password" class="textfield" th:value="${userRequestDto.password}" />
 
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_password}"></p>
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <div class="name">비밀번호 확인</div>
-                    <input name="textfield3" type="text" class="textfield"/>
+                    <input name="textfield3" type="password" class="textfield"/>
                 </div>
                 <hr>
                 <div>
