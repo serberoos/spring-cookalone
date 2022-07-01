@@ -8,7 +8,9 @@
 <body>
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
-    <form role="form" th:action="@{/receipe/create}" th:object="${receipeRequestDto}" method="post">
+    <!--    multipart/form-data : form 요소가 파일이나 이미지를 서버로 전송할 때, 주요 사용-->
+    <form role="form" th:action="@{/receipe/create}" th:object="${receipeRequestDto}" method="post"
+          enctype="multipart/form-data">
         <div id="mainbox">
             <div>
                 <div id="small_logo"><img src="/images/small_logo.png" width="180" height="180"/></div>
@@ -17,8 +19,8 @@
                     <div><input th:field="*{title}" type="text" class="textfield3"/></div>
                 </div>
                 <div class="subbox">
-                    <span><input type="file" name="fileField" id="fileField1"/></span>
-                    <div><textarea name="textarea5" class="filefield" disabled></textarea></div>
+                    <span><input type="file" class="form-control" name="imgFile"></span>
+
                 </div>
             </div>
             <hr>
@@ -42,10 +44,11 @@
                     <div><textarea th:field=*{cookingProcessContent} class="textfield"></textarea></div>
                 </div>
             </div>
+            <hr>
             <div>
                 <div class="subbox">
-                    <span><input type="file" name="fileField" id="fileField1"/></span>
-                    <div><textarea name="textarea5" class="filefield" disabled></textarea></div>
+                    <div class="name"><strong>요리 이미지</strong></div>
+                    <span><input type="file" class="form-control" name="imgFile"></span>
                 </div>
             </div>
             <!--            <hr>-->
