@@ -1,11 +1,11 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.Receipe;
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import cookalone.main.domain.dto.receipe.ReceipeRequestDto;
 import cookalone.main.domain.dto.receipe.ReceipeResponseDto;
 import cookalone.main.repository.ReceipeRepository;
-import cookalone.main.repository.UserRepository;
+import cookalone.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,13 +22,13 @@ import java.util.List;
 @Service
 public class ReceipeServiceImpl implements ReceipeService {
     private final ReceipeRepository receipeRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     /* 레시피 생성 */
     @Transactional
     public Long saveReceipe(@RequestBody ReceipeRequestDto receipeDto, String nickname) {
-        User user = userRepository.findByNickname(nickname);
-        receipeDto.setUser(user);
+        Member member = memberRepository.findByNickname(nickname);
+        receipeDto.setMember(member);
 
         return receipeRepository.save(receipeDto.toEntity()).getId();
     }

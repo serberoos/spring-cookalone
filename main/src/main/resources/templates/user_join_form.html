@@ -8,14 +8,14 @@
 <body>
 <div class="wrapper">
     <th:block th:replace="fragments/header :: headerFragment"/>
-    <form role="form" th:action="@{/auth/join}" method="post" modelAttribute="userRequestDto"> <!-- 요청 전송 -->
+    <form role="form" th:action="@{/auth/join}" method="post" modelAttribute="memberRequestDto"> <!-- 요청 전송 -->
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>
             <hr>
             <div>
                 <div>
                     <div class="name">이메일(아이디)</div>
-                    <input type="text" name="email" class="textfield" th:value="${userRequestDto.email}"/>
+                    <input type="text" name="email" class="textfield" th:value="${memberRequestDto.email}"/>
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_email}"></p>
                     </div>
@@ -24,7 +24,7 @@
                 <hr>
                 <div>
                     <div class="name">비밀번호</div>
-                    <input type="password" name="password" class="textfield" th:value="${userRequestDto.password}" />
+                    <input type="password" name="password" class="textfield" th:value="${memberRequestDto.password}" />
 
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_password}"></p>
@@ -38,7 +38,7 @@
                 <hr>
                 <div>
                     <div class="name">닉네임</div>
-                    <input type="text" name="nickname" class="textfield" th:value="${userRequestDto.nickname}"/>
+                    <input type="text" name="nickname" class="textfield" th:value="${memberRequestDto.nickname}"/>
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_nickname}"></p>
                     </div>
@@ -46,14 +46,14 @@
                 </div>
                 <div>
                     <div class="name">이름</div>
-                    <input type="text" name="username" class="textfield" th:value="${userRequestDto.username}"/>
+                    <input type="text" name="username" class="textfield" th:value="${memberRequestDto.username}"/>
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_username}"></p>
                     </div>
                 </div>
                 <div>
                     <div class="name">생년월일</div>
-                    <input type="text" name="birthDate" class="textfield" th:value="${userRequestDto.birthDate}"
+                    <input type="text" name="birthDate" class="textfield" th:value="${memberRequestDto.birthDate}"
                            placeholder="YYYYMMDD"/>
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_birthDate}"/>
@@ -62,7 +62,7 @@
                 <div>
                     <div class="name">성별</div>
                     <div class="personalInfoBox">
-                        <select name="gender" id="selectGen" th:value="${userRequestDto.gender}">
+                        <select name="gender" id="selectGen" th:value="${memberRequestDto.gender}">
                             <option th:value=null>-</option>
                             <option th:value="MALE">남자</option>
                             <option th:value="FEMALE">여자</option>
@@ -84,6 +84,8 @@
                     <div class="personalInfoBox"><input name="zipcode" type="number" placeholder="우편번호"
                                                         class="one-third-textfield"/></div>
                 </div>
+                <input type="hidden" name="role" class="role" value="USER" />
+                <!-- hidden으로 ROLE값 넘기기 -->
                 <hr>
                 <div class="Nextbutton">
                     <Button class="button" type="submit">

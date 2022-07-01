@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
+    <link rel='stylesheet' type='text/css' th:href="@{/css/registerTwo.css}">
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/header :: headerFragment"/>
+    <form role="form" th:action="@{/admin/join}" method="post" modelAttribute="memberRequestDto"> <!-- 요청 전송 -->
+        <div id="mainbox">
+            <div><img src="/images/small_logo.png" width="206" height="200"/></div>
+            <hr>
+
+            <div>
+                <div>
+                    <div class="name">관리자 이메일</div>
+                    <input type="text" name="nickname" class="textfield" th:value="${memberRequestDto.nickname}"/>
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_nickname}"></p>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <div class="name">비밀번호</div>
+                    <input type="password" name="password" class="textfield" th:value="${memberRequestDto.password}" />
+
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_password}"></p>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="name">비밀번호 확인</div>
+                    <input name="textfield3" type="password" class="textfield"/>
+                </div>
+                <hr>
+                <div>
+                    <div class="name">관리자 명</div>
+                    <input type="text" name="username" class="textfield" th:value="${memberRequestDto.username}"/>
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_username}"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="name">성별</div>
+                    <div class="personalInfoBox">
+                        <select name="gender" id="selectGen" th:value="${memberRequestDto.gender}">
+                            <option th:value=null>-</option>
+                            <option th:value="MALE">남자</option>
+                            <option th:value="FEMALE">여자</option>
+                        </select>
+                    </div>
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_gender}"></p>
+                    </div>
+                </div>
+                <input type="hidden" name="role" class="role" value="ADMIN" />
+                <hr>
+                <div class="Nextbutton">
+                    <Button class="button" type="submit">
+                        <img src="/images/registerTwo/join.jpg" width="181" height="51" class="upButtons"/>
+                    </Button>
+                </div>
+            </div>
+        </div>
+        <th:block th:replace="fragments/footer :: footerFragment"/>
+    </form>
+</div>
+</body>
+</html>

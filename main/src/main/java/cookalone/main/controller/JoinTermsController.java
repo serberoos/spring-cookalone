@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class JoinTermsController {
 
-    /* 회원가입 약관 과정 */
+    /* 유저 회원가입 약관 과정 */
     @GetMapping("/auth/jointerms")
     public String joinTermsForm(Model model) {
         model.addAttribute("joinTermsRequestDto", new JoinTermsRequestDto());

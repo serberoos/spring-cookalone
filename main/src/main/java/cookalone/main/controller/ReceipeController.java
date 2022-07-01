@@ -1,7 +1,7 @@
 package cookalone.main.controller;
 
 import cookalone.main.domain.Receipe;
-import cookalone.main.domain.dto.account.UserResponseDto;
+import cookalone.main.domain.dto.account.MemberResponseDto;
 import cookalone.main.domain.dto.receipe.ReceipeRequestDto;
 import cookalone.main.domain.dto.receipe.ReceipeResponseDto;
 import cookalone.main.service.ReceipeServiceImpl;
@@ -43,7 +43,7 @@ public class ReceipeController {
     @GetMapping("/receipe/searchform")
     public String receipeSearchForm(Model model, @PageableDefault(size=12, sort="id", direction = Sort.Direction.DESC)
             Pageable pageable){
-        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        MemberResponseDto user = (MemberResponseDto) session.getAttribute("user");
         Page<Receipe> receipes = receipeService.getReceipePages(pageable);
         System.out.println(receipes);
 
@@ -74,7 +74,7 @@ public class ReceipeController {
             return "write_receipe_form";
         }
 
-        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        MemberResponseDto user = (MemberResponseDto) session.getAttribute("user");
 
         /* 글쓴이 Nickname set */
         receipeDto.setWriter(user.getNickname()); // 후에 Set 외 방식으로 구현 예정

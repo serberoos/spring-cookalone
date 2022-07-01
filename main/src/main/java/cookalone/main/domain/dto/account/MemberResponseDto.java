@@ -1,7 +1,7 @@
 package cookalone.main.domain.dto.account;
 
 import cookalone.main.domain.Address;
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import cookalone.main.domain.status.Gender;
 import cookalone.main.domain.status.Role;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  * UserResponseDto : 회원 Service 응답(Response) DTO 클래스
  * */
 @Getter
-public class UserResponseDto implements Serializable {
+public class MemberResponseDto implements Serializable {
     private Long id;
     private String email;
     private String password;
@@ -35,18 +35,18 @@ public class UserResponseDto implements Serializable {
     private LocalDateTime modifiedDate;
 
     /* Entity -> Dto */
-    public UserResponseDto(User user){
-        this.id = user.getId();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.nickname = user.getNickname();
-        this.username = user.getUsername();
-        this.birthDate = user.getBirthDate();
-        this.gender = user.getGender();
-        this.address = user.getAddress();
-        this.role = user.getRole();
-        this.termsAgreeDate = user.getTermsAgreeDate();
-        this.createdDate = user.getCreatedDate();
-        this.modifiedDate = user.getModifiedDate();
+    public MemberResponseDto(Member member){
+        this.id = member.getId();
+        this.email = member.getEmail();
+        this.password = member.getPassword();
+        this.nickname = member.getNickname();
+        this.username = member.getUsername();
+        this.birthDate = member.getBirthDate();
+        this.gender = member.getGender();
+        this.address = member.getAddress();
+        this.role = member.getRole();
+        this.termsAgreeDate = member.getTermsAgreeDate();
+        this.createdDate = member.getCreatedDate();
+        this.modifiedDate = member.getModifiedDate();
     }
 }

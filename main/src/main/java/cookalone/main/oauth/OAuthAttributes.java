@@ -1,6 +1,6 @@
 package cookalone.main.oauth;
 
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import cookalone.main.domain.status.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -55,8 +55,8 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity() {
-        return User.builder()
+    public Member toEntity() {
+        return Member.builder()
                 .username(username)
                 .email(email)
                 .role(Role.SOCIAL)

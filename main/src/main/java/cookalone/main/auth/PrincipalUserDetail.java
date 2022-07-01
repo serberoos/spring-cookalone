@@ -1,6 +1,6 @@
 package cookalone.main.auth;
 
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,16 +14,16 @@ import java.util.Collection;
  */
 @AllArgsConstructor
 public class PrincipalUserDetail implements UserDetails {
-    private User user; // 콤포지션
+    private Member member; // 콤포지션
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return member.getPassword();
     }
 
     @Override
     public String getUsername(){
-        return user.getUsername();
+        return member.getUsername();
     }
     /**
      * 계정 만료 여부
@@ -68,7 +68,7 @@ public class PrincipalUserDetail implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         Collection<GrantedAuthority> collectors = new ArrayList<>();
-        collectors.add(()-> { return "ROLE_" + user.getRole();});
+        collectors.add(()-> { return "ROLE_" + member.getRole();});
 
         return collectors;
     }

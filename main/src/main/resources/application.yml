@@ -28,8 +28,8 @@ logging:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
 
-# 상품 이미지 업로드 경로
-itemImgLocation=C:/shop/item
-
-# 리소스 업로드 경로
-uploadPath=file:///C:/shop/
+## 상품 이미지 업로드 경로
+#itemImgLocation=C:/shop/item
+#
+## 리소스 업로드 경로
+#uploadPath=file:///C:/shop/

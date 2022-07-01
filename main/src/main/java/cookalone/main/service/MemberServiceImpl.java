@@ -1,8 +1,8 @@
 package cookalone.main.service;
 
-import cookalone.main.domain.User;
-import cookalone.main.domain.dto.account.UserRequestDto;
-import cookalone.main.repository.UserRepository;
+import cookalone.main.domain.Member;
+import cookalone.main.domain.dto.account.MemberRequestDto;
+import cookalone.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,10 +22,10 @@ import java.util.Map;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class MemberServiceImpl implements MemberService {
 
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder encoder;
 
     /* 회원가입 시 유효성 체크 */
@@ -41,18 +41,18 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 유저
      * 회원가입
      * @Transcational : Default : readOnly = false
      */
     @Transactional
-    public Long join(UserRequestDto userDto){
-        userDto.setPassword(encoder.encode(userDto.getPassword())); // 사용자 비밀번호를 해쉬 암호화 후 레포지토리에 저장한다.
-        return userRepository.save(userDto.toEntity()).getId();
+    public Long join(MemberRequestDto memberRequestDto){
+        memberRequestDto.setPassword(encoder.encode(memberRequestDto.getPassword())); // 사용자 비밀번호를 해쉬 암호화 후 레포지토리에 저장한다.
+        return memberRepository.save(memberRequestDto.toEntity()).getId();
     }
 
-
     //회원 전체 조회
-    public List<User> findUsers() {
-        return userRepository.findAll();
+    public List<Member> findUsers() {
+        return memberRepository.findAll();
     }
 }

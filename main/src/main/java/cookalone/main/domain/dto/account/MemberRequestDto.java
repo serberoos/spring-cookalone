@@ -1,7 +1,7 @@
 package cookalone.main.domain.dto.account;
 
 import cookalone.main.domain.Address;
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import cookalone.main.domain.status.Gender;
 import cookalone.main.domain.status.Role;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 
 /**
- * UserRequestDto : 회원 Service 요청(Request) DTO 클래스
+ * AccountRequestDto : 계정 Service 요청(Request) DTO 클래스
  *
  * @NotBlank 공백 비 허용
  */
@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserRequestDto {
+public class MemberRequestDto {
     private Long id;
 
     @NotEmpty(message = "이메일을 입력하세요.")
@@ -66,7 +66,7 @@ public class UserRequestDto {
 
     @NotNull(message = "성별을 선택하세요.")
     @Enumerated(EnumType.STRING)
-    private Gender gender; // 고수준 valid 필요
+    private Gender gender;
 
     private String city;
     private String street;
@@ -78,14 +78,14 @@ public class UserRequestDto {
     private String createdDate;
     private String modifiedDate;
 
-    public User toEntity() {
+    public Member toEntity() {
         Address address = Address.builder()
                 .city(city)
                 .street(street)
                 .zipcode(zipcode)
                 .build();
 
-        User user = User.builder()
+        Member member = Member.builder()
                 .id(id)
                 .email(email)
                 .password(password)
@@ -94,9 +94,8 @@ public class UserRequestDto {
                 .birthDate(birthDate)
                 .gender(gender)
                 .address(address)
-                .role(role.USER)
+                .role(role)
                 .build();
-        return user;
+        return member;
     }
-
 }

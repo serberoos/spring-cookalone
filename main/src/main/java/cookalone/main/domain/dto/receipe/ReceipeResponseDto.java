@@ -1,7 +1,7 @@
 package cookalone.main.domain.dto.receipe;
 
+import cookalone.main.domain.Member;
 import cookalone.main.domain.Receipe;
-import cookalone.main.domain.User;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class ReceipeResponseDto implements Serializable {
     private String writer;
     private int viewCnt;
 
-    private User user;
+    private Member member;
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;
 
@@ -34,7 +34,7 @@ public class ReceipeResponseDto implements Serializable {
         this.writer = receipe.getWriter();
         this.viewCnt = receipe.getViewCnt();
 
-        this.user = receipe.getUser();
+        this.member = receipe.getMember();
 
         this.createDate = receipe.getCreatedDate();
         this.modifiedDate = receipe.getModifiedDate();

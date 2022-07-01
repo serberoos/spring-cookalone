@@ -20,7 +20,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name="USER_ID")
-    private User user;
+    private Member member;
 
     private String reviewContent;
     private String createdDate;

@@ -1,9 +1,9 @@
 package cookalone.main.controller;
 
-import cookalone.main.domain.dto.account.UserRequestDto;
-import cookalone.main.service.UserServiceImpl;
-import cookalone.main.validator.CheckOverlapEmailValidator;
-import cookalone.main.validator.CheckOverlapNicknameValidator;
+import cookalone.main.domain.dto.account.MemberRequestDto;
+import cookalone.main.service.MemberServiceImpl;
+import cookalone.main.validator.CheckOverlapUserEmailValidator;
+import cookalone.main.validator.CheckOverlapUserNicknameValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -40,17 +40,17 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 
-    private final UserServiceImpl userService;
-    private final CheckOverlapEmailValidator checkOverlapEmailValidator;
-    private final CheckOverlapNicknameValidator checkOverlapNicknameValidator;
+    private final MemberServiceImpl accountService;
+    private final CheckOverlapUserEmailValidator checkOverlapUserEmailValidator;
+    private final CheckOverlapUserNicknameValidator checkOverlapUserNicknameValidator;
 
     /* 커스텀 유효성 검사 validate */
     @InitBinder
     public void validatorBinder(WebDataBinder binder){
-        binder.addValidators(checkOverlapEmailValidator);
-        binder.addValidators(checkOverlapNicknameValidator);
+        binder.addValidators(checkOverlapUserEmailValidator);
+        binder.addValidators(checkOverlapUserNicknameValidator);
     }
 //    private final UserRequestDtoValidator userRequestDtoValidator;
 
@@ -63,20 +63,21 @@ public class UserController {
 //    }
 
 
-    /* 회원가입 과정 */
+    /* 유저 회원가입 폼 이동 */
     @GetMapping("/auth/join")
-    public String joinForm(UserRequestDto userDto) {
-        return "join_form";
+    public String userJoinForm(MemberRequestDto userDto) {
+        return "user_join_form";
     }
 
+    /* 유저 회원가입 프로세스 */
     @PostMapping("/auth/join")
-    public String joinProc(Model model, @Valid UserRequestDto userDto, Errors errors) {
+    public String userJoinProc(Model model, @Valid MemberRequestDto memberRequestDto, Errors errors) {
         if (errors.hasErrors()) {
             /* 회원가입 실패시, 입력 데이터를 유지합니다. */
-            model.addAttribute("userRequestDto", userDto);
+            model.addAttribute("userRequestDto", memberRequestDto);
 
             /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
-            Map<String, String> validatorResult = userService.validateHandling(errors);
+            Map<String, String> validatorResult = accountService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 System.out.println((key + " " + validatorResult.get(key)));
                 model.addAttribute(key, validatorResult.get(key));
@@ -86,9 +87,40 @@ public class UserController {
             });
 
             /* 회원가입 페이지로 다시 리턴 */
-            return "join_form";
+            return "user_join_form";
         }
-        userService.join(userDto);
+        accountService.join(memberRequestDto);
+
+        return "redirect:/";
+    }
+
+    /* 관리자 회원가입 폼 이동 */
+    @GetMapping("/admin/join")
+    public String adminJoinForm(MemberRequestDto memberRequestDto) {
+        return "admin_join_form";
+    }
+
+    /* 관리자 계정 생성 프로세스 */
+    @PostMapping("/admin/join")
+    public String adminJoinProc(Model model, @Valid MemberRequestDto memberRequestDto, Errors errors){
+        if (errors.hasErrors()) {
+            /* 회원가입 실패시, 입력 데이터를 유지합니다. */
+            model.addAttribute("adminRequestDto", memberRequestDto);
+
+            /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
+            Map<String, String> validatorResult = accountService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                System.out.println((key + " " + validatorResult.get(key)));
+                model.addAttribute(key, validatorResult.get(key));
+            }
+            errors.getAllErrors().forEach(v -> { //에러 출력
+                System.out.println(v.toString());
+            });
+
+            /* 관리자 회원가입 페이지로 다시 리턴 */
+            return "admin_join_form";
+        }
+        accountService.join(memberRequestDto);
 
         return "redirect:/";
     }
@@ -117,6 +149,5 @@ public class UserController {
         }
         return "redirect:/";
     }
-    //test
 }
 

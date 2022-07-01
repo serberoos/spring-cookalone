@@ -9,9 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,6 @@ import java.util.List;
  * @EntityListener(AuditingEntityListener.class) Auditing 기능을 쓰기 위함. :: @CreatedDate @ModifiedDate
  * @NoArgsConstructor(access = AccessLevel.PROTECTED) : 인수 없는 생성자를 protected 모드로 추가한다.( JPA 관례 )
  * @Builder 패턴과 @NoArgsConstructor를 함께 쓰면 오류가 발생한다. => AllArgsConstroutor를 추가한다.
- *
  */
 
 @Builder
@@ -27,10 +24,10 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class User{
+public class Member {
     @Id
     @GeneratedValue
-    @Column(name="USER_ID") //ID Column 이름
+    @Column(name="MEMBER_ID") //ID Column 이름
     private Long id;
 
     private String email;
@@ -58,13 +55,13 @@ public class User{
      * 3. mappedby : USER FK는 ORDER 가 가지고 있다.(연관관계의 주인은 Order)
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Order> orderList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Review> reviewList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Receipe> receipeList = new ArrayList<>();
 
     @Column(name= "created_date", nullable = false)
@@ -83,7 +80,7 @@ public class User{
 
     /* 소셜로그인 시 이미 등록된 회원이라면 수정날짜만 업데이트 하고
      * 기존 데이터는 그대로 보존하도록 예외처리 */
-    public User updateModifiedDate() {
+    public Member updateModifiedDate() {
         this.modifiedDate = LocalDateTime.now();
         return this;
     }

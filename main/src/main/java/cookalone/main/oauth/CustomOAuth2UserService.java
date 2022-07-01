@@ -1,8 +1,8 @@
 package cookalone.main.oauth;
 
-import cookalone.main.domain.User;
-import cookalone.main.domain.dto.account.UserResponseDto;
-import cookalone.main.repository.UserRepository;
+import cookalone.main.domain.Member;
+import cookalone.main.domain.dto.account.MemberResponseDto;
+import cookalone.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -23,7 +23,7 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final HttpSession session;
 
     @Override
@@ -40,22 +40,22 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         /* OAuth2UserService */
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
-        User user = saveOrUpdate(attributes);
+        Member member = saveOrUpdate(attributes);
 
         /* 세션 정보를 저장하는 직렬화된 dto 클래스 */
-        session.setAttribute("user", new UserResponseDto(user));
+        session.setAttribute("user", new MemberResponseDto(member));
 
         return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(user.getRoleValue())),
+                Collections.singleton(new SimpleGrantedAuthority(member.getRoleValue())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }
     /* 소셜 로그인 시 기존 회원이 존재하면 수정 날짜 정보만 업데이트해 기존의 데이터는 그대로 보존 */
-    private User saveOrUpdate(OAuthAttributes attributes){
-        User user = userRepository.findByEmail(attributes.getEmail())
-                .map(User::updateModifiedDate)
+    private Member saveOrUpdate(OAuthAttributes attributes){
+        Member member = memberRepository.findByEmail(attributes.getEmail())
+                .map(Member::updateModifiedDate)
                 .orElse(attributes.toEntity());
 
-        return userRepository.save(user);
+        return memberRepository.save(member);
     }
 }

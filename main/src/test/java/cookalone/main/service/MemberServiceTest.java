@@ -1,6 +1,6 @@
 package cookalone.main.service;
 
-import cookalone.main.repository.UserRepository;
+import cookalone.main.repository.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +24,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class UserServiceTest {
+public class MemberServiceTest {
 
     @Autowired
-    UserServiceImpl userService;
+    MemberServiceImpl userService;
     @Autowired
-    UserRepository userRepository;
+    MemberRepository memberRepository;
 
     @Test
 //    @Rollback(false)

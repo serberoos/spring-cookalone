@@ -1,7 +1,7 @@
 package cookalone.main.domain.dto.receipe;
 
 import cookalone.main.domain.Receipe;
-import cookalone.main.domain.User;
+import cookalone.main.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,7 +35,7 @@ public class ReceipeRequestDto {
     private String writer;
     private int viewCnt;
 
-    private User user;
+    private Member member;
     private String createDate;
     private String modifiedDate;
 
@@ -49,7 +49,7 @@ public class ReceipeRequestDto {
                 .cautionContent(cautionContent)
                 .writer(writer)
                 .viewCnt(viewCnt)
-                .user(user)
+                .member(member)
                 .build();
         return receipe;
     }
