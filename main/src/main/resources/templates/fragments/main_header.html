@@ -13,32 +13,37 @@
     <div id="down-header">
         <div id="down-header-left">
             <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/images/login.PNG" width="240"
-                                                                               height="43" class="upButtons"/></a>
+                                                                               height="45" class="upButtons"/></a>
             <a href="/auth/jointerms" sec:authorize="!isAuthenticated()"><img src="/images/reg.PNG" width="240"
-                                                                                   height="43" class="upButtons"/></a>
+                                                                              height="45" class="upButtons"/></a>
 
 
             <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
                 <a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img src="/images/receipe_upload.PNG"
-                                                                                    width=160 height=43
+                                                                                    width="160" height="43"
                                                                                     class="upButtons"/></a>
-
                 <button class="button" type="submit"><img src="/images/logout.png" width="160"
                                                           height="43" class="upButtons"/></button>
-                <button href="/" id="header-member-button" class="button" type="button">
-                    <div class="upButtons" sec:authentication="name"/>
-                </button>
+                <!--                sec:authentication="name"-->
+                <a href="/">
+                    <img src="/images/mypage.png" width="160" height="43" class="upButtons"/>
+                </a>
             </form>
-
         </div>
         <div id="down-header-right">
             <form action="/post/search" method="GET" role="search">
                 <label>
-                    <input name="keyword" type="text" id="textfield3" value="요리 이름으로 직접 검색하기 "/>
-                    <button type="button" class="button" alt="Search" ><img src="/images/secrch.PNG" width="120" height="44" class="upButtons"/></button>
+                    <input name="keyword" type="text" id="search-textfield" value="요리 이름으로 직접 검색하기 "/>
+                    <button type="button" class="button" alt="Search"><img src="/images/secrch.PNG" width="120"
+                                                                           height="44" class="upButtons"/></button>
                 </label>
             </form>
         </div>
+    </div>
+    <div id="down-header-greeting">
+        <strong class="greeting-msg-nickname" sec:authentication="name" sec:authorize="isAuthenticated()"/>
+        <p class="greeting-msg" sec:authorize="hasRole('USER')"> 회원님 환영합니다. ✋</p>
+        <p class="greeting-msg" sec:authorize="hasRole('ADMIN')"> 관리자님 환영합니다. ✋</p>
     </div>
 </th:block>
 </html>
