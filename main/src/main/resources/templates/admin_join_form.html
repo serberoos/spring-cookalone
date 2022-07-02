@@ -14,12 +14,10 @@
             <hr>
 
             <div>
-                <div>
-                    <div class="name">관리자 이메일</div>
-                    <input type="text" name="nickname" class="textfield" th:value="${memberRequestDto.nickname}"/>
-                    <div class="name">
-                        <p class="proc-error-message" th:text="${valid_nickname}"></p>
-                    </div>
+                <div class="name">관리자 이메일(아이디)</div>
+                <input type="text" name="email" class="textfield" th:value="${memberRequestDto.email}"/>
+                <div class="name">
+                    <p class="proc-error-message" th:text="${valid_email}"></p>
                 </div>
                 <hr>
                 <div>
@@ -41,6 +39,21 @@
                     <input type="text" name="username" class="textfield" th:value="${memberRequestDto.username}"/>
                     <div class="name">
                         <p class="proc-error-message" th:text="${valid_username}"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="name">닉네임</div>
+                    <input type="text" name="nickname" class="textfield" th:value="${memberRequestDto.nickname}"/>
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_nickname}"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="name">생년월일</div>
+                    <input type="text" name="birthDate" class="textfield" th:value="${memberRequestDto.birthDate}"
+                           placeholder="YYYYMMDD"/>
+                    <div class="name">
+                        <p class="proc-error-message" th:text="${valid_birthDate}"/>
                     </div>
                 </div>
                 <div>
