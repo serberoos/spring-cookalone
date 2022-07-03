@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/header :: headerFragment"/>
+    <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
     <!--    multipart/form-data : form 요소가 파일이나 이미지를 서버로 전송할 때, 주요 사용-->
     <form role="form" th:action="@{/receipe/create}" th:object="${receipeRequestDto}" method="post"
           enctype="multipart/form-data">

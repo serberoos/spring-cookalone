@@ -1,0 +1,178 @@
+header{
+    background-color: darkgoldenrod;
+    width:100%;
+    top:0;
+    left:0;
+}
+
+img, input {
+    vertical-align:middle;
+}
+nav {
+    display:inline-block;
+}
+
+#search-textfield{
+    width: 530px;
+    height: 41px;
+    font-size: 1.5rem;
+    text-align:center;
+    text-decoration-color: gray;
+}
+#imageSearchBox {
+    background-color: darkgray;
+    box-align:center;
+    padding: 1px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+#imageSearchBox-name{
+    background-color:gray;
+    width:99%;
+}
+#down-header{
+    display: block;
+    padding-top:6px;
+    padding-bottom:6px;
+    background-color:gray;
+
+}
+#down-header-left {
+    display:inline-block;
+    padding-right:27px;
+}
+#down-header-right{
+    display:inline-block;
+    vertical-align: top;
+}
+#down-header-greeting{
+    display: block;
+    background: linear-gradient(45deg, darkgray, transparent);
+}
+#down-header-greeting-right{
+    display: inline-block;
+    background-color:gray;
+    margin-top: 10px;
+}
+.greeting-msg{
+    display: inline-block;
+    margin: 8px 0px 8px 0px;
+    font-size : 20px;
+    color: navajowhite;
+}
+.greeting-msg-nickname{
+    font-size : 20px;
+    color: darkolivegreen;
+}
+#header-user-button {
+    background-color: darkgray;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 160px;
+    height: 43px;
+}
+.button{
+    padding: 0;
+    outline: 0;
+    border: none;
+}
+#header-logo {
+    display : inline-block;
+    padding-right:740px;
+}
+#receipe-upload-button {
+    display : inline-block;
+}
+#receipe-upload-button:hover{
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+#setting-button {
+    display : inline-block;
+}
+#setting-button:hover{
+    transform:rotate(720deg);
+    transition: all 1s;
+}
+.upButtons:hover{
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+.imgSearch {
+    display:inline-block;
+}
+.imgSearch:hover{
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+
+.receipe-image{
+    padding-top:30px;
+}
+.box{
+    vertical-align:middle;
+    margin-bottom:15px;
+}
+.receipeBox-left{
+    background-color:darkgray;
+
+    margin-bottom:2px;
+    margin-right:54px;
+    padding:20px;
+
+    width:45%;
+    display:inline-block;
+    vertical-align:middle;
+}
+.receipeBox-right{
+    padding-right:20px;
+    width:45%;
+
+    display:inline-block;
+    vertical-align:middle;
+}
+#receipeBox-right-name{
+    font-size:1.1rem;
+    text-align:center;
+    background-color: gray;
+    border:1px;
+    border-style:double;
+    padding:1px;
+    margin-bottom:20px;
+}
+#receipeBox-left-name{
+    font-size:1.1rem;
+    text-align:center;
+}
+.receipe-name{
+    text-decoration:none;
+    color:white;
+}
+.receipe-name:hover{
+    text-shadow:0px 2px 2px black;
+    color:skyblue;
+}
+.receipe {
+    height:195px;
+    width:32%;
+    background-color: gray;
+    display:inline-block;
+    margin-right:3px;
+    vertical-align:middle;
+}
+.receipe-name-box{
+    font-size:1rem;
+    font-style:bold;
+    background-color: rgb(69, 100, 112);
+    padding:1px;
+    margin:3px;
+}
+
+.cookalone-text{
+    color:darkolivegreen;
+}

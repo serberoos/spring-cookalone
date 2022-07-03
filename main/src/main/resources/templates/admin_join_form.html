@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/header :: headerFragment"/>
+    <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
     <form role="form" th:action="@{/admin/join}" method="post" modelAttribute="memberRequestDto"> <!-- 요청 전송 -->
         <div id="mainbox">
             <div><img src="/images/small_logo.png" width="206" height="200"/></div>

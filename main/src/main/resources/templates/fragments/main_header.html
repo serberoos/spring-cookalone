@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block th:fragment="mainHeaderFragment">
+    <link rel="stylesheet" th:href="@{/css/fragment-header.css}" >
     <header>
         <div id="header-logo">
             <a href="/"><img src="/images/header_logo.png" width=350 height=95/></a>
@@ -33,7 +34,7 @@
         <div id="down-header-right">
             <form action="/post/search" method="GET" role="search">
                 <label>
-                    <input name="keyword" type="text" id="search-textfield" value="요리 이름으로 직접 검색하기 "/>
+                    <input name="keyword" type="text" id="search-textfield" placeholder="요리 이름으로 직접 검색하기 "/>
                     <button type="button" class="button" alt="Search"><img src="/images/secrch.PNG" width="120"
                                                                            height="44" class="upButtons"/></button>
                 </label>
