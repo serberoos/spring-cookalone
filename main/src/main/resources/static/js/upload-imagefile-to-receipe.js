@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     var errorMessage = [[${errorMessage}]]; /* 상품 등록 시 실패 메시지를 받아서 상품 등록 페이지에 재 진입 시 alert를 통해서 실패 사유를 보여줍니다. */
     if (errorMessage != null) {
