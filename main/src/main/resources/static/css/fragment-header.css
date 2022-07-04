@@ -1,59 +1,17 @@
-.wrapper {
-    width:1200px;
-    margin:0 auto;
-    background-color: olive;
-    box-align:center;
-    text-align:center;
-    font-family:Sunflower;
-}
-@font-face {
-    font-family:Sunflower;
-    src:url(/font/BMHANNAAir.ttf) format('truetype');
-}
-html {
-    background-image: url("../images/background.jpg");
-    background-size:100% 100%; 
-}
 header{
     background-color: darkgoldenrod;
     width:100%;
     top:0;
-    left:0;   
+    left:0;
 }
-footer{
-    background-color:olive;
-    text-align:center;
-    padding:40px;
-}
+
 img, input {
-    vertical-align:middle; 
+    vertical-align:middle;
 }
 nav {
     display:inline-block;
 }
 
-
-#textfield1{
-    width: 150px;
-    height: 29px;
-    font-size: 1.5rem;
-    text-align:center;
-    text-decoration-color: gray;
-}
-#textfield2{
-    width: 150px;
-    height: 29px;
-    font-size: 1.5rem;
-    text-align:center;
-    text-decoration-color: gray;
-}
-#textfield3{
-    width: 530px;
-    height: 40px;
-    font-size: 1.5rem;
-    text-align:center;
-    text-decoration-color: gray;
-}
 #search-textfield{
     width: 530px;
     height: 41px;
@@ -71,14 +29,13 @@ nav {
 #imageSearchBox-name{
     background-color:gray;
     width:99%;
-
 }
 #down-header{
     display: block;
     padding-top:6px;
     padding-bottom:6px;
     background-color:gray;
-    
+
 }
 #down-header-left {
     display:inline-block;
@@ -158,26 +115,26 @@ nav {
     padding-top:30px;
 }
 .box{
-    vertical-align:middle; 
+    vertical-align:middle;
     margin-bottom:15px;
 }
 .receipeBox-left{
     background-color:darkgray;
-    
+
     margin-bottom:2px;
     margin-right:54px;
     padding:20px;
-   
+
     width:45%;
     display:inline-block;
-    vertical-align:middle; 
+    vertical-align:middle;
 }
 .receipeBox-right{
     padding-right:20px;
     width:45%;
-    
+
     display:inline-block;
-    vertical-align:middle; 
+    vertical-align:middle;
 }
 #receipeBox-right-name{
     font-size:1.1rem;
@@ -190,7 +147,7 @@ nav {
 }
 #receipeBox-left-name{
     font-size:1.1rem;
-    text-align:center;   
+    text-align:center;
 }
 .receipe-name{
     text-decoration:none;
@@ -198,7 +155,7 @@ nav {
 }
 .receipe-name:hover{
     text-shadow:0px 2px 2px black;
-    color:skyblue; 
+    color:skyblue;
 }
 .receipe {
     height:195px;
@@ -206,14 +163,14 @@ nav {
     background-color: gray;
     display:inline-block;
     margin-right:3px;
-    vertical-align:middle; 
+    vertical-align:middle;
 }
 .receipe-name-box{
     font-size:1rem;
     font-style:bold;
     background-color: rgb(69, 100, 112);
     padding:1px;
-    margin:3px;   
+    margin:3px;
 }
 
 .cookalone-text{
