@@ -5,8 +5,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -31,6 +34,14 @@ public class OrderProduct {
     private Order order;
 
     private int orderPrice;
-    private int count;
+    private int orderCount;
+
+    @Column(name= "created_date", nullable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(name= "modified_date", nullable = false)
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
 }

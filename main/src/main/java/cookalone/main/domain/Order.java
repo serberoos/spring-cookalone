@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -38,15 +40,24 @@ public class Order {
     @JoinColumn(name="DELIVERY_ID")
     private Delivery delivery;
 
-    /* 1. mappedby : ORDER FK는 ORDER_PRODUCT 가 가지고 있다.(연관관계의 주인은 Order)
-    *  2. CascadeType.ALL : 상위 엔티티에서 하위 엔티티로 모든 작업을 전파 ( 부모와 생명주기를 같이한다.)
-    */
-    @JsonIgnore
-    @OneToMany(mappedBy= "order", cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProductList = new ArrayList<>();
-
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus orderStatus;
+
+    /* 1. mappedby : ORDER FK는 ORDER_PRODUCT 가 가지고 있다.(연관관계의 주인은 Order)
+     *  2. CascadeType.ALL : 상위 엔티티에서 하위 엔티티로 모든 작업을 전파 ( 부모와 생명주기를 같이한다.)
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy= "order", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    private List<OrderProduct> orderProducts = new ArrayList<>();
+
+    @Column(name= "created_date", nullable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(name= "modified_date", nullable = false)
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
 }
