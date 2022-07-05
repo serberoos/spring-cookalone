@@ -22,9 +22,9 @@ public class ReceipeImgDto {
 
     private String repImgYn;
 
-    private static ModelMapper modelMapper = new ModelMapper();
-
-    public static ReceipeImgDto of(ReceipeImg receipeImg){
-        return modelMapper.map(receipeImg, ReceipeImgDto.class);
-    }
+//    private static ModelMapper modelMapper = new ModelMapper();
+//
+//    public static ReceipeImgDto of(ReceipeImg receipeImg){
+//        return modelMapper.map(receipeImg, ReceipeImgDto.class);
+//    }
 }
