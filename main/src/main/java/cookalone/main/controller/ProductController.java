@@ -16,7 +16,7 @@ public class ProductController {
     public String productWriteForm(Model model){
         model.addAttribute("productRequestDto", new ProductRequestDto());
 
-        return "write-product-form";
+        return "write_product_form";
     }
 
 }

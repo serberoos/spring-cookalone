@@ -1,0 +1,116 @@
+<!doctype html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
+    <link rel='stylesheet' type='text/css' th:href="@{/css/receipeUpload.css}">
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
+    <!--    multipart/form-data : form 요소가 파일이나 이미지를 서버로 전송할 때, 주요 사용-->
+    <!--    th:action="@{/product/create}"-->
+    <form role="form" th:object="${productRequestDto}" method="post"
+          enctype="multipart/form-data">
+        <div id="mainbox">
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <select th:field="*{productSellStatus}">
+                    <option value="SELL">판매중</option>
+                    <option value="SOLD_OUT">품절</option>
+                </select>
+            </div>
+
+            <div>
+                <div id="small_logo"><img src="/images/small_logo.png" width="180" height="180"/></div>
+                <div class="subbox">
+                    <div class="name"><strong>상품 명 <span class="warning">필수 작성</span></strong></div>
+                    <div><input th:field="*{productName}" type="text" class="textfield3"/></div>
+                </div>
+                <div class="subbox">
+                    <span><input type="file" name="imgFile"></span>
+
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="subbox">
+                    <div class="name"><strong>가격 <span class="warning">필수 작성</span></strong></div>
+                    <div><textarea th:field=*{price} class="textfield3"></textarea></div>
+                </div>
+            </div>
+
+            <hr>
+            <div>
+                <div class="subbox">
+                    <div class="name"><strong>상품 재고 <span class="warning">필수 작성</span></strong></div>
+                    <div><textarea th:field=*{stockQuantity} class="textfield3"></textarea></div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="subbox">
+                    <div class="name"><strong>상품 설명 <span class="warning">필수 작성</span></strong></div>
+                    <div><textarea th:field=*{productDetails} class="textfield"></textarea></div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="subbox">
+                    <div class="name"><strong>상품 이미지</strong></div>
+<!--                    <span><input type="file" name="imgFile"></span>-->
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(productRequestDto.productImgDtoList)}">
+                <div th:each="num: ${#numbers.sequence(1,5)}">
+                    <div>
+                        <input type="file" name="productImgFile">
+                        <label th:text="상품이미지 + ${num}"></label>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${not #lists.isEmpty(productRequestDto.productImgDtoList)}">
+                <div th:each="productImgDto,
+                     status: ${productRequestDto.productImgDtoList}">
+                    <div>
+                        <input type="file" name="productImgFile">
+                        <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+                        <label th:text="$not #strings.isEmpty(productImgDto.oriImgName)}
+                               ? ${productImgDto.oriImgName} : '상품이미지' + ${status.index+1}">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--            <hr>-->
+            <!--            <div>-->
+            <!--                <div class="subbox">-->
+            <!--                    <div class="name"><strong>주의사항 [사용자 지정 목차]</strong></div>-->
+            <!--                    <div><textarea th:field=*{cautionContent} class="textfield"></textarea></div>-->
+            <!--                </div>-->
+            <!--                <div class="subbox">-->
+            <!--                    <span><input type="file" name="fileField" id="fileField4"/></span>-->
+            <!--                    <div><textarea name="textarea5" class="filefield" disabled></textarea></div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <hr>
+            <div th:if="${#strings.isEmpty(productRequestDto.id)}" style="text-align: center">
+                <button th:formaction="@{/product/create}" type="submit">저장</button>
+
+            </div>
+            <div th:unless="${#strings.isEmpty(productRequestDto.id)}" style="text-align: center">
+                <button th:formaction="@{'/product/update' + ${productRequestDto.id} }"
+                        type="submit">수정
+                </button>
+            </div>
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token">-->
+
+            <!--            <div id="Nextbutton">-->
+            <!--                <Button class="button" type="submit"><img src="/images/receipeUpload/upload.jpg" width="181"-->
+            <!--                                                          height="51" class="upButtons"/></Button>-->
+            <!--            </div>-->
+        </div>
+    </form>
+    <th:block th:replace="fragments/footer :: footerFragment"/>
+</div>
+</body>
+</html>
