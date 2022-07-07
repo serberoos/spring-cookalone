@@ -39,6 +39,19 @@ nav {
     background-color:gray;
     
 }
+product-box {
+    display:inline-block;
+}
+product-sell-status-select-box {
+    width: 80px;
+    height: 40px;
+}
+product-menu-name{
+    display:inline-block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: left;
+}
 #down-header-left {
     display:inline-block;
     padding-right:30px;
