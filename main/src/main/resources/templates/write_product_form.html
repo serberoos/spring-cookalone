@@ -15,7 +15,7 @@
         <div id="mainbox">
             <input type="hidden" th:field="*{id}">
             <div>
-                <div id="small_logo"><img src="/images/small_logo.png" width="180" height="180"/></div>
+                <div id="small_logo"><img src="/img/small_logo.png" width="180" height="180"/></div>
                 <div class="subbox">
                     <div class="product-menu-name"><strong>상품 명</strong></div>
                     <div><input th:field="*{productName}" type="text" class="textfield3"/></div>
@@ -92,7 +92,7 @@
             <hr>
             <div id="Nextbutton" th:if="${#strings.isEmpty(productRequestDto.id)}">
                 <button class="button" th:formaction="@{/product/create}" type="submit">
-                    <img src="/images/receipeUpload/upload.jpg" width="181" height="51" class="upButtons"/>
+                    <img src="/img/receipeUpload/upload.jpg" width="181" height="51" class="upButtons"/>
                 </button>
 
             </div>

@@ -17,7 +17,7 @@
     <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
 
     <div id="mainbox">
-        <div id="small-logo"><img src="/images/small_logo.png" width="206" height="200"/></div>
+        <div id="small-logo"><img src="/img/small_logo.png" width="206" height="200"/></div>
         <form role="form" th:action="@{/auth/jointerms}" th:object="${joinTermsRequestDto}" method="post">
             <div class="terms">
                 <p class="proc-error-message" th:if="${#fields.hasErrors('termsAgreement')}"
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div>
-                <Button class="NextbuttonLeft" type="submit"><img src="/images/registerOne/ok.jpg" width="120"
+                <Button class="NextbuttonLeft" type="submit"><img src="/img/registerOne/ok.jpg" width="120"
                                                                   height="60"
                                                                   class="upButtons"/></Button>
-                <div class="NextbuttonRight"><a href="/"><img src="/images/registerOne/c.jpg" width="120"
+                <div class="NextbuttonRight"><a href="/"><img src="/img/registerOne/c.jpg" width="120"
                                                               height="60" class="upButtons"/></a></div>
             </div>
         </form>

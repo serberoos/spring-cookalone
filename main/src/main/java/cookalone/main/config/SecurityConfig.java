@@ -58,11 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 인증을 무시할 경로를 설정해준다.
-     * static 하위 폴더 (css, images, font, video)는 인증없이 접근이 가능해야 한다.
+     * static 하위 폴더 (css, img, font, video)는 인증없이 접근이 가능해야 한다.
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/images/**", "/font/**", "/video/**", "/js/**");
+        web.ignoring().antMatchers("/css/**", "/img/**", "/font/**", "/video/**", "/js/**");
     }
 
     /**

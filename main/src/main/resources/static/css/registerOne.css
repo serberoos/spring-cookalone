@@ -12,7 +12,7 @@
     src:url(/font/BMHANNAAir.ttf) format('truetype');
 }
 html {
-    background-image: url("../images/background.jpg");
+    background-image: url("../img/background.jpg");
     background-size:100%;
 }
 header{
