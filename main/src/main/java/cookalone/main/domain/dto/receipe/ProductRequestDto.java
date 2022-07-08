@@ -1,8 +1,10 @@
 package cookalone.main.domain.dto.receipe;
 
+import cookalone.main.domain.product.Product;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.Setter;
 import lombok.Getter;
+import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,7 +34,15 @@ public class ProductRequestDto {
 
     private List<Long> productImgIds = new ArrayList<>(); // 상품 이미지 아이디 리스트
 
+    private static ModelMapper modelMapper = new ModelMapper();
 
+    public Product createItem(){
+        return modelMapper.map(this, Product.class);
+    }
+
+    public static ProductRequestDto of(Product product){
+        return modelMapper.map(product, ProductRequestDto.class);
+    }
 
 
 }

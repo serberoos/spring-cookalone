@@ -21,30 +21,30 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/product/writeform")
+    @GetMapping("/product/write")
     public String productWriteForm(Model model) {
         model.addAttribute("productRequestDto", new ProductRequestDto());
 
         return "write_product_form";
     }
 
-    @PostMapping("/product/writeform")
-    public String productNew(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
-                             Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
+    @PostMapping("/product/write")
+    public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
+                                   Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
         if(bindingResult.hasErrors()){
-            return "/product/writeform";
+            return "write_product_form";
         }
 
         if(productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
-            return "/product/writeform";
+            return "write_product_form";
         }
 
         try {
             productService.saveProduct(productRequestDto, productImgFileList);
         }catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
-            return "/product/writeform";
+            return "write_product_form";
         }
 
         return "redirect:/";

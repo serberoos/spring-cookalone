@@ -21,11 +21,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductImgRepository productImgRepository;
 
     @Override
-    public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> itemImgFileList) throws Exception {
+    public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
-        Product product = productRepository.findById("product");
-
+        Product product = productRequestDto.createItem();
         productRepository.save(product);
 
         // 이미지 등록

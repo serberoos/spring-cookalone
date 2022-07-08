@@ -16,7 +16,7 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${uploadPath}")
+    @Value("${path_value.uploadPath}")
     String uploadPath;
 
 
