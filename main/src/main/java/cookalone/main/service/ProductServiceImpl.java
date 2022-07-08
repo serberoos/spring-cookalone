@@ -17,14 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
-    private final ProductImgService productImgService;
+    private final ProductImgServiceImpl productImgService;
     private final ProductImgRepository productImgRepository;
 
     @Override
     public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
-        Product product = productRequestDto.createItem();
+        Product product = productRequestDto.createProduct();
         productRepository.save(product);
 
         // 이미지 등록

@@ -36,7 +36,7 @@ public class ProductRequestDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public Product createItem(){
+    public Product createProduct(){
         return modelMapper.map(this, Product.class);
     }
 

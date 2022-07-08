@@ -1,7 +1,7 @@
 package cookalone.main.controller;
 
 import cookalone.main.domain.dto.receipe.ProductRequestDto;
-import cookalone.main.service.ProductService;
+import cookalone.main.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
     @GetMapping("/product/write")
     public String productWriteForm(Model model) {
@@ -42,6 +42,7 @@ public class ProductController {
 
         try {
             productService.saveProduct(productRequestDto, productImgFileList);
+
         }catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
             return "write_product_form";

@@ -9,7 +9,7 @@
 <div class="wrapper">
     <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
     <!--    multipart/form-data : form 요소가 파일이나 이미지를 서버로 전송할 때, 주요 사용-->
-    <!--    th:action="@{/product/create}"-->
+<!--    th:action="@{/product/create}"-->
     <form role="form" th:object="${productRequestDto}" method="post"
           enctype="multipart/form-data">
         <div id="mainbox">
@@ -91,7 +91,7 @@
             <!--            </div>-->
             <hr>
             <div id="Nextbutton" th:if="${#strings.isEmpty(productRequestDto.id)}">
-                <button class="button" th:formaction="@{/product/create}" type="submit">
+                <button class="button" th:formaction="@{/product/write}" type="submit">
                     <img src="/img/receipeUpload/upload.jpg" width="181" height="51" class="upButtons"/>
                 </button>
 
