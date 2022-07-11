@@ -37,10 +37,12 @@ public class ProductRequestDto {
     private static ModelMapper modelMapper = new ModelMapper();
 
     public Product createProduct(){
+        System.out.println("4");
         return modelMapper.map(this, Product.class);
     }
 
     public static ProductRequestDto of(Product product){
+        System.out.println("2");
         return modelMapper.map(product, ProductRequestDto.class);
     }
 

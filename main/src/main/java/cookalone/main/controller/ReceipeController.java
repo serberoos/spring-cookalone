@@ -30,7 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReceipeController {
 
-    private final ReceipeServiceImpl receipeService;
+    private final ReceipeServiceImpl receipeServiceImpl;
     private final HttpSession session;
 
     @GetMapping("/receipe/writeform")
@@ -44,7 +44,7 @@ public class ReceipeController {
     public String receipeSearchForm(Model model, @PageableDefault(size=12, sort="id", direction = Sort.Direction.DESC)
             Pageable pageable){
         MemberResponseDto user = (MemberResponseDto) session.getAttribute("user");
-        Page<Receipe> receipes = receipeService.getReceipePages(pageable);
+        Page<Receipe> receipes = receipeServiceImpl.getReceipePages(pageable);
         System.out.println(receipes);
 
         if (user != null){
@@ -61,7 +61,7 @@ public class ReceipeController {
     }
     @GetMapping("/receipe/{id}")
     public String receipeDetailsForm(@PathVariable Long id, Model model){
-        ReceipeResponseDto receipeResponseDto = receipeService.getReceipeDetail(id);
+        ReceipeResponseDto receipeResponseDto = receipeServiceImpl.getReceipeDetail(id);
 
         model.addAttribute("receipeResponseDto", receipeResponseDto);
         return "receipe_details_form";
@@ -79,13 +79,13 @@ public class ReceipeController {
         /* 글쓴이 Nickname set */
         receipeDto.setWriter(user.getNickname()); // 후에 Set 외 방식으로 구현 예정
 
-        receipeService.saveReceipe(receipeDto, user.getNickname());
+        receipeServiceImpl.saveReceipe(receipeDto, user.getNickname());
 
         return "redirect:/"; //후에 생성된 레시피 페이지로 연결
     }
     @GetMapping("/receipe/search")
     public String searchReceipe(String keyword, Model model){
-        List<Receipe> searchList = receipeService.searchReceipe(keyword);
+        List<Receipe> searchList = receipeServiceImpl.searchReceipe(keyword);
 
         model.addAttribute("searchList", searchList);
 

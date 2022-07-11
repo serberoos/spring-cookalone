@@ -24,11 +24,15 @@ public class ProductServiceImpl implements ProductService {
     public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
+        System.out.println("3");
         Product product = productRequestDto.createProduct();
         productRepository.save(product);
-
+        System.out.println("5");
         // 이미지 등록
         for(int i=0; i< productImgFileList.size(); i++){
+            System.out.println("6");
+            System.out.println(productImgFileList.size() + ": productImgFileList.size()");
+
             ProductImg productImg = new ProductImg();
             productImg.setProduct(product);
             if(i == 0){
@@ -36,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
             } else {
                 productImg.setRepimgYn("N");
             }
+            System.out.println("7");
             productImgService.saveProductImg(productImg, productImgFileList.get(i));
         }
         return product.getId();

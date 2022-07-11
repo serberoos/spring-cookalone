@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductServiceImpl productService;
+    private final ProductServiceImpl productServiceImpl;
 
     @GetMapping("/product/write")
     public String productWriteForm(Model model) {
@@ -31,20 +31,26 @@ public class ProductController {
     @PostMapping("/product/write")
     public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
                                    Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
+
+        System.out.println("1");
+
         if(bindingResult.hasErrors()){
             return "write_product_form";
         }
 
         if(productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
+            System.out.println("1-1");
             return "write_product_form";
         }
 
         try {
-            productService.saveProduct(productRequestDto, productImgFileList);
-
+            productServiceImpl.saveProduct(productRequestDto, productImgFileList);
+            System.out.println("@@@@@@@@");
         }catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
+            System.out.println("1-2");
+            System.out.println(e);
             return "write_product_form";
         }
 

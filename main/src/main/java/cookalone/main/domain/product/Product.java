@@ -59,6 +59,6 @@ public abstract class Product {
     private LocalDateTime modifiedDate;
 
 
-    @ManyToMany(mappedBy="productList")
-    private List<ProductCategory> productCategoryList = new ArrayList<>();
+//    @ManyToMany(mappedBy="productList")
+//    private List<ProductCategory> productCategoryList = new ArrayList<>();
 }

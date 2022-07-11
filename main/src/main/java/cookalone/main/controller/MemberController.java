@@ -42,7 +42,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberServiceImpl accountService;
+    private final MemberServiceImpl memberServiceImpl;
     private final CheckOverlapUserEmailValidator checkOverlapUserEmailValidator;
     private final CheckOverlapUserNicknameValidator checkOverlapUserNicknameValidator;
 
@@ -77,7 +77,7 @@ public class MemberController {
             model.addAttribute("userRequestDto", memberRequestDto);
 
             /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
-            Map<String, String> validatorResult = accountService.validateHandling(errors);
+            Map<String, String> validatorResult = memberServiceImpl.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 System.out.println((key + " " + validatorResult.get(key)));
                 model.addAttribute(key, validatorResult.get(key));
@@ -89,7 +89,7 @@ public class MemberController {
             /* 회원가입 페이지로 다시 리턴 */
             return "user_join_form";
         }
-        accountService.join(memberRequestDto);
+        memberServiceImpl.join(memberRequestDto);
 
         return "redirect:/";
     }
@@ -108,7 +108,7 @@ public class MemberController {
             model.addAttribute("adminRequestDto", memberRequestDto);
 
             /* 유효성을 통과하지 못한 필드와 메세지 핸들링 */
-            Map<String, String> validatorResult = accountService.validateHandling(errors);
+            Map<String, String> validatorResult = memberServiceImpl.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 System.out.println((key + " " + validatorResult.get(key)));
                 model.addAttribute(key, validatorResult.get(key));
@@ -120,7 +120,7 @@ public class MemberController {
             /* 관리자 회원가입 페이지로 다시 리턴 */
             return "admin_join_form";
         }
-        accountService.join(memberRequestDto);
+        memberServiceImpl.join(memberRequestDto);
 
         return "redirect:/";
     }
