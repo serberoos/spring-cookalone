@@ -23,7 +23,7 @@ public class PrincipalUserDetail implements UserDetails {
 
     @Override
     public String getUsername(){
-        return member.getUsername();
+        return member.getNickname();
     }
     /**
      * 계정 만료 여부
