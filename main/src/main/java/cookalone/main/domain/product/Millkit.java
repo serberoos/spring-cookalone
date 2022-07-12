@@ -1,7 +1,7 @@
 package cookalone.main.domain.product;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,7 +12,11 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @DiscriminatorValue("M")
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Millkit extends Product {
 
-    private String precautions;
+    private String allergyInfo;
+
 }

@@ -58,7 +58,7 @@
                     <!--                    <span><input type="file" name="imgFile"></span>-->
                 </div>
             </div>
-            <div th:if="${#lists.isEmpty(productRequestDto.productImgDtoList)}">
+            <div th:if="${#lists.isEmpty(productRequestDto.productImgRequestDtoList)}">
                 <div th:each="num: ${#numbers.sequence(1,5)}">
                     <div>
                         <input type="file" name="productImgFile">
@@ -66,14 +66,14 @@
                     </div>
                 </div>
             </div>
-            <div th:if="${not #lists.isEmpty(productRequestDto.productImgDtoList)}">
-                <div th:each="productImgDto,
-                     status: ${productRequestDto.productImgDtoList}">
+            <div th:if="${not #lists.isEmpty(productRequestDto.productImgRequestDtoList)}">
+                <div th:each="productImgRequestDto,
+                     status: ${productRequestDto.productImgRequestDtoList}">
                     <div>
                         <input type="file" name="productImgFile">
-                        <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-                        <label th:text="$not #strings.isEmpty(productImgDto.oriImgName)}
-                               ? ${productImgDto.oriImgName} : '상품이미지' + ${status.index+1}">
+                        <input type="hidden" name="productImgIds" th:value="${productImgRequestDto.id}">
+                        <label th:text="$not #strings.isEmpty(productImgRequestDto.oriImgName)}
+                               ? ${productImgRequestDto.oriImgName} : '상품이미지' + ${status.index+1}">
                         </label>
                     </div>
                 </div>

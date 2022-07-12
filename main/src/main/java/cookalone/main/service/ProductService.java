@@ -1,12 +1,11 @@
 package cookalone.main.service;
 
-import cookalone.main.domain.dto.receipe.ProductRequestDto;
+import cookalone.main.domain.dto.product.MillkitProductRequestDto;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.channels.MulticastChannel;
 import java.util.List;
 
 public interface ProductService{
-    public Long saveProduct(ProductRequestDto productRequestDto,
+    public Long saveProduct(MillkitProductRequestDto productRequestDto,
                             List<MultipartFile> itemImgFileList) throws Exception;
 }

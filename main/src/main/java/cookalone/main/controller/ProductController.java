@@ -1,6 +1,6 @@
 package cookalone.main.controller;
 
-import cookalone.main.domain.dto.receipe.ProductRequestDto;
+import cookalone.main.domain.dto.product.MillkitProductRequestDto;
 import cookalone.main.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,34 +23,30 @@ public class ProductController {
 
     @GetMapping("/product/write")
     public String productWriteForm(Model model) {
-        model.addAttribute("productRequestDto", new ProductRequestDto());
+        model.addAttribute("productRequestDto", new MillkitProductRequestDto());
 
         return "write_product_form";
     }
 
     @PostMapping("/product/write")
-    public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
+    public String productWriteProc(@Valid MillkitProductRequestDto millkitProductRequestDto, BindingResult bindingResult,
                                    Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
-
-        System.out.println("1");
 
         if(bindingResult.hasErrors()){
             return "write_product_form";
         }
 
-        if(productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null){
+        if(productImgFileList.get(0).isEmpty() && millkitProductRequestDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
-            System.out.println("1-1");
+
             return "write_product_form";
         }
 
         try {
-            productServiceImpl.saveProduct(productRequestDto, productImgFileList);
-            System.out.println("@@@@@@@@");
+            productServiceImpl.saveProduct(millkitProductRequestDto, productImgFileList);
         }catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
-            System.out.println("1-2");
-            System.out.println(e);
+
             return "write_product_form";
         }
 

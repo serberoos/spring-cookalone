@@ -1,9 +1,7 @@
 package cookalone.main.domain.dto.receipe;
 
-import cookalone.main.domain.ReceipeImg;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 /**
  * ReceipeImgDto of
@@ -11,7 +9,7 @@ import org.modelmapper.ModelMapper;
  * static 메소드로 선언해 ItemImgDto 객체를 생성하지 않아도 호출할 수 있도록 한다.
  */
 @Getter @Setter
-public class ReceipeImgDto {
+public class ReceipeImgRequestDto {
     private Long id;
 
     private String imgName;

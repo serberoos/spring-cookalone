@@ -29,7 +29,6 @@ public class ProductImg {
     private Product product;
 
     public void updateProductImg(String oriImgName, String imgName, String imgUrl){
-        System.out.println("12");
         this.oriImgName = oriImgName;
         this.imgName = imgName;
         this.imgUrl = imgUrl;

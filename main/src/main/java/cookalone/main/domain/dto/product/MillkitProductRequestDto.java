@@ -1,8 +1,9 @@
-package cookalone.main.domain.dto.receipe;
+package cookalone.main.domain.dto.product;
 
-import cookalone.main.domain.product.Product;
+import cookalone.main.domain.product.Millkit;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,8 +13,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ProductRequestDto {
+@SuperBuilder
+public class MillkitProductRequestDto {
 
     private Long id;
 
@@ -34,12 +35,12 @@ public class ProductRequestDto {
     private String createdDate;
     private String modifiedDate;
 
-    private List<ProductImgDto> productImgDtoList = new ArrayList<>(); // 상품 저장 후 수정시 상품 이미지 정보를 저장
+    private List<ProductImgRequestDto> productImgRequestDtoList = new ArrayList<>(); // 상품 저장 후 수정시 상품 이미지 정보를 저장
 
     private List<Long> productImgIdList = new ArrayList<>(); // 상품 이미지 아이디 리스트
 
-    public Product toEntity() {
-        Product product = Product.builder()
+    public Millkit toEntity() {
+        Millkit millkit = Millkit.builder()
                 .id(id)
                 .productName(productName)
                 .price(price)
@@ -47,22 +48,7 @@ public class ProductRequestDto {
                 .productDetails(productDetails)
                 .productSellStatus(productSellStatus)
                 .build();
-        return product;
+        return millkit;
     }
 
 }
-
-/**
- * ModelMapper를 쓸 경우 컴파일 에러 대신 예외가 떠서 빌더 패턴으로 구현 하기로 결정함.
- */
-//    private static ModelMapper modelMapper = new ModelMapper();
-//
-//    public Product createProduct(){
-//        System.out.println("4");
-//        return modelMapper.map(this, Product.class);
-//    }
-//
-//    public static ProductRequestDto of(Product product){
-//        System.out.println("2");
-//        return modelMapper.map(product, ProductRequestDto.class);
-//    }

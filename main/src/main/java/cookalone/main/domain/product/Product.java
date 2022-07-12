@@ -1,18 +1,14 @@
 package cookalone.main.domain.product;
 
-import cookalone.main.domain.ProductCategory;
-import cookalone.main.domain.dto.receipe.ProductImgDto;
 import cookalone.main.domain.status.ProductSellStatus;
-import jdk.jshell.Snippet;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Lob : Large OBject의 줄임말, 필드에 특정 문자열 길이를 지정하지 않으면 디폴트로 varchar(255)까지 저장 가능하지만 사진 저장시 더 많은 자리수를 사용하기 때문에 @Lob를 사용한다.
@@ -24,7 +20,7 @@ import java.util.List;
  *    PRODUCT FK는 ProductCategory 가 가지고 있다.(연관관계의 주인은 ProductCategory)
  */
 
-@Builder
+@SuperBuilder
 @ToString
 @Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

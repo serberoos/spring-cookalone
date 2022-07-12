@@ -1,7 +1,7 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.ProductImg;
-import cookalone.main.domain.dto.receipe.ProductRequestDto;
+import cookalone.main.domain.dto.product.MillkitProductRequestDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.repository.ProductImgRepository;
 import cookalone.main.repository.ProductRepository;
@@ -22,16 +22,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
+    public Long saveProduct(MillkitProductRequestDto millkitProductRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
-        System.out.println("3");
-        Product product = productRequestDto.toEntity();
+
+        Product product = millkitProductRequestDto.toEntity();
         productRepository.save(product);
-        System.out.println("5");
+
         // 이미지 등록
         for(int i=0; i< productImgFileList.size(); i++){
-            System.out.println("6");
             System.out.println(productImgFileList.size() + ": productImgFileList.size()");
 
             ProductImg productImg = new ProductImg();
@@ -41,7 +40,6 @@ public class ProductServiceImpl implements ProductService {
             } else {
                 productImg.setRepimgYn("N");
             }
-            System.out.println("7");
             productImgService.saveProductImg(productImg, productImgFileList.get(i));
         }
         return product.getId();

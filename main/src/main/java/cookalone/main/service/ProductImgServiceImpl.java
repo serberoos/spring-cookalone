@@ -26,7 +26,6 @@ public class ProductImgServiceImpl implements ProductImgService{
 
     @Override
     public void saveProductImg(ProductImg productImg, MultipartFile productImgFile) throws Exception {
-        System.out.println("8");
         String oriImgName = productImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
@@ -36,10 +35,8 @@ public class ProductImgServiceImpl implements ProductImgService{
             imgName = fileService.uploadFile(productImgLocation, oriImgName, productImgFile.getBytes());
             imgUrl = "/images/product/" + imgName;
         }
-        System.out.println("11");
         //상품 이미지 정보 저장
         productImg.updateProductImg(oriImgName, imgName, imgUrl);
         productImgRepository.save(productImg);
-        System.out.println("13");
     }
 }

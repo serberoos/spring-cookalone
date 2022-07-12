@@ -1,11 +1,10 @@
-package cookalone.main.domain.dto.receipe;
+package cookalone.main.domain.dto.product;
 
 import lombok.Setter;
 import lombok.Getter;
-import org.modelmapper.ModelMapper;
 
 @Getter @Setter
-public class ProductImgDto {
+public class ProductImgRequestDto {
 
     private Long id;
 
