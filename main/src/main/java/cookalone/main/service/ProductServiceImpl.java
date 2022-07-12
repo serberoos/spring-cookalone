@@ -21,11 +21,12 @@ public class ProductServiceImpl implements ProductService {
     private final ProductImgRepository productImgRepository;
 
     @Override
+    @Transactional
     public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
         System.out.println("3");
-        Product product = productRequestDto.createProduct();
+        Product product = productRequestDto.toEntity();
         productRepository.save(product);
         System.out.println("5");
         // 이미지 등록

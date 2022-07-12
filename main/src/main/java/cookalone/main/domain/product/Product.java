@@ -1,12 +1,13 @@
 package cookalone.main.domain.product;
 
 import cookalone.main.domain.ProductCategory;
+import cookalone.main.domain.dto.receipe.ProductImgDto;
 import cookalone.main.domain.status.ProductSellStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jdk.jshell.Snippet;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,11 +23,15 @@ import java.util.List;
  * 4. @ManyToMany(mappedBy="productList"): 다대다 관계로 ProductCategory의 productList와 매핑한다.
  *    PRODUCT FK는 ProductCategory 가 가지고 있다.(연관관계의 주인은 ProductCategory)
  */
-@Entity
-@Getter
-@Setter
+
+@Builder
 @ToString
+@Entity @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Table(name="product")
 @Inheritance(strategy = InheritanceType.JOINED)
+@EntityListeners(AuditingEntityListener.class)
 @DiscriminatorColumn(name="DTYPE")
 public abstract class Product {
     @Id
@@ -57,6 +62,7 @@ public abstract class Product {
     @Column(name= "modified_date", nullable = false)
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
 
 
 //    @ManyToMany(mappedBy="productList")
