@@ -33,9 +33,7 @@ public class ReceipeResponseDto implements Serializable {
         this.cautionContent = receipe.getCautionContent();
         this.writer = receipe.getWriter();
         this.viewCnt = receipe.getViewCnt();
-
         this.member = receipe.getMember();
-
         this.createDate = receipe.getCreatedDate();
         this.modifiedDate = receipe.getModifiedDate();
 

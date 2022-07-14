@@ -7,4 +7,5 @@ import java.io.IOException;
 
 public interface ProductImgService {
     public void saveProductImg(ProductImg productImg, MultipartFile productImgFile) throws Exception;
+    public void updateProductImg(Long productImgId, MultipartFile productImgFile) throws Exception;
 }

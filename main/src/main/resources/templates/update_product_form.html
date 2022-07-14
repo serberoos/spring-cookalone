@@ -10,15 +10,17 @@
     <th:block th:replace="fragments/sub_header :: subHeaderFragment"/>
     <!--    multipart/form-data : form 요소가 파일이나 이미지를 서버로 전송할 때, 주요 사용-->
     <!--    th:action="@{/product/create}"-->
-    <form role="form" th:object="${productRequestDto}" method="post" th:action="@{/product/write}"
+    <form role="form" th:object="${productRequestDto}" modelAttribute="productRequestDto" method="post"
+          th:action="@{/product/update/{id}(id=*{id})}"
           enctype="multipart/form-data">
         <div id="mainbox">
-            <input type="hidden" th:field="*{id}">
+            <input type="hidden" name="id" th:field="*{id}" th:value="${productRequestDto.id}">
             <div>
                 <div id="small_logo"><img src="/img/small_logo.png" width="180" height="180"/></div>
                 <div class="subbox">
-                    <div class="product-menu-name"><strong>상품 명</strong></div>
-                    <div><input th:field="*{productName}" type="text" class="textfield3"/></div>
+                    <div class="product-menu-name"><strong>상품 명 (업데이트) </strong></div>
+                    <div><input name="productName" th:field="*{productName}" th:value="${productRequestDto.productName}"
+                                type="text" class="textfield3"/></div>
                 </div>
                 <div class="subbox">
                     <span><input type="file" name="imgFile"></span>
@@ -29,7 +31,8 @@
                 <div>
                     <div class="subbox">
                         <div class="product-menu-name"><strong>상품 재고 </span></strong></div>
-                        <div><input th:field=*{stockQuantity} class="textfield3"></div>
+                        <div><input name="stockQuantity" th:field=*{stockQuantity}
+                                    th:value="${productRequestDto.stockQuantity}" class="textfield3"></div>
                     </div>
                     <div class="subbox">
                         <select class="product-sell-status-select-box" th:field="*{productSellStatus}">
@@ -41,14 +44,16 @@
                 <div>
                     <div class="subbox">
                         <div class="product-menu-name"><strong>가격 </strong></div>
-                        <div><input th:field=*{price} class="textfield3"></div>
+                        <div><input name="price" th:field=*{price} th:value="${productRequestDto.price}"
+                                    class="textfield3"></div>
                     </div>
                 </div>
             </div>
             <div>
                 <div class="subbox">
                     <div class="product-menu-name"><strong>상품 설명 </strong></div>
-                    <div><textarea th:field=*{productDetails} class="textfield"></textarea></div>
+                    <div><textarea name="productDetails" th:field=*{productDetails}
+                                   th:value="${productRequestDto.productDetails}" class="textfield"></textarea></div>
                 </div>
             </div>
             <hr>
@@ -58,7 +63,7 @@
                     <!--                    <span><input type="file" name="imgFile"></span>-->
                 </div>
             </div>
-            <div th:if="${#lists.isEmpty(productRequestDto.productImgRequestDtoList)}">
+            <div th:if="${#lists.isEmpty(productRequestDto.productImgResponseDtoList)}">
                 <div th:each="num: ${#numbers.sequence(1,5)}">
                     <div>
                         <input type="file" name="productImgFile">
@@ -66,14 +71,14 @@
                     </div>
                 </div>
             </div>
-            <div th:if="${not #lists.isEmpty(productRequestDto.productImgRequestDtoList)}">
-                <div th:each="productImgRequestDto,
-                     status: ${productRequestDto.productImgRequestDtoList}">
+            <div th:if="${not #lists.isEmpty(productRequestDto.productImgResponseDtoList)}">
+                <div th:each="productImgResponseDto,
+                     status: ${productRequestDto.productImgResponseDtoList}">
                     <div>
                         <input type="file" name="productImgFile">
-                        <input type="hidden" name="productImgIds" th:value="${productImgRequestDto.id}">
-                        <label th:text="${not #strings.isEmpty(productImgRequestDto.oriImgName)}
-                               ? ${productImgRequestDto.oriImgName} : '상품이미지' + ${status.index+1}">
+                        <input type="hidden" name="productImgIds" th:value="${productImgResponseDto.id}">
+                        <label th:text="${not #strings.isEmpty(productImgResponseDto.oriImgName)}
+                               ? ${productImgResponseDto.oriImgName} : '상품이미지' + ${status.index+1}">
                         </label>
                     </div>
                 </div>
@@ -94,7 +99,6 @@
                 <button class="button" type="submit">
                     <img src="/img/receipeUpload/upload.jpg" width="181" height="51" class="upButtons"/>
                 </button>
-
             </div>
             <!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token">-->
 

@@ -1,5 +1,6 @@
 package cookalone.main.domain.product;
 
+import cookalone.main.domain.dto.product.MillkitProductRequestDto;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -59,7 +60,13 @@ public abstract class Product {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-
+    public void updateProduct(MillkitProductRequestDto millkitProductRequestDto) {
+        this.productName = millkitProductRequestDto.getProductName();
+        this.price = millkitProductRequestDto.getPrice();
+        this.stockQuantity = millkitProductRequestDto.getStockQuantity();
+        this.productDetails = millkitProductRequestDto.getProductDetails();
+        this.productSellStatus = millkitProductRequestDto.getProductSellStatus();
+    }
 
 //    @ManyToMany(mappedBy="productList")
 //    private List<ProductCategory> productCategoryList = new ArrayList<>();
