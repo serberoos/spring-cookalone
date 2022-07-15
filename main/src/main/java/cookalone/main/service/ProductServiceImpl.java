@@ -1,8 +1,8 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.ProductImg;
-import cookalone.main.domain.dto.product.MillkitProductRequestDto;
-import cookalone.main.domain.dto.product.MillkitProductResponseDto;
+import cookalone.main.domain.dto.product.ProductRequestDto;
+import cookalone.main.domain.dto.product.ProductResponseDto;
 import cookalone.main.domain.dto.product.ProductImgResponseDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.repository.ProductImgRepository;
@@ -25,11 +25,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Long saveProduct(MillkitProductRequestDto millkitProductRequestDto, List<MultipartFile> productImgFileList) throws Exception {
+    public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
 
         // 상품 등록
 
-        Product product = millkitProductRequestDto.toEntity();
+        Product product = productRequestDto.toEntity();
         productRepository.save(product);
 
         // 이미지 등록
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    public MillkitProductResponseDto getProductDetail(Long productId) {
+    public ProductResponseDto getProductDetail(Long productId) {
         List<ProductImg> productImgList = productImgRepository.findByProductIdOrderByIdAsc(productId);
         List<ProductImgResponseDto> productImgResponseDtoList = new ArrayList<>();
 
@@ -62,18 +62,18 @@ public class ProductServiceImpl implements ProductService {
                 new IllegalArgumentException("상품이 존재하지 않습니다. id:" + productId));
         // ProductImgDto를 Dto에 추가해야 하는가? 후에 다듬기
 
-        return new MillkitProductResponseDto(product, productImgResponseDtoList);
+        return new ProductResponseDto(product, productImgResponseDtoList);
     }
 
-    public Long updateProduct(MillkitProductRequestDto millkitProductRequestDto,
+    public Long updateProduct(ProductRequestDto productRequestDto,
                               List<MultipartFile> productImgFileList) throws Exception {
         // 상품 수정
-        Product product = productRepository.findById(millkitProductRequestDto.getId()).
+        Product product = productRepository.findById(productRequestDto.getId()).
                 orElseThrow(() -> new IllegalArgumentException("상품이 존재하지 않습니다."));
 
-        product.updateProduct(millkitProductRequestDto);
+        product.updateProduct(productRequestDto);
 
-        List<Long> productImgIds = millkitProductRequestDto.getProductImgIdList();
+        List<Long> productImgIds = productRequestDto.getProductImgIdList();
 
         //이미지 등록
         for(int i = 0; i<productImgFileList.size(); i++){

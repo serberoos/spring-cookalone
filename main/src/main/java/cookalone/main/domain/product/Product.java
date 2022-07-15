@@ -1,6 +1,6 @@
 package cookalone.main.domain.product;
 
-import cookalone.main.domain.dto.product.MillkitProductRequestDto;
+import cookalone.main.domain.dto.product.ProductRequestDto;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  *    PRODUCT FK는 ProductCategory 가 가지고 있다.(연관관계의 주인은 ProductCategory)
  */
 
-@SuperBuilder
+@Builder
 @ToString
 @Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 @Inheritance(strategy = InheritanceType.JOINED)
 @EntityListeners(AuditingEntityListener.class)
 @DiscriminatorColumn(name="DTYPE")
-public abstract class Product {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="PRODUCT_ID")
@@ -60,12 +60,12 @@ public abstract class Product {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    public void updateProduct(MillkitProductRequestDto millkitProductRequestDto) {
-        this.productName = millkitProductRequestDto.getProductName();
-        this.price = millkitProductRequestDto.getPrice();
-        this.stockQuantity = millkitProductRequestDto.getStockQuantity();
-        this.productDetails = millkitProductRequestDto.getProductDetails();
-        this.productSellStatus = millkitProductRequestDto.getProductSellStatus();
+    public void updateProduct(ProductRequestDto productRequestDto) {
+        this.productName = productRequestDto.getProductName();
+        this.price = productRequestDto.getPrice();
+        this.stockQuantity = productRequestDto.getStockQuantity();
+        this.productDetails = productRequestDto.getProductDetails();
+        this.productSellStatus = productRequestDto.getProductSellStatus();
     }
 
 //    @ManyToMany(mappedBy="productList")

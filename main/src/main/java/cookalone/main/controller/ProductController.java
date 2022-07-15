@@ -1,7 +1,7 @@
 package cookalone.main.controller;
 
-import cookalone.main.domain.dto.product.MillkitProductRequestDto;
-import cookalone.main.domain.dto.product.MillkitProductResponseDto;
+import cookalone.main.domain.dto.product.ProductRequestDto;
+import cookalone.main.domain.dto.product.ProductResponseDto;
 import cookalone.main.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,27 +26,27 @@ public class ProductController {
 
     @GetMapping("/product/write")
     public String productWriteForm(Model model) {
-        model.addAttribute("productRequestDto", new MillkitProductRequestDto());
+        model.addAttribute("productRequestDto", new ProductRequestDto());
 
         return "write_product_form";
     }
 
     @PostMapping("/product/write")
-    public String productWriteProc(@Valid MillkitProductRequestDto millkitProductRequestDto, BindingResult bindingResult,
+    public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
                                    Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
 
         if (bindingResult.hasErrors()) {
             return "write_product_form";
         }
 
-        if (productImgFileList.get(0).isEmpty() && millkitProductRequestDto.getId() == null) {
+        if (productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null) {
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
 
             return "write_product_form";
         }
 
         try {
-            productServiceImpl.saveProduct(millkitProductRequestDto, productImgFileList);
+            productServiceImpl.saveProduct(productRequestDto, productImgFileList);
         } catch (Exception e) {
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
 
@@ -59,12 +59,14 @@ public class ProductController {
     @GetMapping("/product/update/{id}")
     public String productUpdateForm(@PathVariable Long id, Model model) {
         try {
-            MillkitProductResponseDto millkitProductResponseDto = productServiceImpl.getProductDetail(id);
-            model.addAttribute("productRequestDto", millkitProductResponseDto);
+            ProductResponseDto productResponseDto = productServiceImpl.getProductDetail(id);
+
+
+            model.addAttribute("productRequestDto", productResponseDto);
 
         } catch (EntityNotFoundException e) {
             model.addAttribute("errorMessage", "존재하지 않는 상품입니다.");
-            model.addAttribute("productRequestDto", new MillkitProductRequestDto());
+            model.addAttribute("productRequestDto", new ProductRequestDto());
 
             return "write_product_form";
         }
@@ -73,19 +75,19 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{id}")
-    public String productUpdateProc(@Valid MillkitProductRequestDto millkitProductRequestDto,
+    public String productUpdateProc(@Valid ProductRequestDto productRequestDto,
                                     BindingResult bindingResult, @RequestParam("productImgFile") List<MultipartFile>
                                                 productImgFileList, Model model) {
         if(bindingResult.hasErrors()){
             return "update_product_form";
         }
-        if(productImgFileList.get(0).isEmpty() && millkitProductRequestDto.getId() == null){
+        if(productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값입니다.");
             return "update_product_form";
         }
 
         try {
-            productServiceImpl.updateProduct(millkitProductRequestDto, productImgFileList);
+            productServiceImpl.updateProduct(productRequestDto, productImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
             return "update_product_form";
