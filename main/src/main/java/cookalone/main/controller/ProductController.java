@@ -72,7 +72,7 @@ public class ProductController {
         return "update_product_form";
     }
 
-    @PostMapping("/product/updata/{id}")
+    @PostMapping("/product/update/{id}")
     public String productUpdateProc(@Valid MillkitProductRequestDto millkitProductRequestDto,
                                     BindingResult bindingResult, @RequestParam("productImgFile") List<MultipartFile>
                                                 productImgFileList, Model model) {

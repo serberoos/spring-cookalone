@@ -3,7 +3,6 @@ package cookalone.main.service;
 import cookalone.main.domain.ProductImg;
 import cookalone.main.domain.dto.product.MillkitProductRequestDto;
 import cookalone.main.domain.dto.product.MillkitProductResponseDto;
-import cookalone.main.domain.dto.product.ProductImgRequestDto;
 import cookalone.main.domain.dto.product.ProductImgResponseDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.repository.ProductImgRepository;
