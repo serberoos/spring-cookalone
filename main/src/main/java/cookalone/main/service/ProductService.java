@@ -10,7 +10,7 @@ public interface ProductService{
     public Long saveProduct(ProductRequestDto productRequestDto,
                             List<MultipartFile> itemImgFileList) throws Exception;
 
-    public ProductResponseDto getProductDetail(Long productId);
+    public ProductResponseDto getProductDetails(Long productId);
 
     public Long updateProduct(ProductRequestDto productRequestDto,
                               List<MultipartFile> productImgFileList) throws Exception;

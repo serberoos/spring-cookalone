@@ -59,10 +59,10 @@ public class ProductController {
     @GetMapping("/product/update/{id}")
     public String productUpdateForm(@PathVariable Long id, Model model) {
         try {
-            ProductResponseDto productResponseDto = productServiceImpl.getProductDetail(id);
+            ProductResponseDto productResponseDto = productServiceImpl.getProductDetails(id);
 
-
-            model.addAttribute("productRequestDto", productResponseDto);
+            model.addAttribute("productDto", productResponseDto);
+//            model.addAttribute("productRequestDto", new ProductRequestDto());
 
         } catch (EntityNotFoundException e) {
             model.addAttribute("errorMessage", "존재하지 않는 상품입니다.");

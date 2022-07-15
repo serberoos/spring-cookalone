@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductResponseDto getProductDetail(Long productId) {
+    public ProductResponseDto getProductDetails(Long productId) {
         List<ProductImg> productImgList = productImgRepository.findByProductIdOrderByIdAsc(productId);
         List<ProductImgResponseDto> productImgResponseDtoList = new ArrayList<>();
 
@@ -64,6 +64,23 @@ public class ProductServiceImpl implements ProductService {
 
         return new ProductResponseDto(product, productImgResponseDtoList);
     }
+
+//    @Transactional(readOnly = true)
+//    public ProductResponseDto getProductDetailsForUpdateForm(Long productId) {
+//        List<ProductImg> productImgList = productImgRepository.findByProductIdOrderByIdAsc(productId);
+//        List<ProductImgResponseDto> productImgResponseDtoList = new ArrayList<>();
+//
+//        for (ProductImg productImg : productImgList) {
+//            ProductImgResponseDto productImgResponseDto = new ProductImgResponseDto(productImg);
+//            productImgResponseDtoList.add(productImgResponseDto);
+//        }
+//
+//        Product product = productRepository.findById(productId).orElseThrow(() ->
+//                new IllegalArgumentException("상품이 존재하지 않습니다. id:" + productId));
+//        // ProductImgDto를 Dto에 추가해야 하는가? 후에 다듬기
+//
+//        return new ProductResponseDto(product, productImgResponseDtoList);
+//    }
 
     public Long updateProduct(ProductRequestDto productRequestDto,
                               List<MultipartFile> productImgFileList) throws Exception {

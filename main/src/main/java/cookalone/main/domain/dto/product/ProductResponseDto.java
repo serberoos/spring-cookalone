@@ -2,14 +2,19 @@ package cookalone.main.domain.dto.product;
 
 import cookalone.main.domain.product.Product;
 import cookalone.main.domain.status.ProductSellStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductResponseDto implements Serializable {
     private Long id;
 
