@@ -1,0 +1,133 @@
+<!doctype html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
+    <link rel='stylesheet' type='text/css' href='/css/receipeSearch.css'>
+
+    <!-- js -->
+    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/search-contents.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/main_search_header :: mainSearchHeaderFragment"/>
+
+    <div id="mainBox">
+        <form th:action="@{'/contents' + ${products.number} }" role="form" method="get" th:object="${products}">
+            <div id="search-option-nav">
+                <div class="left-searchbox">
+                    <nav style="text-align: center;">
+                        <div class="pagination" th:with="start=${(products.number/maxPage)*maxPage+1},
+                        end=(${(products.totalPages == 0) ? 1 : (start + (maxPage - 1)
+                        < products.totalPages ? start + (maxPage - 1) : products.totalPages)})">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" th:classappend="${products.first}?'disabled'">
+                                    <a th:onclick="'javascript:page(' +${products.number -1} + ')'" aria-label='Previous' class="page-link">
+                                        <span aria-hidden='true'>Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${products.number eq page-1}?'active':''">
+                                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>>
+                                </li>
+                                <li class="page-item" th:classappend="${products.last}?'disabled'">
+                                    <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'" aria-label="Next" class="page-link">
+                                        <span aria-hidden='true'>Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-inline justify-content-center" th:object="${productSearchDto}">
+                            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+                                <option value="all">전체 기간</option>
+                                <option value="1d">1일</option>
+                                <option value="1w">1주</option>
+                                <option value="1m">1개월</option>
+                                <option value="6m">6개월</option>
+                            </select>
+                            <select th:field="*{searchSellStatus}" class="form-control" style="width:auto;">
+                                <option value="">판매상태(전체)</option>
+                                <option value="SELL">판매 중</option>
+                                <option value="SOLD_OUT">품절</option>
+                            </select>
+                            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+                                <option value="productName">상품 명</option>
+                                <option value="createdBy">등록자</option>
+                            </select>
+                        </div>
+<!--                        <div class="pagination"-->
+<!--                             th:with="start=${T(java.lang.Math).floor(receipes.number/10)*10 + 1},-->
+<!--                    last=(${start + 9 < receipes.totalPages ? start + 9 : receipes.totalPages})">-->
+<!--                            <div class="paging-button">-->
+<!--                                <a th:href="@{/receipe/searchform(page=1)}" aria-label="First">-->
+<!--                                    <img aria-hidden="true" src="/img/receipeSearch/first-arrow.png" width="45"-->
+<!--                                         height="45"-->
+<!--                                         class="upButtons"/>-->
+<!--                                </a>-->
+<!--                            </div>-->
+
+<!--                            <div class="paging-button">-->
+<!--                                <div th:class="${receipes.first} ? 'disabled'">-->
+<!--                                    <a th:href="${receipes.first} ? '#' :@{/receipe/searchform(page=${receipes.number})}"-->
+<!--                                       aria-label="Previous">-->
+<!--                                        <img aria-hidden="true" src="/img/receipeSearch/left-arrow.png" width="45"-->
+<!--                                             height="45" class="upButtons"/>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="paging-button">-->
+<!--                                <div th:each="page: ${#numbers.sequence(start, last)}"-->
+<!--                                     th:class="${page == receipes.number + 1} ? 'active'">-->
+<!--                                    <a th:text="${page}" th:href="@{/receipe/searchform(page=${page})}"></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="paging-button">-->
+<!--                                <div th:class="${receipes.last} ? 'disabled'">-->
+<!--                                    <a th:href="${receipes.last} ? '#' : @{/receipe/searchform(page=${receipes.number + 2})}"-->
+<!--                                       aria-label="Next">-->
+<!--                                        <img aria-hidden="true" src="/img/receipeSearch/right-arrow.png" width="45"-->
+<!--                                             height="45" class="upButtons"/>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="paging-button">-->
+<!--                                <a th:href="@{/receipe/searchform(page=${receipes.totalPages})}" aria-label="Last">-->
+<!--                                    <img aria-hidden="true" src="/img/receipeSearch/last-arrow.png" width="45"-->
+<!--                                         height="45"-->
+<!--                                         class="upButtons"/>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </nav>
+                </div>
+                <div class="right-searchbox">
+                    <select name="category-select-box" class="category-select-box">
+                        <option>모든 레시피</option>
+                        <option>편의점 레시피</option>
+                        <option>양식 레시피</option>
+                        <option>한식 레시피</option>
+                        <option>일식 레시피</option>
+                        <option>중식 레시피</option>
+                    </select>
+                </div>
+
+            </div>
+            <hr>
+            <div class="subbox">
+            <span th:each="item : ${receipes}" class="right-category-image">
+                <div><img src="/img/receipeSearch/conv.PNG" width="330"
+                          height="200"/></div>
+                <a th:href="@{'/receipe/' + ${item.id}}">
+                    <div th:text="${item.title}" class="nameLabel-right"></div>
+                </a>
+            </span>
+            </div>
+        </form>
+    </div>
+    <th:block th:replace="fragments/footer :: footerFragment"/>
+</div>
+</body>
+</html>

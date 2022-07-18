@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:fragment="mainSearchHeaderFragment">
+    <link rel="stylesheet" th:href="@{/css/fragment-header.css}" >
+    <header>
+        <div id="header-logo">
+            <a href="/"><img src="/img/header_logo.png" width=350 height=95/></a>
+        </div>
+        <nav>
+            <div id="setting-button"><a href="setting.html"><img src="/img/setting.png" width=75 height=73/></a>
+            </div>
+        </nav>
+    </header>
+    <div id="down-header">
+        <div id="down-header-left">
+            <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/img/login.PNG" width="240"
+                                                                               height="45" class="upButtons"/></a>
+            <a href="/auth/jointerms" sec:authorize="!isAuthenticated()"><img src="/img/reg.PNG" width="240"
+                                                                              height="45" class="upButtons"/></a>
+
+
+            <form class="form" th:action="@{/auth/logout-proc}" method="post" sec:authorize="isAuthenticated()">
+                <a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img src="/img/receipe_upload.PNG"
+                                                                                    width="160" height="43"
+                                                                                    class="upButtons"/></a>
+                <button class="button" type="submit"><img src="/img/logout.png" width="160"
+                                                          height="43" class="upButtons"/></button>
+                <!--                sec:authentication="name"-->
+                <a href="/">
+                    <img src="/img/mypage.png" width="160" height="43" class="upButtons"/>
+                </a>
+            </form>
+        </div>
+        <div id="down-header-right">
+            <form action="/post/search" method="GET" role="search">
+                <label>
+                    <input name="keyword" type="text" id="search-textfield" placeholder="요리 이름으로 직접 검색하기 "/>
+                    <button type="button" class="button" alt="Search"><img src="/img/secrch.PNG" width="120"
+                                                                           height="44" class="upButtons"/></button>
+                </label>
+            </form>
+        </div>
+    </div>
+    <div id="down-header-greeting">
+        <strong class="greeting-msg-nickname" sec:authentication="name" sec:authorize="isAuthenticated()"/>
+        <p class="greeting-msg" sec:authorize="hasRole('USER')"> 회원님 환영합니다. ✋</p>
+        <p class="greeting-msg" sec:authorize="hasRole('ADMIN')"> 관리자님 환영합니다. ✋</p>
+    </div>
+</th:block>
+</html>

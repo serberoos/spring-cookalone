@@ -5,6 +5,7 @@ import cookalone.main.domain.dto.product.ProductResponseDto;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -52,6 +53,10 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     private ProductSellStatus productSellStatus;
+    
+    //킾
+    @CreatedBy
+    private Long createdBy;
 
     @Column(name= "created_date", nullable = false)
     @CreatedDate
