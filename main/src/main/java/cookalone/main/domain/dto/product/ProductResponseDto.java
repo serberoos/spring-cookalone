@@ -33,7 +33,7 @@ public class ProductResponseDto implements Serializable {
 
     private List<ProductImgResponseDto> productImgResponseDtoList; // 상품 저장 후 수정시 상품 이미지 정보를 저장
 
-    private List<Long> productImgIdList =new ArrayList<>(); // 상품 이미지 아이디 리스트
+    private List<Long> productImgIdList = new ArrayList<>(); // 상품 이미지 아이디 리스트
 
     /* Entity -> Dto */
     public ProductResponseDto(Product product, List<ProductImgResponseDto> productImgResponseDtoList) {
