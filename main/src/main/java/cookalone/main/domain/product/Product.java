@@ -1,6 +1,7 @@
 package cookalone.main.domain.product;
 
 import cookalone.main.domain.dto.product.ProductRequestDto;
+import cookalone.main.domain.dto.product.ProductResponseDto;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -60,12 +61,12 @@ public class Product {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    public void updateProduct(ProductRequestDto productRequestDto) {
-        this.productName = productRequestDto.getProductName();
-        this.price = productRequestDto.getPrice();
-        this.stockQuantity = productRequestDto.getStockQuantity();
-        this.productDetails = productRequestDto.getProductDetails();
-        this.productSellStatus = productRequestDto.getProductSellStatus();
+    public void updateProduct(ProductResponseDto productResponseDto) {
+        this.productName = productResponseDto.getProductName();
+        this.price = productResponseDto.getPrice();
+        this.stockQuantity = productResponseDto.getStockQuantity();
+        this.productDetails = productResponseDto.getProductDetails();
+        this.productSellStatus = productResponseDto.getProductSellStatus();
     }
 
 //    @ManyToMany(mappedBy="productList")

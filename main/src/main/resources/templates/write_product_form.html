@@ -71,7 +71,7 @@
                      status: ${productRequestDto.productImgRequestDtoList}">
                     <div>
                         <input type="file" name="productImgFile">
-                        <input type="hidden" name="productImgIds" th:value="${productImgRequestDto.id}">
+                        <input type="hidden" name="productImgIdList" th:value="${productImgRequestDto.id}">
                         <label th:text="${not #strings.isEmpty(productImgRequestDto.oriImgName)}
                                ? ${productImgRequestDto.oriImgName} : '상품이미지' + ${status.index+1}">
                         </label>

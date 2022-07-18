@@ -13,7 +13,7 @@ public class FileServiceImpl implements FileService{
     public String uploadFile(String uploadPath, String originalFileName, byte[] fileData) throws Exception {
         System.out.println("9");
         UUID uuid = UUID.randomUUID();
-        String extension = originalFileName.substring((originalFileName.lastIndexOf(".")));
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
         String savedFileName = uuid.toString() + extension;
         String fileuploadFullUrl = uploadPath + "/" + savedFileName;
         FileOutputStream fos = new FileOutputStream(fileuploadFullUrl);

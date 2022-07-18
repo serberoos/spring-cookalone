@@ -31,13 +31,12 @@ public class ProductResponseDto implements Serializable {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
-    private List<ProductImgResponseDto> productImgResponseDtoList = new ArrayList<>(); // 상품 저장 후 수정시 상품 이미지 정보를 저장
+    private List<ProductImgResponseDto> productImgResponseDtoList; // 상품 저장 후 수정시 상품 이미지 정보를 저장
 
-    private List<Long> productImgIdList = new ArrayList<>(); // 상품 이미지 아이디 리스트
+    private List<Long> productImgIdList =new ArrayList<>(); // 상품 이미지 아이디 리스트
 
     /* Entity -> Dto */
-    public ProductResponseDto(Product product, List<ProductImgResponseDto> productImgResponseDtoList){
-
+    public ProductResponseDto(Product product, List<ProductImgResponseDto> productImgResponseDtoList) {
         this.id = product.getId();
         this.productName = product.getProductName();
         this.price = product.getPrice();
@@ -47,6 +46,5 @@ public class ProductResponseDto implements Serializable {
         this.createdDate = product.getCreatedDate();
         this.modifiedDate = product.getModifiedDate();
         this.productImgResponseDtoList = productImgResponseDtoList;
-//        this.productImgIdList = product.getProductImgIdList();
     }
 }

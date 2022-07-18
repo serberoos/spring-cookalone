@@ -43,15 +43,12 @@ public class ProductImgServiceImpl implements ProductImgService {
         if (!productImgFile.isEmpty()) {
             ProductImg savedProductImg = productImgRepository.findById(productImgId).orElseThrow(() ->
                     new IllegalArgumentException("상품 이미지가 존재하지 않습니다. id:" + productImgId));
-
             //기존의 이미지 삭제
             if (!StringUtils.isEmpty(savedProductImg.getImgName())) {
                 fileService.deleteFile(productImgLocation + "/" + savedProductImg.getImgName());
             }
-
             String oriImgName = productImgFile.getOriginalFilename();
-            String imgName = fileService.uploadFile(productImgLocation,
-                    oriImgName, productImgFile.getBytes());
+            String imgName = fileService.uploadFile(productImgLocation, oriImgName, productImgFile.getBytes());
             String imgUrl = "/shop/item" + imgName;
             savedProductImg.updateProductImg(oriImgName, imgName, imgUrl);
 

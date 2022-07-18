@@ -22,7 +22,7 @@ public class ProductImg {
 
     private String imgUrl;
 
-    private String repimgYn;
+    private String repimgYn; // 대표 이미지 여부
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID")

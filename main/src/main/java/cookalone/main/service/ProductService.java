@@ -12,6 +12,6 @@ public interface ProductService{
 
     public ProductResponseDto getProductDetails(Long productId);
 
-    public Long updateProduct(ProductRequestDto productRequestDto,
+    public Long updateProduct(ProductResponseDto productResponseDto,
                               List<MultipartFile> productImgFileList) throws Exception;
 }

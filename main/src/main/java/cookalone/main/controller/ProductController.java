@@ -60,9 +60,7 @@ public class ProductController {
     public String productUpdateForm(@PathVariable Long id, Model model) {
         try {
             ProductResponseDto productResponseDto = productServiceImpl.getProductDetails(id);
-
-            model.addAttribute("productDto", productResponseDto);
-//            model.addAttribute("productRequestDto", new ProductRequestDto());
+            model.addAttribute("productResponseDto", productResponseDto);
 
         } catch (EntityNotFoundException e) {
             model.addAttribute("errorMessage", "존재하지 않는 상품입니다.");
@@ -75,24 +73,28 @@ public class ProductController {
     }
 
     @PostMapping("/product/update/{id}")
-    public String productUpdateProc(@Valid ProductRequestDto productRequestDto,
+    public String productUpdateProc(@Valid ProductResponseDto productResponseDto,
                                     BindingResult bindingResult, @RequestParam("productImgFile") List<MultipartFile>
                                                 productImgFileList, Model model) {
+        System.out.println("productUpdateProc");
         if(bindingResult.hasErrors()){
             return "update_product_form";
         }
-        if(productImgFileList.get(0).isEmpty() && productRequestDto.getId() == null){
+        if(productImgFileList.get(0).isEmpty() && productResponseDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값입니다.");
+            System.out.println("첫번째 상품 이미지는 필수 입력 값입니다.");
             return "update_product_form";
         }
 
         try {
-            productServiceImpl.updateProduct(productRequestDto, productImgFileList);
+            productServiceImpl.updateProduct(productResponseDto, productImgFileList);
+            System.out.println("updateProduct");
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
+            System.out.println("상품 수정 중 에러가 발생하였습니다. : "+e);
             return "update_product_form";
         }
-
+        System.out.println("redirect:/");
         return "redirect:/";
     }
 }
