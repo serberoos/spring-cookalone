@@ -32,8 +32,15 @@
             </form>
         </div>
         <div id="down-header-right">
+
             <form action="/post/search" method="GET" role="search">
+
                 <label>
+                    <select class="search-checkbox" style="width:auto;">
+                        <option value="choose">검색 유형 선택</option>
+                        <option value="recipe">레시피 검색</option>
+                        <option value="product">상품 검색</option>
+                    </select>
                     <input name="keyword" type="text" id="search-textfield" placeholder="요리 이름으로 직접 검색하기 "/>
                     <button type="button" class="button" alt="Search"><img src="/img/secrch.PNG" width="120"
                                                                            height="44" class="upButtons"/></button>

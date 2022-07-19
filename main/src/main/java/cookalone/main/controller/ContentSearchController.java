@@ -25,7 +25,7 @@ public class ContentSearchController {
         Page<Product> products = productServiceImpl.getAdminProductPage(productSearchDto, pageable);
         model.addAttribute("products",products);
         model.addAttribute("productSearchDto", productSearchDto);
-        model.addAttribute("maxpage", 5);
-        return "template 후에 추가";
+        model.addAttribute("maxPage", 5);
+        return "search_content_form";
     }
 }

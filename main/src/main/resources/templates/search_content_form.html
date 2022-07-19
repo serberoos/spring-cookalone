@@ -11,109 +11,129 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/main_search_header :: mainSearchHeaderFragment"/>
+    <form th:action="@{'/contents' + ${products.number} }" role="form" method="get" th:object="${products}">
+        <th:block th:replace="fragments/main_header :: mainHeaderFragment"/>
 
-    <div id="mainBox">
-        <form th:action="@{'/contents' + ${products.number} }" role="form" method="get" th:object="${products}">
-            <div id="search-option-nav">
-                <div class="left-searchbox">
-                    <nav style="text-align: center;">
-                        <div class="pagination" th:with="start=${(products.number/maxPage)*maxPage+1},
+        <div id="mainBox">
+            <div class="search-option-nav">
+                <nav>
+                    <div class="search-option-box">
+                        <div class="left-searchbox">
+                            <div class="search-option-pagination" th:with="start=${(products.number/maxPage)*maxPage+1},
                         end=(${(products.totalPages == 0) ? 1 : (start + (maxPage - 1)
                         < products.totalPages ? start + (maxPage - 1) : products.totalPages)})">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item" th:classappend="${products.first}?'disabled'">
-                                    <a th:onclick="'javascript:page(' +${products.number -1} + ')'" aria-label='Previous' class="page-link">
-                                        <span aria-hidden='true'>Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${products.number eq page-1}?'active':''">
-                                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>>
-                                </li>
-                                <li class="page-item" th:classappend="${products.last}?'disabled'">
-                                    <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'" aria-label="Next" class="page-link">
-                                        <span aria-hidden='true'>Next</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                <ul class="pagination">
+                                    <li th:classappend="${products.first}?'disabled'">
+                                        <a th:onclick="'javascript:page(' +${products.number -1} + ')'"
+                                           aria-label='Previous'>
+                                            <span aria-hidden='true'><<</span>
+                                        </a>
+                                    </li>
+
+                                    <li th:each="page: ${#numbers.sequence(start, end)}"
+                                        th:classappend="${products.number eq page-1}?'active':''">
+                                        <a th:onclick="'javascript:page(' + ${page - 1} + ')'"
+                                           th:inline="text">[[${page}]]</a>
+                                    </li>
+
+                                    <li th:classappend="${products.last}?'disabled'">
+                                        <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'"
+                                           aria-label="Next">
+                                            <span aria-hidden='true'>>></span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
-                        <div class="form-inline justify-content-center" th:object="${productSearchDto}">
-                            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+                    </div>
+                    <div class="search-option-box" th:object="${productSearchDto}">
+                        <div class="center-searchbox">
+                            <div class="search-option-label">조회 옵션</div>
+                            <select class="search-option-select-box">
+                                <option value="all">전체 상품</option>
+                                <option value="millkit">밀키트 상품</option>
+                                <option value="receipe-book">레시피 북 상품</option>
+                            </select>
+                            <select class="search-option-select-box">
+                                <option>카테고리</option>
+                                <option>양식</option>
+                                <option>한식</option>
+                                <option>중식</option>
+                                <option>일식</option>
+                                <option>편의점</option>
+                            </select>
+                        </div>
+
+                        <div class="right-searchbox">
+                            <div class="search-option-label">검색 옵션</div>
+                            <select th:field="*{searchDateType}" class="search-option-select-box">
                                 <option value="all">전체 기간</option>
                                 <option value="1d">1일</option>
                                 <option value="1w">1주</option>
                                 <option value="1m">1개월</option>
                                 <option value="6m">6개월</option>
                             </select>
-                            <select th:field="*{searchSellStatus}" class="form-control" style="width:auto;">
+                            <select th:field="*{searchSellStatus}" class="search-option-select-box">
                                 <option value="">판매상태(전체)</option>
                                 <option value="SELL">판매 중</option>
                                 <option value="SOLD_OUT">품절</option>
                             </select>
-                            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+                            <select th:field="*{searchBy}" class="search-option-select-box">
                                 <option value="productName">상품 명</option>
                                 <option value="createdBy">등록자</option>
                             </select>
                         </div>
-<!--                        <div class="pagination"-->
-<!--                             th:with="start=${T(java.lang.Math).floor(receipes.number/10)*10 + 1},-->
-<!--                    last=(${start + 9 < receipes.totalPages ? start + 9 : receipes.totalPages})">-->
-<!--                            <div class="paging-button">-->
-<!--                                <a th:href="@{/receipe/searchform(page=1)}" aria-label="First">-->
-<!--                                    <img aria-hidden="true" src="/img/receipeSearch/first-arrow.png" width="45"-->
-<!--                                         height="45"-->
-<!--                                         class="upButtons"/>-->
-<!--                                </a>-->
-<!--                            </div>-->
+                    </div>
 
-<!--                            <div class="paging-button">-->
-<!--                                <div th:class="${receipes.first} ? 'disabled'">-->
-<!--                                    <a th:href="${receipes.first} ? '#' :@{/receipe/searchform(page=${receipes.number})}"-->
-<!--                                       aria-label="Previous">-->
-<!--                                        <img aria-hidden="true" src="/img/receipeSearch/left-arrow.png" width="45"-->
-<!--                                             height="45" class="upButtons"/>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                    <!--                        <div class="pagination"-->
+                    <!--                             th:with="start=${T(java.lang.Math).floor(receipes.number/10)*10 + 1},-->
+                    <!--                    last=(${start + 9 < receipes.totalPages ? start + 9 : receipes.totalPages})">-->
+                    <!--                            <div class="paging-button">-->
+                    <!--                                <a th:href="@{/receipe/searchform(page=1)}" aria-label="First">-->
+                    <!--                                    <img aria-hidden="true" src="/img/receipeSearch/first-arrow.png" width="45"-->
+                    <!--                                         height="45"-->
+                    <!--                                         class="upButtons"/>-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
 
-<!--                            <div class="paging-button">-->
-<!--                                <div th:each="page: ${#numbers.sequence(start, last)}"-->
-<!--                                     th:class="${page == receipes.number + 1} ? 'active'">-->
-<!--                                    <a th:text="${page}" th:href="@{/receipe/searchform(page=${page})}"></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                    <!--                            <div class="paging-button">-->
+                    <!--                                <div th:class="${receipes.first} ? 'disabled'">-->
+                    <!--                                    <a th:href="${receipes.first} ? '#' :@{/receipe/searchform(page=${receipes.number})}"-->
+                    <!--                                       aria-label="Previous">-->
+                    <!--                                        <img aria-hidden="true" src="/img/receipeSearch/left-arrow.png" width="45"-->
+                    <!--                                             height="45" class="upButtons"/>-->
+                    <!--                                    </a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
 
-<!--                            <div class="paging-button">-->
-<!--                                <div th:class="${receipes.last} ? 'disabled'">-->
-<!--                                    <a th:href="${receipes.last} ? '#' : @{/receipe/searchform(page=${receipes.number + 2})}"-->
-<!--                                       aria-label="Next">-->
-<!--                                        <img aria-hidden="true" src="/img/receipeSearch/right-arrow.png" width="45"-->
-<!--                                             height="45" class="upButtons"/>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                    <!--                            <div class="paging-button">-->
+                    <!--                                <div th:each="page: ${#numbers.sequence(start, last)}"-->
+                    <!--                                     th:class="${page == receipes.number + 1} ? 'active'">-->
+                    <!--                                    <a th:text="${page}" th:href="@{/receipe/searchform(page=${page})}"></a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
 
-<!--                            <div class="paging-button">-->
-<!--                                <a th:href="@{/receipe/searchform(page=${receipes.totalPages})}" aria-label="Last">-->
-<!--                                    <img aria-hidden="true" src="/img/receipeSearch/last-arrow.png" width="45"-->
-<!--                                         height="45"-->
-<!--                                         class="upButtons"/>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </nav>
-                </div>
-                <div class="right-searchbox">
-                    <select name="category-select-box" class="category-select-box">
-                        <option>모든 레시피</option>
-                        <option>편의점 레시피</option>
-                        <option>양식 레시피</option>
-                        <option>한식 레시피</option>
-                        <option>일식 레시피</option>
-                        <option>중식 레시피</option>
-                    </select>
-                </div>
+                    <!--                            <div class="paging-button">-->
+                    <!--                                <div th:class="${receipes.last} ? 'disabled'">-->
+                    <!--                                    <a th:href="${receipes.last} ? '#' : @{/receipe/searchform(page=${receipes.number + 2})}"-->
+                    <!--                                       aria-label="Next">-->
+                    <!--                                        <img aria-hidden="true" src="/img/receipeSearch/right-arrow.png" width="45"-->
+                    <!--                                             height="45" class="upButtons"/>-->
+                    <!--                                    </a>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
 
+                    <!--                            <div class="paging-button">-->
+                    <!--                                <a th:href="@{/receipe/searchform(page=${receipes.totalPages})}" aria-label="Last">-->
+                    <!--                                    <img aria-hidden="true" src="/img/receipeSearch/last-arrow.png" width="45"-->
+                    <!--                                         height="45"-->
+                    <!--                                         class="upButtons"/>-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+
+                </nav>
             </div>
             <hr>
             <div class="subbox">
@@ -125,8 +145,9 @@
                 </a>
             </span>
             </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
     <th:block th:replace="fragments/footer :: footerFragment"/>
 </div>
 </body>

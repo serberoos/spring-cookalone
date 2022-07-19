@@ -11,9 +11,11 @@ img, input {
 nav {
     display:inline-block;
 }
-
+.search-checkbox{
+    height: 44px;
+}
 #search-textfield{
-    width: 530px;
+    width: 417px;
     height: 41px;
     font-size: 1.5rem;
     text-align:center;
@@ -43,7 +45,6 @@ nav {
 }
 #down-header-right{
     display:inline-block;
-    vertical-align: top;
 }
 #down-header-greeting{
     display: block;
