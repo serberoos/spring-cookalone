@@ -115,7 +115,7 @@ nav {
 }
 
 .subbox {
-    height: 850px;
+    height: 1000px;
 }
 
 .left-category-image {
@@ -131,9 +131,12 @@ nav {
 .right-category-image {
     display: inline-block;
     width: 28%;
-    margin: 15px;
+    margin-left: 45px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 2px;
     vertical-align: middle;
+    float: left;
     background-color: darkgray;
 }
 
@@ -146,9 +149,9 @@ nav {
 }
 
 .nameLabel-right {
-    background-color: darkolivegreen;
-    color: white;
-    font-size: 1rem;
+    text-align: left;
+    color: black;
+    font-size: 1.6rem;
     padding: 1px;
     margin: 3px;
 }

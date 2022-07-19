@@ -1,9 +1,10 @@
 <!doctype html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html xmlns:th="http:/www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
     <link rel='stylesheet' type='text/css' href='/css/receipeSearch.css'>
+    <link rel="stylesheet" th:href="@{/css/fragment-header.css}">
 
     <!-- js -->
     <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
@@ -12,140 +13,147 @@
 <body>
 <div class="wrapper">
     <form th:action="@{'/contents' + ${products.number} }" role="form" method="get" th:object="${products}">
-        <th:block th:replace="fragments/main_header :: mainHeaderFragment"/>
+        <header>
+            <div id="header-logo">
+                <a href="/"><img src="/img/header_logo.png" width=350 height=95/></a>
+            </div>
+            <nav>
+                <div id="setting-button"><a href="setting.html"><img src="/img/setting.png" width=75 height=73/></a>
+                </div>
+            </nav>
+        </header>
+        <div th:object="${productSearchDto}">
+            <div id="down-header">
+                <div id="down-header-left">
+                    <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/img/login.PNG" width="240"
+                                                                                       height="45"
+                                                                                       class="upButtons"/></a>
+                    <a href="/auth/jointerms" sec:authorize="!isAuthenticated()"><img src="/img/reg.PNG" width="240"
+                                                                                      height="45"
+                                                                                      class="upButtons"/></a>
 
-        <div id="mainBox">
-            <div class="search-option-nav">
-                <nav>
-                    <div class="search-option-box">
-                        <div class="left-searchbox">
-                            <div class="search-option-pagination" th:with="start=${(products.number/maxPage)*maxPage+1},
+                    <a href="/receipe/writeform" sec:authorize="isAuthenticated()"><img src="/img/receipe_upload.PNG"
+                                                                                        width="160" height="43"
+                                                                                        class="upButtons"/></a>
+                    <button class="button" type="submit"><img src="/img/logout.png" width="160"
+                                                              height="43" class="upButtons"/></button>
+                    <!--                sec:authentication="name"-->
+                    <a href="/">
+                        <img src="/img/mypage.png" width="160" height="43" class="upButtons"/>
+                    </a>
+
+                </div>
+                <div id="down-header-right">
+                    <label>
+                        <select class="search-checkbox">
+                            <option value="choose">검색 유형 선택</option>
+                            <option value="recipe">레시피 검색</option>
+                            <option value="product">상품 검색</option>
+                        </select>
+                        <input th:field="*{searchQuery}" type="text" id="search-textfield" placeholder="검색어를 입력해주세요"/>
+                        <button type="submit" id="searchBtn" class="button" alt="Search">
+                            <img src="/img/secrch.PNG" width="120" height="44" class="upButtons"/>
+                        </button>
+                    </label>
+                </div>
+            </div>
+            <div id="down-header-greeting">
+                <strong class="greeting-msg-nickname" sec:authentication="name" sec:authorize="isAuthenticated()"/>
+                <p class="greeting-msg" sec:authorize="hasRole('USER')"> 회원님 환영합니다. ✋</p>
+                <p class="greeting-msg" sec:authorize="hasRole('ADMIN')"> 관리자님 환영합니다. ✋</p>
+            </div>
+
+            <div id="mainBox">
+                <div class="search-option-nav">
+                    <nav>
+                        <div class="search-option-box">
+                            <!-- pagination -->
+                            <div class="left-searchbox">
+                                <div class="search-option-pagination" th:with="start=${(products.number/maxPage)*maxPage+1},
                         end=(${(products.totalPages == 0) ? 1 : (start + (maxPage - 1)
                         < products.totalPages ? start + (maxPage - 1) : products.totalPages)})">
-                                <ul class="pagination">
-                                    <li th:classappend="${products.first}?'disabled'">
-                                        <a th:onclick="'javascript:page(' +${products.number -1} + ')'"
-                                           aria-label='Previous'>
-                                            <span aria-hidden='true'><<</span>
-                                        </a>
-                                    </li>
+                                    <ul class="pagination">
+                                        <li th:classappend="${products.first}?'disabled'">
+                                            <a th:onclick="'javascript:page(' +${products.number -1} + ')'"
+                                               aria-label='Previous'>
+                                                <span aria-hidden='true'><<</span>
+                                            </a>
+                                        </li>
 
-                                    <li th:each="page: ${#numbers.sequence(start, end)}"
-                                        th:classappend="${products.number eq page-1}?'active':''">
-                                        <a th:onclick="'javascript:page(' + ${page - 1} + ')'"
-                                           th:inline="text">[[${page}]]</a>
-                                    </li>
+                                        <li th:each="page: ${#numbers.sequence(start, end)}"
+                                            th:classappend="${products.number eq page-1}?'active':''">
+                                            <a th:onclick="'javascript:page(' + ${page - 1} + ')'"
+                                               th:inline="text">[[${page}]]</a>
+                                        </li>
 
-                                    <li th:classappend="${products.last}?'disabled'">
-                                        <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'"
-                                           aria-label="Next">
-                                            <span aria-hidden='true'>>></span>
-                                        </a>
-                                    </li>
+                                        <li th:classappend="${products.last}?'disabled'">
+                                            <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'"
+                                               aria-label="Next">
+                                                <span aria-hidden='true'>>></span>
+                                            </a>
+                                        </li>
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="search-option-box" th:object="${productSearchDto}">
-                        <div class="center-searchbox">
-                            <div class="search-option-label">조회 옵션</div>
-                            <select class="search-option-select-box">
-                                <option value="all">전체 상품</option>
-                                <option value="millkit">밀키트 상품</option>
-                                <option value="receipe-book">레시피 북 상품</option>
-                            </select>
-                            <select class="search-option-select-box">
-                                <option>카테고리</option>
-                                <option>양식</option>
-                                <option>한식</option>
-                                <option>중식</option>
-                                <option>일식</option>
-                                <option>편의점</option>
-                            </select>
+                        <!--th:object="${productSearchDto}"-->
+                        <div class="search-option-box">
+                            <div class="center-searchbox">
+                                <div class="search-option-label">조회 옵션</div>
+                                <select class="search-option-select-box">
+                                    <option value="all">전체 상품</option>
+                                    <option value="millkit">밀키트 상품</option>
+                                    <option value="receipe-book">레시피 북 상품</option>
+                                </select>
+                                <select class="search-option-select-box">
+                                    <option>카테고리</option>
+                                    <option>양식</option>
+                                    <option>한식</option>
+                                    <option>중식</option>
+                                    <option>일식</option>
+                                    <option>편의점</option>
+                                </select>
+                            </div>
+
+                            <div class="right-searchbox">
+                                <div class="search-option-label">검색 옵션</div>
+                                <select th:field="*{searchDateType}" class="search-option-select-box">
+                                    <option value="all">전체 기간</option>
+                                    <option value="1d">1일</option>
+                                    <option value="1w">1주</option>
+                                    <option value="1m">1개월</option>
+                                    <option value="6m">6개월</option>
+                                </select>
+                                <select th:field="*{searchSellStatus}" class="search-option-select-box">
+                                    <option value="">판매상태(전체)</option>
+                                    <option value="SELL">판매 중</option>
+                                    <option value="SOLD_OUT">품절</option>
+                                </select>
+                                <select th:field="*{searchBy}" class="search-option-select-box">
+                                    <option value="productName">상품 명</option>
+                                    <option value="createdBy">등록자 명</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="right-searchbox">
-                            <div class="search-option-label">검색 옵션</div>
-                            <select th:field="*{searchDateType}" class="search-option-select-box">
-                                <option value="all">전체 기간</option>
-                                <option value="1d">1일</option>
-                                <option value="1w">1주</option>
-                                <option value="1m">1개월</option>
-                                <option value="6m">6개월</option>
-                            </select>
-                            <select th:field="*{searchSellStatus}" class="search-option-select-box">
-                                <option value="">판매상태(전체)</option>
-                                <option value="SELL">판매 중</option>
-                                <option value="SOLD_OUT">품절</option>
-                            </select>
-                            <select th:field="*{searchBy}" class="search-option-select-box">
-                                <option value="productName">상품 명</option>
-                                <option value="createdBy">등록자</option>
-                            </select>
+                    </nav>
+                </div>
+                <hr>
+                <div class="subbox">
+                    <div text="한식 밀키트입니다."/>
+                    <div th:each="product, status: ${products.getContent()}" class="right-category-image">
+                        <div><img src="/img/receipeSearch/conv.PNG" width="330" height="200"/></div>
+                        <div><a th:href="@{'/product/' + ${product.id}}">
+                            <div th:text="${product.productName}" class="nameLabel-right"/>
+                        </a></div>
+                        <div>
+                            <div th:text="${product.createdBy}"/>
+                            <div th:text="${product.productSellStatus == T(cookalone.main.domain.status.ProductSellStatus).SELL} ? '판매중' : '품절'"/>
+                            <div th:text="${product.price}"/>
                         </div>
                     </div>
-
-                    <!--                        <div class="pagination"-->
-                    <!--                             th:with="start=${T(java.lang.Math).floor(receipes.number/10)*10 + 1},-->
-                    <!--                    last=(${start + 9 < receipes.totalPages ? start + 9 : receipes.totalPages})">-->
-                    <!--                            <div class="paging-button">-->
-                    <!--                                <a th:href="@{/receipe/searchform(page=1)}" aria-label="First">-->
-                    <!--                                    <img aria-hidden="true" src="/img/receipeSearch/first-arrow.png" width="45"-->
-                    <!--                                         height="45"-->
-                    <!--                                         class="upButtons"/>-->
-                    <!--                                </a>-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="paging-button">-->
-                    <!--                                <div th:class="${receipes.first} ? 'disabled'">-->
-                    <!--                                    <a th:href="${receipes.first} ? '#' :@{/receipe/searchform(page=${receipes.number})}"-->
-                    <!--                                       aria-label="Previous">-->
-                    <!--                                        <img aria-hidden="true" src="/img/receipeSearch/left-arrow.png" width="45"-->
-                    <!--                                             height="45" class="upButtons"/>-->
-                    <!--                                    </a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="paging-button">-->
-                    <!--                                <div th:each="page: ${#numbers.sequence(start, last)}"-->
-                    <!--                                     th:class="${page == receipes.number + 1} ? 'active'">-->
-                    <!--                                    <a th:text="${page}" th:href="@{/receipe/searchform(page=${page})}"></a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="paging-button">-->
-                    <!--                                <div th:class="${receipes.last} ? 'disabled'">-->
-                    <!--                                    <a th:href="${receipes.last} ? '#' : @{/receipe/searchform(page=${receipes.number + 2})}"-->
-                    <!--                                       aria-label="Next">-->
-                    <!--                                        <img aria-hidden="true" src="/img/receipeSearch/right-arrow.png" width="45"-->
-                    <!--                                             height="45" class="upButtons"/>-->
-                    <!--                                    </a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="paging-button">-->
-                    <!--                                <a th:href="@{/receipe/searchform(page=${receipes.totalPages})}" aria-label="Last">-->
-                    <!--                                    <img aria-hidden="true" src="/img/receipeSearch/last-arrow.png" width="45"-->
-                    <!--                                         height="45"-->
-                    <!--                                         class="upButtons"/>-->
-                    <!--                                </a>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-
-                </nav>
+                </div>
             </div>
-            <hr>
-            <div class="subbox">
-            <span th:each="item : ${receipes}" class="right-category-image">
-                <div><img src="/img/receipeSearch/conv.PNG" width="330"
-                          height="200"/></div>
-                <a th:href="@{'/receipe/' + ${item.id}}">
-                    <div th:text="${item.title}" class="nameLabel-right"></div>
-                </a>
-            </span>
-            </div>
-
         </div>
     </form>
     <th:block th:replace="fragments/footer :: footerFragment"/>

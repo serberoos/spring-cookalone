@@ -21,7 +21,7 @@ public class ContentSearchController {
     
     @GetMapping({"/contents", "/contents/{page}"})
     public String contentManage(ProductSearchDto productSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,3);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
         Page<Product> products = productServiceImpl.getAdminProductPage(productSearchDto, pageable);
         model.addAttribute("products",products);
         model.addAttribute("productSearchDto", productSearchDto);
