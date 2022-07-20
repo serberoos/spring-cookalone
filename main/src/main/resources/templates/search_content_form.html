@@ -139,17 +139,21 @@
                     </nav>
                 </div>
                 <hr>
+                <div class="category-title">🍚🥢 한식 밀키트 카테고리</div>
                 <div class="subbox">
-                    <div text="한식 밀키트입니다."/>
                     <div th:each="product, status: ${products.getContent()}" class="right-category-image">
-                        <div><img src="/img/receipeSearch/conv.PNG" width="330" height="200"/></div>
-                        <div><a th:href="@{'/product/' + ${product.id}}">
-                            <div th:text="${product.productName}" class="nameLabel-right"/>
-                        </a></div>
+                        <a th:href="@{'/product/' + ${product.id}}">
+                            <div><img src="/img/receipeSearch/conv.PNG" width="367" height="200"/></div>
+                        </a>
                         <div>
-                            <div th:text="${product.createdBy}"/>
-                            <div th:text="${product.productSellStatus == T(cookalone.main.domain.status.ProductSellStatus).SELL} ? '판매중' : '품절'"/>
-                            <div th:text="${product.price}"/>
+                            <a th:href="@{'/product/' + ${product.id}}">
+                                <div th:text="${product.productName}" class="nameLabel-right"/>
+                            </a></div>
+                        <div>
+                            <div class="content-info content-name" th:text="${product.createdBy}"/>
+                            <div class="content-info content-status"
+                                 th:text="${product.productSellStatus == T(cookalone.main.domain.status.ProductSellStatus).SELL} ? '판매중' : '품절'"/>
+                            <div class="content-info content-price" th:text="${product.price}">\</div>
                         </div>
                     </div>
                 </div>
