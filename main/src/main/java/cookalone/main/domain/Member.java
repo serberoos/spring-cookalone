@@ -64,6 +64,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Receipe> receipeList = new ArrayList<>();
 
+
     @Column(name= "created_date", nullable = false)
     @CreatedDate
     private LocalDateTime createdDate;

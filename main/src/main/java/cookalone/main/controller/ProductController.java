@@ -34,7 +34,7 @@ public class ProductController {
     @PostMapping("/product/write")
     public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
                                    Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
-
+        System.out.println("1");
         if (bindingResult.hasErrors()) {
             return "write_product_form";
         }

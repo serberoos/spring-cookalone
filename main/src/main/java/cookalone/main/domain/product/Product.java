@@ -54,9 +54,10 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductSellStatus productSellStatus;
     
-    //킾
+
+//    @Column(name= "created_by", nullable = false)
     @CreatedBy
-    private Long createdBy;
+    private String createdBy;
 
     @Column(name= "created_date", nullable = false)
     @CreatedDate

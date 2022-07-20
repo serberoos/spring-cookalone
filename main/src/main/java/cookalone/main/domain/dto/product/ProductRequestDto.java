@@ -31,7 +31,7 @@ public class ProductRequestDto {
     private String productDetails;
 
     private ProductSellStatus productSellStatus;
-
+    private String createdBy;
     private String createdDate;
     private String modifiedDate;
 

@@ -29,12 +29,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
-
+        System.out.println("2");
         // 상품 등록
 
         Product product = productRequestDto.toEntity();
         productRepository.save(product);
-
+        System.out.println("3");
         // 이미지 등록
         for (int i = 0; i < productImgFileList.size(); i++) {
 

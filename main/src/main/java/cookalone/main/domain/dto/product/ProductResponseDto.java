@@ -30,7 +30,7 @@ public class ProductResponseDto implements Serializable {
 
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-
+    private String createdBy;
     private List<ProductImgResponseDto> productImgResponseDtoList; // 상품 저장 후 수정시 상품 이미지 정보를 저장
 
     private List<Long> productImgIdList = new ArrayList<>(); // 상품 이미지 아이디 리스트
@@ -43,6 +43,7 @@ public class ProductResponseDto implements Serializable {
         this.stockQuantity = product.getStockQuantity();
         this.productDetails = product.getProductDetails();
         this.productSellStatus = product.getProductSellStatus();
+        this.createdBy = product.getCreatedBy();
         this.createdDate = product.getCreatedDate();
         this.modifiedDate = product.getModifiedDate();
         this.productImgResponseDtoList = productImgResponseDtoList;
