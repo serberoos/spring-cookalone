@@ -119,23 +119,19 @@ nav {
     vertical-align:middle;
     margin-bottom:15px;
 }
-.receipeBox-left{
-    background-color:darkgray;
-
-    margin-bottom:2px;
-    margin-right:54px;
-    padding:20px;
-
-    width:45%;
-    display:inline-block;
-    vertical-align:middle;
+.receipeBox-left {
+    background-color: darkgray;
+    margin-bottom: 2px;
+    padding: 5px;
+    width: 48.9%;
+    display: inline-block;
+    vertical-align: middle;
 }
-.receipeBox-right{
-    padding-right:20px;
-    width:45%;
-
-    display:inline-block;
-    vertical-align:middle;
+.receipeBox-right {
+    padding: 5px;
+    width: 49%;
+    display: inline-block;
+    vertical-align: middle;
 }
 #receipeBox-right-name{
     font-size:1.1rem;
@@ -159,12 +155,12 @@ nav {
     color:skyblue;
 }
 .receipe {
-    height:195px;
-    width:32%;
+    height: 192px;
+    width: 32.25%;
     background-color: gray;
-    display:inline-block;
-    margin-right:3px;
-    vertical-align:middle;
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: middle;
 }
 .receipe-name-box{
     font-size:1rem;
