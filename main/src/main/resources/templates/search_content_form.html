@@ -22,7 +22,7 @@
                 </div>
             </nav>
         </header>
-        <div th:object="${productSearchDto}">
+        <div th:object="${contentSearchDto}">
             <div id="down-header">
                 <div id="down-header-left">
                     <a href="/auth/login-form" sec:authorize="!isAuthenticated()"><img src="/img/login.PNG" width="240"
@@ -97,7 +97,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--th:object="${productSearchDto}"-->
                         <div class="search-option-box">
                             <div class="center-searchbox">
                                 <div class="search-option-label">조회 옵션</div>
@@ -143,7 +142,7 @@
                 <div class="subbox">
                     <div th:each="product, status: ${products.getContent()}" class="right-category-image">
                         <a th:href="@{'/product/' + ${product.id}}">
-                            <div><img src="/img/receipeSearch/conv.PNG" width="367" height="200"/></div>
+                            <div><img th:src="${product.imgUrl}" th:alt="${product.productName}" width=274 height=274/></div>
                         </a>
                         <div>
                             <a th:href="@{'/product/' + ${product.id}}">

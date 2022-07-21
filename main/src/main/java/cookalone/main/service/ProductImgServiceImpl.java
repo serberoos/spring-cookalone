@@ -49,7 +49,7 @@ public class ProductImgServiceImpl implements ProductImgService {
             }
             String oriImgName = productImgFile.getOriginalFilename();
             String imgName = fileService.uploadFile(productImgLocation, oriImgName, productImgFile.getBytes());
-            String imgUrl = "/shop/item" + imgName;
+            String imgUrl = "/cookalone/product" + imgName;
             savedProductImg.updateProductImg(oriImgName, imgName, imgUrl);
 
         }

@@ -1,6 +1,7 @@
 package cookalone.main.controller;
 
-import cookalone.main.domain.dto.search.ProductSearchDto;
+import cookalone.main.domain.dto.search.ContentSearchDto;
+import cookalone.main.domain.dto.search.SearchProductFormDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,11 @@ public class ContentSearchController {
     private final ProductServiceImpl productServiceImpl;
     
     @GetMapping({"/contents", "/contents/{page}"})
-    public String contentManage(ProductSearchDto productSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,9);
-        Page<Product> products = productServiceImpl.getAdminProductPage(productSearchDto, pageable);
+    public String contentManage(ContentSearchDto contentSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,12);
+        Page<SearchProductFormDto> products = productServiceImpl.getAdminProductPage(contentSearchDto, pageable);
         model.addAttribute("products",products);
-        model.addAttribute("productSearchDto", productSearchDto);
+        model.addAttribute("productSearchDto", contentSearchDto);
         model.addAttribute("maxPage", 5);
         return "search_content_form";
     }

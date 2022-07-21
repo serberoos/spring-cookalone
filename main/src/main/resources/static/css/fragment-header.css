@@ -112,12 +112,12 @@ nav {
     box-shadow: 5px 5px 3px black;
 }
 
-.receipe-image{
-    padding-top:30px;
+.receipe-image {
+    padding-top: 3px;
 }
-.box{
-    vertical-align:middle;
-    margin-bottom:15px;
+.box {
+    vertical-align: middle;
+    margin-bottom: 8px;
 }
 .receipeBox-left {
     background-color: darkgray;
@@ -133,16 +133,16 @@ nav {
     display: inline-block;
     vertical-align: middle;
 }
-#receipeBox-right-name{
-    font-size:1.1rem;
-    text-align:center;
+.receipeBox-right-name {
+    font-size: 1.1rem;
+    text-align: center;
     background-color: gray;
-    border:1px;
-    border-style:double;
-    padding:1px;
-    margin-bottom:20px;
+    border: 1px;
+    border-style: double;
+    padding: 1px;
+    margin-bottom: 7px;
 }
-#receipeBox-left-name{
+.receipeBox-left-name{
     font-size:1.1rem;
     text-align:center;
 }
@@ -155,19 +155,18 @@ nav {
     color:skyblue;
 }
 .receipe {
-    height: 192px;
+    height: 230px;
     width: 32.25%;
     background-color: gray;
     display: inline-block;
     margin-right: 3px;
     vertical-align: middle;
 }
-.receipe-name-box{
-    font-size:1rem;
-    font-style:bold;
-    background-color: rgb(69, 100, 112);
-    padding:1px;
-    margin:3px;
+.receipe-name-box {
+    font-size: 1.2rem;
+    padding: 2px;
+    height: 37px;
+    text-align: center;
 }
 
 .cookalone-text{

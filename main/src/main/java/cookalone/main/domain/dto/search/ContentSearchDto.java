@@ -5,7 +5,7 @@ import cookalone.main.domain.status.ProductSellStatus;
 import lombok.Data;
 
 @Data
-public class ProductSearchDto {
+public class ContentSearchDto {
     private String searchDateType;
 
     private ProductSellStatus searchSellStatus;

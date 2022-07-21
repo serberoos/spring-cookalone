@@ -115,7 +115,7 @@ nav {
 }
 
 .subbox {
-    height: 975px;
+    height: 1230px;
 }
 .content-info {
     display: inline-block;
@@ -124,7 +124,7 @@ nav {
     margin-top: 6px;
 }
 .content-name {
-    margin-right: 134px;
+    margin-right: 56px;
     margin-left: 4px;
     color: lightgray;
     padding-left: 6px;
@@ -159,15 +159,14 @@ nav {
 }
 .right-category-image {
     display: inline-block;
-    width: 31.7%;
+    width: 23.45%;
     margin-left: 15px;
-    margin-top: 8px;
     margin-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 4px;
     vertical-align: middle;
     float: left;
     background-color: gray;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 .nameLabel-left {
@@ -185,6 +184,7 @@ nav {
     margin: 3px;
     margin-top: 10px;
     padding-left: 6px;
+    height: 54px;
 }
 
 .nameLabel-left:hover {

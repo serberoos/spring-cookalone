@@ -11,34 +11,50 @@
 
     <div class="box">
         <div class="receipeBox-left">
-            <div id="receipeBox-right-name"><h2>추천수 높은 <span class="cookalone-text">쿡얼론</span> 레시피 🥘3️⃣</h2></div>
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/jangadup.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">장어 덮밥</a></div>
-            </div>
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/mayo.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">참치 마요 덮밥</a></div>
-            </div>
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/wudong.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">자취생 우동</a></div>
-            </div>
+            <div class="receipeBox-right-name"><h2>추천수 높은 <span class="cookalone-text">쿡얼론</span> 레시피 🥘3️⃣</h2></div>
+
+            <th:block>
+                <div class="receipe">
+                    <div class="receipe-image"><img src="/img/index/jangadup.png" width=183 height=183/></div>
+                    <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">장어 덮밥</a>
+                    </div>
+                </div>
+                <div class="receipe">
+                    <div class="receipe-image"><img src="/img/index/mayo.png" width=183 height=183/></div>
+                    <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">참치 마요 덮밥</a>
+                    </div>
+                </div>
+                <div class="receipe">
+                    <div class="receipe-image"><img src="/img/index/wudong.png" width=183 height=183/></div>
+                    <div class="receipe-name-box"><a href="receipe_details_form.html" class="receipe-name">자취생 우동</a>
+                    </div>
+                </div>
+            </th:block>
         </div>
         <div class="receipeBox-right">
-            <div id="receipeBox-right-name"><h2>많이 팔린 <span class="cookalone-text">쿡얼론</span> 밀키트 🍱3️⃣</h2></div>
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/menu1.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">케찹 볶음밥</a></div>
-            </div>
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/menu2.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">마약 토스트</a></div>
-            </div>
+            <div class="receipeBox-right-name"><h2>많이 팔린 <span class="cookalone-text">쿡얼론</span> 밀키트 🍱3️⃣</h2></div>
+            <div class="main-receipe-wrapper">
+                <th:block th:each="product, status: ${products.getContent()}">
 
-            <div class="receipe">
-                <div class="receipe-image"><img src="/img/index/menu3.png" width=170 height=130/></div>
-                <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">자취생 탕수육</a></div>
+                    <div class="receipe">
+                        <div class="receipe-image"><a th:href="'/product' + ${product.id}">
+                            <img th:src="${product.imgUrl}" th:alt="${product.productName}" width=183 height=183/></a>
+                        </div>
+                        <div class="receipe-name-box"><a th:href="'/product' + ${product.id}" class="receipe-name">[[${product.productName}]]</a>
+                        </div>
+                    </div>
+                    <!-- 후 구현 -->
+                    <!--                    <div class="receipe">-->
+                    <!--                        <div class="receipe-image"><img th:src="${product.imgUrl}" width=170 height=130/></div>-->
+                    <!--                        <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">마약 토스트</a></div>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="receipe">-->
+                    <!--                        <div class="receipe-image"><img src="/img/index/menu3.png" width=170 height=130/></div>-->
+                    <!--                        <div class="receipe-name-box"><a href="receipe_check.html" class="receipe-name">자취생 탕수육</a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </th:block>
             </div>
         </div>
     </div>

@@ -1,10 +1,12 @@
 package cookalone.main.service;
 
 import cookalone.main.domain.ProductImg;
+import cookalone.main.domain.dto.main.MainProductFormDto;
 import cookalone.main.domain.dto.product.ProductRequestDto;
 import cookalone.main.domain.dto.product.ProductResponseDto;
 import cookalone.main.domain.dto.product.ProductImgResponseDto;
-import cookalone.main.domain.dto.search.ProductSearchDto;
+import cookalone.main.domain.dto.search.ContentSearchDto;
+import cookalone.main.domain.dto.search.SearchProductFormDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.repository.ProductImgRepository;
 import cookalone.main.repository.ProductRepository;
@@ -29,16 +31,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Long saveProduct(ProductRequestDto productRequestDto, List<MultipartFile> productImgFileList) throws Exception {
-        System.out.println("2");
         // 상품 등록
-
         Product product = productRequestDto.toEntity();
         productRepository.save(product);
-        System.out.println("3");
+
         // 이미지 등록
         for (int i = 0; i < productImgFileList.size(); i++) {
-
-
             ProductImg productImg = new ProductImg();
             productImg.setProduct(product);
             if (i == 0) {
@@ -88,8 +86,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Product> getAdminProductPage(ProductSearchDto productSearchDto,
-                                             Pageable pageable){
-        return productRepository.getAdminProductPage(productSearchDto, pageable);
+    public Page<SearchProductFormDto> getAdminProductPage(ContentSearchDto contentSearchDto,
+                                                          Pageable pageable){
+        return productRepository.getSearchProductPage(contentSearchDto, pageable);
+    }
+    @Transactional(readOnly = true)
+    public Page<MainProductFormDto> getMainProductPage(ContentSearchDto contentSearchDto, Pageable pageable){
+        return productRepository.getMainProductPage(contentSearchDto, pageable);
     }
 }
