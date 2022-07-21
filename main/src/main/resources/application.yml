@@ -33,6 +33,6 @@ logging:
 
 path_value:
   ## 상품 이미지 업로드 경로
-  productImgLocation: C:/shop/item
+  productImgLocation: C:/cookalone/product
   ## 리소스 업로드 경로
-  uploadPath: file:///C:/shop/
+  uploadPath: file:///C:/cookalone/
