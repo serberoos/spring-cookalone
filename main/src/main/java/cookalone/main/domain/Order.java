@@ -50,14 +50,37 @@ public class Order {
      */
     @JsonIgnore
     @OneToMany(mappedBy= "order", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-    private List<OrderProduct> orderProducts = new ArrayList<>();
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 
-    @Column(name= "created_date", nullable = false)
+    @Column(name= "created_date", nullable = true) // nullable 나중에 리팩토링 할때 false로 바꿀 것
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @Column(name= "modified_date", nullable = false)
+    @Column(name= "modified_date", nullable = true)// nullable 나중에 리팩토링 할때 false로 바꿀 것
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
+    // 후에 리팩토링 할 부분은 리팩토링
+    public void addOrderProduct(OrderProduct orderProduct){
+        orderProductList.add(orderProduct);
+        orderProduct.setOrder(this);
+    }
+    public static Order createOrder(Member member, List<OrderProduct> orderProductList){
+        Order order = new Order();
+        order.setMember(member);
+        for(OrderProduct orderProduct : orderProductList){
+            order.addOrderProduct(orderProduct);
+        }
+        order.setOrderStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        for(OrderProduct orderProduct : orderProductList){
+            totalPrice += orderProduct.getTotalPrice();
+        }
+        return totalPrice;
+    }
 }

@@ -7,7 +7,7 @@
 
     <!-- js -->
     <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/count-total-price.js}"></script>
+    <script type="text/javascript" th:src="@{/js/order-product.js}"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -39,7 +39,7 @@
                 <div class="content-product-num-wrapper">
                     <div class="content-product-num">수량</div>
                     <div class="content-product-num-input-field-div"><input class="content-product-num-input-field"
-                                                                            type="number" name="count" id="count"
+                                                                            type="number" name="orderCount" id="orderCount"
                                                                             value="1" min="1"></div>
                 </div>
                 <hr>
@@ -49,7 +49,7 @@
                 </div>
                 <div th:if="${productResponseDto.productSellStatus == T(cookalone.main.domain.status.ProductSellStatus).SELL}">
                     <!-- 주문하기 버튼 -->
-                    <button type="button" class="button content-action-button"><img src="/img/product-order-btn.png" width="125"
+                    <button type="button" class="button content-action-button" onclick="order()"><img src="/img/product-order-btn.png" width="125"
                                                               height="55" class="upButtons"/></button>
                     <!-- 장바구니 담기 버튼 -->
                     <button type="button" class="button content-action-button"><img src="/img/add-product-to-cart-btn.png" width="175"

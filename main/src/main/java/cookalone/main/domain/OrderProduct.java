@@ -36,12 +36,26 @@ public class OrderProduct {
     private int orderPrice;
     private int orderCount;
 
-    @Column(name= "created_date", nullable = false)
+    @Column(name= "created_date", nullable = true) // nullable 나중에 리팩토링 할때 false로 바꿀 것
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @Column(name= "modified_date", nullable = false)
+    @Column(name= "modified_date", nullable = true) // nullable 나중에 리팩토링 할때 false로 바꿀 것
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+    // 후에 리팩토링
+    public static OrderProduct createOrderProduct(Product product, int count){
+        OrderProduct orderProduct = new OrderProduct();
+        orderProduct.setProduct(product);
+        orderProduct.setOrderCount(count);
+        orderProduct.setOrderPrice(product.getPrice());
 
+        product.removeStock(count);
+
+        return orderProduct;
+    }
+    // 후에 리팩토링
+    public int getTotalPrice(){
+        return orderPrice * orderCount;
+    }
 }

@@ -2,6 +2,7 @@ package cookalone.main.domain.product;
 
 import cookalone.main.domain.dto.product.ProductRequestDto;
 import cookalone.main.domain.dto.product.ProductResponseDto;
+import cookalone.main.domain.exception.OutOfStockException;
 import cookalone.main.domain.status.ProductSellStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -75,6 +76,16 @@ public class Product {
         this.productSellStatus = productResponseDto.getProductSellStatus();
     }
 
+
 //    @ManyToMany(mappedBy="productList")
 //    private List<ProductCategory> productCategoryList = new ArrayList<>();
+
+    public void removeStock(int stockQuantity) {
+        int restStock = this.stockQuantity - stockQuantity;
+
+        if (restStock < 0) {
+            throw new OutOfStockException("상품의 재고가 부족합니다. 현 재고 수량: " + this.stockQuantity + ")");
+        }
+        this.stockQuantity = restStock;
+    }
 }
