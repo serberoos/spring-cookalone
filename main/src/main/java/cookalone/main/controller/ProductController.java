@@ -34,7 +34,6 @@ public class ProductController {
     @PostMapping("/product/write")
     public String productWriteProc(@Valid ProductRequestDto productRequestDto, BindingResult bindingResult,
                                    Model model, @RequestParam("productImgFile") List<MultipartFile> productImgFileList) throws Exception {
-        System.out.println("1");
         if (bindingResult.hasErrors()) {
             return "write_product_form";
         }
@@ -82,20 +81,25 @@ public class ProductController {
         }
         if(productImgFileList.get(0).isEmpty() && productResponseDto.getId() == null){
             model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값입니다.");
-            System.out.println("첫번째 상품 이미지는 필수 입력 값입니다.");
             return "update_product_form";
         }
 
         try {
             productServiceImpl.updateProduct(productResponseDto, productImgFileList);
-            System.out.println("updateProduct");
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
-            System.out.println("상품 수정 중 에러가 발생하였습니다. : "+e);
             return "update_product_form";
         }
-        System.out.println("redirect:/");
         return "redirect:/";
+    }
+    
+    // product 글 상세 보기
+    @GetMapping("/product/{productId}")
+    public String productDetailsForm(Model model, @PathVariable("productId") Long productId){
+        ProductResponseDto productResponseDto = productServiceImpl.getProductDetails(productId);
+        model.addAttribute("productResponseDto", productResponseDto);
+        System.out.println((productResponseDto.getProductImgResponseDtoList()).get(0).getImgUrl());
+        return "product_details_form";
     }
 
 

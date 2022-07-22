@@ -37,10 +37,10 @@
                 <th:block th:each="product, status: ${products.getContent()}">
 
                     <div class="receipe">
-                        <div class="receipe-image"><a th:href="'/product' + ${product.id}">
+                        <div class="receipe-image"><a th:href="'/product/' + ${product.id}">
                             <img th:src="${product.imgUrl}" th:alt="${product.productName}" width=183 height=183/></a>
                         </div>
-                        <div class="receipe-name-box"><a th:href="'/product' + ${product.id}" class="receipe-name">[[${product.productName}]]</a>
+                        <div class="receipe-name-box"><a th:href="'/product/' + ${product.id}" class="receipe-name">[[${product.productName}]]</a>
                         </div>
                     </div>
                     <!-- 후 구현 -->
