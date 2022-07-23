@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,5 +82,28 @@ public class OrderServiceImpl implements OrderService {
             orderHistoryDtoList.add(orderHistoryDto);
         }
         return new PageImpl<OrderHistoryDto>(orderHistoryDtoList, pageable, totalCount);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean validateOrder(Long orderId, String nickname) {
+        Member curMember = memberRepository.findByNickname(nickname);
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("주문이 존재하지 않습니다. id:" + orderId));
+        Member savedMember = order.getMember();
+
+        if(!StringUtils.equals(curMember.getNickname(), savedMember.getNickname())){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public void cancelOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("주문이 존재하지 않습니다. id:" + orderId));
+        order.cancelOrder();
+
     }
 }

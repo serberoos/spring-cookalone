@@ -83,4 +83,12 @@ public class Order {
         }
         return totalPrice;
     }
+    public void cancelOrder(){
+        this.orderStatus = OrderStatus.CANCEL;
+        System.out.println(this.orderStatus);
+
+        for(OrderProduct orderProduct : orderProductList){
+            orderProduct.cancel();
+        }
+    }
 }

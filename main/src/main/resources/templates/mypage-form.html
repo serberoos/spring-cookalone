@@ -5,6 +5,11 @@
     <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
 
     <link rel="stylesheet" th:href="@{/css/mypage.css}">
+
+    <!-- js -->
+    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/order-cancel.js}"></script>
+
 </head>
 <body>
 <div class="wrapper">
@@ -69,10 +74,10 @@
                         <div class="mypage-content-order-right-content">
                             <div class="mypage-content-product-btn-wrapper"
                                  th:if="${orderHistoryDto.orderStatus == T(cookalone.main.domain.status.OrderStatus).ORDER}">
-                                <button type="button" class="mypage-content-product-btn">주문 취소</button>
+                                <button th:value="${orderHistoryDto.orderId}" onclick="cancelOrder(this.value)" type="button" class="mypage-content-product-btn">주문 취소</button>
                             </div>
                             <div class="mypage-content-product-btn-wrapper"
-                                 th:unless="${orderHistoryDto.orderStatus == T(cookalone.main.domain.status.OrderStatus).CANCEL}">
+                                 th:unless="${orderHistoryDto.orderStatus == T(cookalone.main.domain.status.OrderStatus).ORDER}">
                                 <button type="button" class="mypage-content-product-btn">(취소 완료)</button>
                             </div>
                             <div class="mypage-content-product-btn-wrapper">
@@ -80,7 +85,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
                 </div>
             </div>
 

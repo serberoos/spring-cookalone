@@ -58,4 +58,9 @@ public class OrderProduct {
     public int getTotalPrice(){
         return orderPrice * orderCount;
     }
+
+    public void cancel() {
+        this.getProduct().addStock(orderCount);
+    }
+
 }

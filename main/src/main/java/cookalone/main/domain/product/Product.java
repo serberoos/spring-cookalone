@@ -88,4 +88,8 @@ public class Product {
         }
         this.stockQuantity = restStock;
     }
+
+    public void addStock(int stockQuantity){
+        this.stockQuantity += stockQuantity;
+    }
 }
