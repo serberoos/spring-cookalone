@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>함께 만들어가는 레시피 북 - 쿡 얼론</title>
+
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/main_header :: mainHeaderFragment"/>
+    <div id="mainBox">
+        <hr>
+        <div class="mypage-title">📑 마이 페이지</div>
+        <hr>
+        <div class="mypage-content">
+            <div class="mypage-content-left-wrapper">
+                <div>
+                    <div class="mypage-content-title">📄 주문 내역</div>
+                    <div class="search-option-pagination mypage-content-pager" th:with="start=${(orderHistoryDtoList.number/maxPage)*maxPage+1},
+                        end=(${(orderHistoryDtoList.totalPages == 0) ? 1 : (start + (maxPage - 1)
+                        < orderHistoryDtoList.totalPages ? start + (maxPage - 1) : orderHistoryDtoList.totalPages)})">
+                        <ul class="pagination">
+                            <li th:classappend="${orderHistoryDtoList.number eq 0}?'disabled':''">
+                                <a th:href="@{'/product/orders' + ${orderHistoryDtoList.number-1}}"
+                                   aria-label='Previous'>
+                                    <span aria-hidden='true'><<</span>
+                                </a>
+                            </li>
+
+                            <li th:each="page: ${#numbers.sequence(start, end)}"
+                                th:classappend="${orderHistoryDtoList.number eq page-1}?'active':''">
+                                <a th:href="@{'/product/orders' + ${page-1}}"
+                                   th:inline="text">[[${page}]]</a>
+                            </li>
+
+                            <li th:classappend="${orderHistoryDtoList.number+1 ge orderHistoryDtoList.totalPages}?'disabled':''">
+                                <a th:href="@{'/product/orders' + ${orderHistoryDtoList.number+1}}"
+                                   aria-label="Next">
+                                    <span aria-hidden='true'>>></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="mypage-content-order-wrapper"
+                     th:each="orderHistoryDto : ${orderHistoryDtoList.getContent()}">
+                    <div class="mypage-content-orderdate" th:text="${orderHistoryDto.orderDate} + ' 주문'"/>
+                    <div th:each="orderProduct : ${orderHistoryDto.orderProductDtoList}"
+                         class="mypage-content-order-content">
+                        <div class="mypage-content-order-left-content">
+                            <img th:alt="${orderProduct.productName}" th:src="${orderProduct.imgUrl}" width="100"
+                                 height="100"/>
+                        </div>
+                        <div class="mypage-content-order-center-content">
+                            <div class="mypage-content-order-info">
+                                <div th:text="${orderProduct.productName}" class="mypage-content-product-title"/>
+                                <div class="mypage-content-product-info">
+                                    <div class="mypage-content-product-createby">파파고</div>
+                                    <div th:text="${orderProduct.orderPrice} + '원'"
+                                         class="mypage-content-product-price"/>
+                                    <div th:text="${orderProduct.orderCount} + '개'"
+                                         class="mypage-content-product-count"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mypage-content-order-right-content">
+                            <div class="mypage-content-product-btn-wrapper"
+                                 th:if="${orderHistoryDto.orderStatus == T(cookalone.main.domain.status.OrderStatus).ORDER}">
+                                <button type="button" class="mypage-content-product-btn">주문 취소</button>
+                            </div>
+                            <div class="mypage-content-product-btn-wrapper"
+                                 th:unless="${orderHistoryDto.orderStatus == T(cookalone.main.domain.status.OrderStatus).CANCEL}">
+                                <button type="button" class="mypage-content-product-btn">(취소 완료)</button>
+                            </div>
+                            <div class="mypage-content-product-btn-wrapper">
+                                <button class="mypage-content-product-btn">배송 조회</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="mypage-content-right-wrapper">mypage-content-right-wrapper</div>
+        </div>
+    </div>
+    <th:block th:replace="fragments/footer :: footerFragment"/>
+</div>
+</body>
+</html>

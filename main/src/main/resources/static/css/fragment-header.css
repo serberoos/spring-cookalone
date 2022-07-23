@@ -134,13 +134,15 @@ nav {
     vertical-align: middle;
 }
 .receipeBox-right-name {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     text-align: center;
-    background-color: gray;
-    border: 1px;
-    border-style: double;
+    background-color: tan;
     padding: 1px;
     margin-bottom: 7px;
+    height: 52px;
+    padding-top: 20px;
+    border-radius: 0.5em;
+    color: beige;
 }
 .receipeBox-left-name{
     font-size:1.1rem;

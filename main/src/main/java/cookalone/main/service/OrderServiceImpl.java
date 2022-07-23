@@ -3,13 +3,20 @@ package cookalone.main.service;
 import cookalone.main.domain.Member;
 import cookalone.main.domain.Order;
 import cookalone.main.domain.OrderProduct;
+import cookalone.main.domain.ProductImg;
+import cookalone.main.domain.dto.order.OrderHistoryDto;
+import cookalone.main.domain.dto.order.OrderProductDto;
 import cookalone.main.domain.dto.order.OrderRequestDto;
 import cookalone.main.domain.product.Product;
 import cookalone.main.repository.MemberRepository;
 import cookalone.main.repository.OrderRepository;
+import cookalone.main.repository.ProductImgRepository;
 import cookalone.main.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,15 +25,16 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
+    private final ProductImgRepository productImgRepository;
 
     @Override
+    @Transactional
     public Long order(OrderRequestDto orderRequestDto, String nickname) {
 
         Long productId = orderRequestDto.getProductId();
@@ -43,5 +51,35 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
 
         return order.getId();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<OrderHistoryDto> getOrderList(String nickname, Pageable pageable) {
+        List<Order> orderList = orderRepository.findOrders(nickname, pageable);
+        Long totalCount = orderRepository.countOrder(nickname);
+
+        List<OrderHistoryDto> orderHistoryDtoList = new ArrayList<>();
+
+        for(Order order : orderList){
+            OrderHistoryDto orderHistoryDto = new OrderHistoryDto(order);
+            System.out.println("@" + orderHistoryDto.getOrderId()
+                    +"@"+ orderHistoryDto.getOrderDate()
+                    +"@"+ orderHistoryDto.getOrderStatus()
+                    );
+            List<OrderProduct> orderProductList = order.getOrderProductList();
+            for (OrderProduct orderProduct : orderProductList){
+                System.out.println("@" + orderProduct.getId()
+                        +"@"+ orderProduct.getOrderPrice()
+                        +"@"+ orderProduct.getTotalPrice()
+                );
+                ProductImg productImg = productImgRepository.findByProductIdAndRepimgYn(orderProduct.getProduct().getId(),"Y");
+                OrderProductDto orderProductDto = new OrderProductDto(orderProduct, productImg.getImgUrl());
+                orderHistoryDto.addOrderProductDto(orderProductDto);
+            }
+
+            orderHistoryDtoList.add(orderHistoryDto);
+        }
+        return new PageImpl<OrderHistoryDto>(orderHistoryDtoList, pageable, totalCount);
     }
 }

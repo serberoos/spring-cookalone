@@ -1,0 +1,500 @@
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: olive;
+    box-align: center;
+    text-align: center;
+    font-family: Sunflower;
+}
+
+@font-face {
+    font-family: Sunflower;
+    src: url(/font/BMHANNAAir.ttf) format('truetype');
+}
+
+html {
+    background-image: url("../img/background.jpg");
+    background-size: 100%;
+}
+
+header {
+    background-color: darkgoldenrod;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+footer {
+    background-color: olive;
+    text-align: center;
+    padding: 40px;
+}
+
+img, input {
+    vertical-align: middle;
+}
+
+nav {
+    display: inline-block;
+}
+
+#textfield1 {
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration-color: gray;
+}
+
+#textfield2 {
+    width: 150px;
+    height: 29px;
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration-color: gray;
+}
+
+#textfield3 {
+    width: 530px;
+    height: 40px;
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration-color: gray;
+}
+
+#down-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: gray;
+
+}
+
+#down-header-left {
+    display: inline-block;
+    padding-right: 15px;
+}
+
+#down-header-right {
+    display: inline-block;
+    vertical-align: middle;
+    height: 46px;
+}
+
+#header-logo {
+    display: inline-block;
+    padding-right: 740px;
+}
+
+#receipe-upload-button {
+    display: inline-block;
+}
+
+#receipe-upload-button:hover {
+    transform-origin: right top;
+    transform: scale(1.1);
+    transition: all 1s;
+    box-shadow: 5px 5px 3px black;
+}
+
+#setting-button {
+    display: inline-block;
+}
+
+#setting-button:hover {
+    transform: rotate(720deg);
+    transition: all 1s;
+}
+
+.upButtons:hover {
+    transform-origin: right top;
+    box-shadow: 3px 3px 3px black;
+}
+
+#mainBox {
+    background-color: darkgray;
+    padding-top: 13px;
+}
+
+.subbox {
+    height: 1230px;
+}
+.content-info {
+    display: inline-block;
+    font-size: 1.5em;
+    float: left;
+    margin-top: 6px;
+}
+.content-name {
+    margin-right: 56px;
+    margin-left: 4px;
+    color: lightgray;
+    padding-left: 6px;
+}
+.content-info.content-status {
+    margin-right: 10px;
+    color: maroon;
+}
+.content-price {
+    color: royalblue;
+}
+
+.left-category-image {
+    display: inline-block;
+    width: 23%;
+    height: 2%;
+    margin: 16px;
+    padding: 2px;
+    padding-top: 7px;
+    background-color: darkgray;
+}
+.category-title {
+    height: 55px;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 10px;
+    color: antiquewhite;
+    background-color: gray;
+    margin: 13px;
+}
+.right-category-image {
+    display: inline-block;
+    width: 23.45%;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding-top: 4px;
+    vertical-align: middle;
+    float: left;
+    background-color: gray;
+    padding-bottom: 15px;
+}
+
+.nameLabel-left {
+    background-color: rgb(69, 100, 112);
+    font-size: 1rem;
+    color: white;
+    padding: 1px;
+    margin: 3px;
+}
+.nameLabel-right {
+    text-align: left;
+    color: whitesmoke;
+    font-size: 1.6rem;
+    padding: 1px;
+    margin: 3px;
+    margin-top: 10px;
+    padding-left: 6px;
+    height: 54px;
+}
+
+.nameLabel-left:hover {
+    text-shadow: 0px 2px 2px black;
+    color: skyblue;
+}
+
+.nameLabel-right:hover {
+    text-shadow: 0px 2px 2px black;
+    color: greenyellow;
+}
+
+.search-option-select-box {
+    width: 138px;
+    height: 40px;
+}
+.search-option-label {
+
+    display : inline-block;
+}
+.search-option-nav{
+    padding-top: 10px;
+    display: block;
+    background-color: gray;
+}
+.search-option-pagination{
+    padding-bottom: 0px;
+}
+.left-searchbox {
+    display : inline-block;
+    padding-bottom: 10px;
+    width: 330px;
+    height: 30px;
+}
+.center-searchbox {
+    display : inline-block;
+    height: 30px;
+}
+.right-searchbox {
+    display : inline-block;
+    margin-left: 20px;
+    height: 30px;
+}
+
+#boxTitleImage {
+    display: inline-block;
+    width: 29%;
+
+}
+.search-option-box{
+    display: inline-block;
+}
+#boxTitleText {
+    display: inline-block;
+    width: 69%;
+    vertical-align: middle;
+    font-size: 1.0rem;
+    text-align: left;
+}
+
+.pagination {
+    margin-right: 10px;
+}
+
+.paging-button {
+    display: inline-block;
+    background-color: darkolivegreen;
+    width: 45px;
+    height: 45px;
+}
+
+.cookalone-text {
+    color: darkolivegreen;
+}
+
+.button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+#header-user-button {
+    background-color: darkgray;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 160px;
+    height: 43px;
+}
+
+.left-searchbox {
+    text-align: center;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {
+    display: inline-block;
+}
+
+ul.pagination li a {
+    color: black;
+    float: none;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background-color: darkgray;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+.mypage-title {
+    height: 55px;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 10px;
+    color: antiquewhite;
+    background-color: gray;
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+}
+.mypage-content {
+    padding-top: 10px;
+    display: block;
+}
+.mypage-content-left-wrapper {
+    display: inline-block;
+    width: 48%;
+    margin: 10px;
+    background-color: lightgray;
+    padding: 5px;
+    height: 577px;
+}
+.mypage-content-title {
+    text-align: left;
+    font-size: 1.5em;
+    color: maroon;
+    padding-right: 10px;
+    padding-top: 3px;
+    display: inline-block;
+    width: 30%;
+}
+.mypage-content-pager {
+    display: inline-block;
+    width: 65%;
+}
+.search-option-pagination{
+    padding-bottom: 0px;
+}
+.pagination {
+    margin-right: 10px;
+}
+.left-searchbox {
+    text-align: center;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+
+ul.pagination li {
+    display: inline-block;
+}
+
+ul.pagination li a {
+    color: black;
+    float: none;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background-color: darkgray;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+a {
+    text-decoration-line: none;
+}
+.mypage-content-orderdate {
+    text-align: left;
+    font-size: 20px;
+    padding-left: 6px;
+    color: aliceblue;
+}
+.mypage-content-order-content {
+    background-color: lightgrey;
+    height: 100px;
+}
+.mypage-content-product-btn{
+    display: block;
+}
+.mypage-content-product-title {
+    text-align: left;
+    font-size: 1.3em;
+    color: black;
+    padding-top: 5px;
+    display: block;
+    height: 44px;
+}
+.mypage-content-product-price {
+    color: darkslategray;
+    display: inline-block;
+}
+.mypage-content-product-count {
+    margin-left: 4px;
+    color: darkslategray;
+    padding-left: 6px;
+    display: inline-block;
+}
+.mypage-content-product-info{
+    display: inline-block;
+    font-size: 1.2em;
+    float: left;
+    margin-top: 7px;
+}
+.mypage-content-product-createby{
+    margin-right: 56px;
+    color: darkslategray;
+    display: inline-block;
+}
+
+.mypage-content-right-wrapper {
+    display: inline-block;
+    width: 47.4%;
+    padding: 10px;
+}
+.mypage-content-order-center-content{
+    display: inline-block;
+    width: 60%;
+    text-align: left;
+    float: left;
+    height: 100%;
+}
+.mypage-content-order-right-content{
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+.mypage-content-order-wrapper{
+    background-color: grey;
+    padding: 5px;
+}
+.mypage-content-order-left-content{
+    display: inline-block;
+    width: 18%;
+    float: left;
+    margin-right: 10px;
+}
+.mypage-content-order-info{
+    display: inline-block;
+    width: 80%;
+    margin-top: 8px;
+}
+.mypage-content-product-btn-wrapper{
+    display: block;
+    padding: 10px;
+    height: 49%;
+}
